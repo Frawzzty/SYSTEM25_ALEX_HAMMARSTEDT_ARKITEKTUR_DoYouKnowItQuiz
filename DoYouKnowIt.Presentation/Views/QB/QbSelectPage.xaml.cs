@@ -8,7 +8,7 @@ public partial class QBSelectPage : ContentPage
 	public QBSelectPage()
 	{
 		InitializeComponent();
-		BindingContext = new ViewModels.QBSelectPageViewModel(new QuizService());
+		BindingContext = new ViewModels.QBSelectPageViewModel();
 	}
 
     protected async override void OnAppearing()
@@ -26,10 +26,15 @@ public partial class QBSelectPage : ContentPage
 
 		if(quiz != null)
 		{
-            await Navigation.PushAsync(new QBEditQuizPage());
+            await Navigation.PushAsync(new QBEditQuizPage(quiz));
 
             //Makes it possible to select the same item again
             ((CollectionView)sender).SelectedItem = null; 
         }
+    }
+
+    private async void OnClickAddNewQuiz(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new QBEditQuizPage(null));
     }
 }

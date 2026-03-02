@@ -1,6 +1,7 @@
 ﻿using Domain.Entities.Interfaces;
 using Domain.Entities.Models.EntityFrameworkModels;
 using DoYouKnowIt.Application.Interfaces;
+using DoYouKnowIt.Application.Services;
 using DoYouKnowIt.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,9 @@ namespace DoYouKnowIt.Presentation.ViewModels
     internal class QBSelectPageViewModel : INotifyPropertyChanged
     {
         IQuizService _quizService;
-        public QBSelectPageViewModel(IQuizService quizService)
+        public QBSelectPageViewModel()
         {
-            _quizService = quizService;
+            _quizService = new QuizService();
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

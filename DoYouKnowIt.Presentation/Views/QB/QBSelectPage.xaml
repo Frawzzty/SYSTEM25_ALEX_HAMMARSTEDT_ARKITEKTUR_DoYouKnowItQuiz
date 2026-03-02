@@ -4,6 +4,10 @@
              x:Class="DoYouKnowIt.Presentation.Views.QB.QBSelectPage"
              Title="Quiz Builder - Select">
     <VerticalStackLayout>
+
+        <Button
+            Text="Add new Quiz"
+            Clicked="OnClickAddNewQuiz"/>
         <CollectionView
             ItemsSource="{Binding Quizzes}"
             SelectionMode="Single"

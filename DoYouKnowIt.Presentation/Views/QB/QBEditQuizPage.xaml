@@ -4,9 +4,20 @@
              x:Class="DoYouKnowIt.Presentation.Views.QB.QBEditQuizPage"
              Title="QbEditQuizPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Entry
+            Placeholder="Quiz Title..."
+            Text="{Binding QuizTitle}"/>
+
+        <Entry
+            Placeholder="Quiz Description..."
+            Text="{Binding QuizDescription}"/>
+
+        <Entry
+            Placeholder="Quiz ImageUrl..."
+            Text="{Binding QuizImageUrl}"/>
+
+        <Button
+            Text="Save"
+            Clicked="OnClickSaveQuiz"/>
     </VerticalStackLayout>
 </ContentPage>
