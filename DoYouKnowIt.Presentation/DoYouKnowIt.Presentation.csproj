@@ -70,4 +70,26 @@
 	  <ProjectReference Include="..\DoYouKnowIt.Infrastructure\DoYouKnowIt.Infrastructure.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Views\Play\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\QB\QbEditQuizPage.xaml.cs">
+	    <DependentUpon>QBEditQuizPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\QB\QbSelectPage.xaml.cs">
+	    <DependentUpon>QBSelectPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\QB\QBEditQuizPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\QB\QBSelectPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

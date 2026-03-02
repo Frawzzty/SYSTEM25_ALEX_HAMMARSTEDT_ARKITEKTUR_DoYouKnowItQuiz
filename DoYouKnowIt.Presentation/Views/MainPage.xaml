@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoYouKnowIt.Presentation.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            HorizontalOptions="Center"
+            WidthRequest="800"
+            Padding="30,0"
+            Spacing="25">
+
+            <Label
+                Text="Add Quiz"
+                FontSize="25"/>
+            <Entry
+                x:Name="EntryTitle"
+                Placeholder="Title..."/>
+            <Entry
+                x:Name="EntryDescription"
+                Placeholder="Description..."/>
+            <Entry
+                x:Name="EntryImageUrl"
+                Placeholder="ImageURL..."/>
+
+            <Button
+                Text="Add quiz"
+                Clicked="OnClickAddQuiz"
+                BackgroundColor="#7DDB5E"
+                TextColor="White"/>
+
+       
+            <Border></Border>
+
+            <Label
+                Text="Delete Quiz"
+                FontSize="25"/>
+            <Entry
+                x:Name="EntryQuizId"
+                Placeholder="QuizId..."/>
+
+            <Button
+                Text="Delete quiz"
+                Clicked="OnClickDeleteQuiz"
+                BackgroundColor="#DB5E5E"
+                TextColor="White"/>
+
+            <Border></Border>
+
+            <Label
+                Text="Quiz List"
+                FontSize="25"/>
+            <CollectionView
+                x:Name="CollectionViewQuiz">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout Spacing="10">
+                            <Label Text="{Binding Id}"/>
+                            <Label Text="{Binding Title}"/>
+                        </HorizontalStackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

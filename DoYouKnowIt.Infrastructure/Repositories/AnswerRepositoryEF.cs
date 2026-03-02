@@ -25,7 +25,7 @@ namespace DoYouKnowIt.Infrastructure.Repositories
         {
             if(answer != null)
             {
-                _context.Answers.Add(answer);
+                await _context.Answers.AddAsync(answer);
                 await _context.SaveChangesAsync();
             }
         }
@@ -40,7 +40,7 @@ namespace DoYouKnowIt.Infrastructure.Repositories
 
         public async Task DeleteAsync(int answerId)
         {
-            var answer = _context.Questions.FirstOrDefaultAsync(x => x.Id == answerId);
+            var answer = await _context.Questions.FirstOrDefaultAsync(x => x.Id == answerId);
             if (answer != null)
             {
                 _context.Remove(answer);

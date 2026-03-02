@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoYouKnowIt.Presentation.Views.QB.QBSelectPage"
+             Title="Quiz Builder - Select">
+    <VerticalStackLayout>
+        <CollectionView
+            ItemsSource="{Binding Quizzes}"
+            SelectionMode="Single"
+            SelectionChanged="OnSelectedQuiz">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout Spacing="15">
+                        <Border
+                            StrokeShape="RoundRectangle 10"
+                            Stroke="Black"
+                            WidthRequest="75"
+                            HeightRequest="75"
+                            BackgroundColor="White">
+                            <Image
+                            Source="{Binding ImageUrl}"
+                            />
+                        </Border>
+           
+                        <VerticalStackLayout
+                            VerticalOptions="Center">
+                            <Label
+                            Text="{Binding Title}"
+                            FontSize="25"/>
+                            <Label
+                            Text="{Binding Description}"
+                            FontSize="15"/>
+                        </VerticalStackLayout>
+                    </HorizontalStackLayout>
+   
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
