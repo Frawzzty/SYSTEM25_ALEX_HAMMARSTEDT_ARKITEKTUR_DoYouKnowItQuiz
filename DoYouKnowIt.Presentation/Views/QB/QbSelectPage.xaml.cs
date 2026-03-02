@@ -28,7 +28,7 @@ public partial class QBSelectPage : ContentPage
 		{
             await Navigation.PushAsync(new QBEditQuizPage(quiz));
 
-            //Makes it possible to select the same item again
+            //Makes it possible to select the same item again when going back
             ((CollectionView)sender).SelectedItem = null; 
         }
     }
