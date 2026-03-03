@@ -23,9 +23,10 @@ namespace DoYouKnowIt.Presentation.ViewModels
 
             LoadQuiz(quiz);
 
+
             SaveQuizAsyncCommand =      new Command(async () => { await SaveQuizAsync(); });
             DeleteQuizCommand =         new Command(async () => { await DeleteQuizAsnyc(); await Shell.Current.Navigation.PopAsync();});
-            EditQuestionAsyncCommand =  new Command(async () => { await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(quiz.Id, null)); });
+            EditQuestionAsyncCommand =  new Command(async () => { await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(Quiz.Id, null)); });
         }
 
         #region Commands
@@ -113,13 +114,19 @@ namespace DoYouKnowIt.Presentation.ViewModels
             }
         }
 
-        public async Task LoadQuestions()
+        public async Task UpdateQuestionList()
         {
-            if(Quiz.Id != 0)
+            var quiz = await _quizService.GetQuizAsync(Quiz.Id);
+
+            if(quiz != null)
             {
-                var data = await _quizService.GetQuizAsync(Quiz.Id);
-                Questions = new ObservableCollection<Question>(data.Questions);
+                Questions.Clear();
+                foreach (var question in quiz.Questions)
+                {
+                    Questions.Add(question);
+                }
             }
+
         }
 
 

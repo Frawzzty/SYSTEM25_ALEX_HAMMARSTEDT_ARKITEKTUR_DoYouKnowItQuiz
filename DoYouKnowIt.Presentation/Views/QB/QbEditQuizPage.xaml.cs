@@ -16,7 +16,7 @@ public partial class QBEditQuizPage : ContentPage
         
         if(BindingContext is ViewModels.QBEditQuizPageViewModel vm)
         {
-            await vm.LoadQuestions();
+            await vm.UpdateQuestionList();
         }
     }
 }

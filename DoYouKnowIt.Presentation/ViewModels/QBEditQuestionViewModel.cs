@@ -23,15 +23,16 @@ namespace DoYouKnowIt.Presentation.ViewModels
 
             LoadQuestion(question);
             Question.QuizId = quizid;
-            LoadAnswersList();
+
+            LoadAnswersList(); //Not setup
             
 
-            SaveQuestionCommand = new Command(async () => {     await SaveQuestionAsync();    await Shell.Current.Navigation.PopAsync(); });
-            DeleteQuestionCommand = new Command(async () => {   await DeleteQuestionAsync();  await Shell.Current.Navigation.PopAsync(); });
+            SaveQuestionCommand = new Command(async () => {     await SaveQuestionAsync();});
+            DeleteQuestionCommand = new Command(async () => {   await DeleteQuestionAsync();});
 
         }
 
-        private async Task LoadQuestion(Question question)
+        private void LoadQuestion(Question question)
         {
             if (question == null)
             {
@@ -89,6 +90,8 @@ namespace DoYouKnowIt.Presentation.ViewModels
             {
                 await _questionService.CreateQuestionAsync(Question);
             }
+
+            await Shell.Current.Navigation.PopAsync();
         }
 
         private async Task DeleteQuestionAsync()
@@ -97,6 +100,8 @@ namespace DoYouKnowIt.Presentation.ViewModels
             {
                 await _questionService.DeleteQuestionAsync(Question.Id);
             }
+
+            await Shell.Current.Navigation.PopAsync();
         }
     }
 }
