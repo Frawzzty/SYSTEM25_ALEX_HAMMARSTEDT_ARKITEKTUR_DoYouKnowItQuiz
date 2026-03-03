@@ -21,11 +21,11 @@ namespace DoYouKnowIt.Presentation.ViewModels
         {
             _quizService = new QuizService();
 
-            LoadQuiz(quiz); //Get by ID instead?
+            LoadQuiz(quiz);
 
-            SaveQuizAsyncCommand =      new Command(async () => await SaveQuizAsync());
-            DeleteQuizCommand =         new Command(async () => {await DeleteQuizAsnyc(); await Shell.Current.Navigation.PopAsync();});
-            EditQuestionAsyncCommand =  new Command(async () => await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(null)));
+            SaveQuizAsyncCommand =      new Command(async () => { await SaveQuizAsync(); });
+            DeleteQuizCommand =         new Command(async () => { await DeleteQuizAsnyc(); await Shell.Current.Navigation.PopAsync();});
+            EditQuestionAsyncCommand =  new Command(async () => { await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(quiz.Id, null)); });
         }
 
         #region Commands
@@ -42,6 +42,23 @@ namespace DoYouKnowIt.Presentation.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
+        private Question _selectedQuestion;
+        public Question SelectedQuestion
+        {
+            get { return _selectedQuestion; }
+            set
+            {
+                //If same selection? Remove?
+                if (_selectedQuestion == value)
+                    return;
+
+                _selectedQuestion = value;
+                OnPropertyChanged(nameof(SelectedQuestion));
+
+                OnQuizSelected(value);
+            }
+        }
 
         //QUESTION
         private ObservableCollection<Question> _questions = new ObservableCollection<Question>();
@@ -61,7 +78,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
         private async Task SaveQuizAsync()
         {
             //Update existing
-            if (Quiz != null || Quiz.Id > 0)
+            if (Quiz != null && Quiz.Id > 0)
             {
                 await _quizService.UpdateQuizAsync(Quiz);
             }
@@ -85,27 +102,35 @@ namespace DoYouKnowIt.Presentation.ViewModels
 
         private void LoadQuiz(Quiz quiz)
         {
-            if (quiz != null)
+            if (quiz == null)
             {
-                Quiz = quiz;
-                Questions = new ObservableCollection<Question>(Quiz.Questions);
+                Quiz = new();
             }
 
             else
             {
-                Quiz = new Quiz();
+                Quiz = quiz;
             }
         }
 
         public async Task LoadQuestions()
         {
-            if(Quiz.Id != null)
+            if(Quiz.Id != 0)
             {
                 var data = await _quizService.GetQuizAsync(Quiz.Id);
                 Questions = new ObservableCollection<Question>(data.Questions);
-                Console.WriteLine();
             }
+        }
 
+
+        private async Task OnQuizSelected(Question question)
+        {
+            if (question == null)
+                return;
+
+            await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(Quiz.Id, question));
+
+            SelectedQuestion = null;
         }
         #endregion
     }

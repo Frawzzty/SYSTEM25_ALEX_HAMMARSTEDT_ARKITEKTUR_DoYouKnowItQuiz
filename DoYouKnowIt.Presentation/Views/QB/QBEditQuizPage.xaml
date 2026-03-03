@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DoYouKnowIt.Presentation.Views.QB.QBEditQuizPage"
              Title="QbEditQuizPage">
-    <VerticalStackLayout>
+    <VerticalStackLayout Spacing="10">
         <Entry
             Placeholder="Quiz Title..."
             Text="{Binding QuizTitle}"/>
@@ -30,6 +30,7 @@
 
         <CollectionView
             ItemsSource="{Binding Questions}"
+            SelectedItem="{Binding SelectedQuestion}"
             SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>

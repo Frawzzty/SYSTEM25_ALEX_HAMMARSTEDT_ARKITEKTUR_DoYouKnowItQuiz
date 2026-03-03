@@ -4,8 +4,9 @@ namespace DoYouKnowIt.Presentation.Views.QB;
 
 public partial class QBEditQuestionPage : ContentPage
 {
-	public QBEditQuestionPage(Question question)
+	public QBEditQuestionPage(int quizId, Question question)
 	{
 		InitializeComponent();
+		BindingContext = new ViewModels.QBEditQuestionViewModel(quizId, question);
 	}
 }

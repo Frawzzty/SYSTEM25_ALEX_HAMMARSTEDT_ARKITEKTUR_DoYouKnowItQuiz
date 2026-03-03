@@ -3,10 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DoYouKnowIt.Presentation.Views.QB.QBEditQuestionPage"
              Title="QBEditQuestionAsync">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <VerticalStackLayout Spacing="10">
+        <Entry
+            Text="{Binding QuestionText}"
+            Placeholder="Question text..."/>
+
+        <Entry
+            Text="{Binding QuestionImageUrl}"
+            Placeholder="Question imageURL..."/>
+
+        <Button
+            Text="Save question"
+            Command="{Binding SaveQuestionCommand}"/>
+
+        <Button
+            Text="Delete Question"
+            Command="{Binding DeleteQuestionCommand}"/>
+
+
+        <Button
+            Text="Add new answer"/>
+        <Label
+            Text="Edit answers"/>
+        <CollectionView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout
+                        BackgroundColor="Black">
+                        
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            
+        </CollectionView>
+
     </VerticalStackLayout>
 </ContentPage>
