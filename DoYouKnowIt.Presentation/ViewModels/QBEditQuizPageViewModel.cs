@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace DoYouKnowIt.Presentation.ViewModels
 {
@@ -29,9 +30,10 @@ namespace DoYouKnowIt.Presentation.ViewModels
                 Quiz = new Quiz();
             }
 
-           
-
+            SaveQuizAsyncCommand = new Command(async () => await SaveQuizAsync());
         }
+
+        ICommand SaveQuizAsyncCommand { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChanged(string propertyName)
@@ -51,8 +53,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
         public string QuizDescription { get { return Quiz.Description; } set { Quiz.Description = value; OnPropertyChanged(nameof(QuizDescription)); } }
         public string QuizImageUrl { get { return Quiz.ImageUrl; } set { Quiz.ImageUrl = value; OnPropertyChanged(nameof(QuizImageUrl)); } }
 
-
-        public async Task SaveQuizAsync()
+        private async Task SaveQuizAsync()
         {
             //Update existing
             if (Quiz != null || Quiz.Id != 0)
@@ -64,6 +65,8 @@ namespace DoYouKnowIt.Presentation.ViewModels
             {
                 await _quizService.CreateQuizAsync(Quiz);
             }
+
+            await Shell.Current.Navigation.PopAsync();
         }
     }
 }
