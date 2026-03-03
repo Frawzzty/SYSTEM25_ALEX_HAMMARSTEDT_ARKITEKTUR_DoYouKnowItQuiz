@@ -10,12 +10,13 @@ public partial class QBEditQuizPage : ContentPage
 		BindingContext = new ViewModels.QBEditQuizPageViewModel(quiz);
 	}
 
-    private async void OnClickSaveQuiz(object sender, EventArgs e)
+    protected async override void OnAppearing()
     {
-		if(BindingContext is ViewModels.QBEditQuizPageViewModel vm)
-		{
-			await vm.SaveQuizAsync();
-			await Navigation.PopAsync();
-		}
+        base.OnAppearing();
+        
+        if(BindingContext is ViewModels.QBEditQuizPageViewModel vm)
+        {
+            await vm.LoadQuestions();
+        }
     }
 }

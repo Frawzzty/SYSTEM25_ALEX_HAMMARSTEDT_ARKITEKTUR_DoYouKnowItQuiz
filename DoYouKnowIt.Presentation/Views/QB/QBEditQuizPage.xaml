@@ -19,5 +19,30 @@
         <Button
             Text="Save"
             Command="{Binding SaveQuizAsyncCommand}"/>
+
+        <Button
+            Text="Add new Question"
+            Command="{Binding EditQuestionAsyncCommand}"/>
+        
+        <Button
+            Text="Delete Quiz"
+            Command="{Binding DeleteQuizCommand}"/>
+
+        <CollectionView
+            ItemsSource="{Binding Questions}"
+            SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <HorizontalStackLayout
+                        VerticalOptions="Center">
+                        <Label
+                            Text="{Binding QuestionText}"
+                            FontSize="25"/>
+                    </HorizontalStackLayout>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>
