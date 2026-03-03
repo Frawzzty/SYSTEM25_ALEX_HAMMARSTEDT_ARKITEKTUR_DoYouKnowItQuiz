@@ -10,8 +10,8 @@
             Clicked="OnClickAddNewQuiz"/>
         <CollectionView
             ItemsSource="{Binding Quizzes}"
-            SelectionMode="Single"
-            SelectionChanged="OnSelectedQuiz">
+            SelectedItem="{Binding SelectedQuiz}"
+            SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <HorizontalStackLayout Spacing="15">

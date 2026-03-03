@@ -20,19 +20,6 @@ public partial class QBSelectPage : ContentPage
 		}
     }
 
-    private async void OnSelectedQuiz(object sender, SelectionChangedEventArgs e)
-    {
-		var quiz = ((CollectionView)sender).SelectedItem as Quiz;
-
-		if(quiz != null)
-		{
-            await Navigation.PushAsync(new QBEditQuizPage(quiz));
-
-            //Makes it possible to select the same item again when going back
-            ((CollectionView)sender).SelectedItem = null; 
-        }
-    }
-
     private async void OnClickAddNewQuiz(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new QBEditQuizPage(null));

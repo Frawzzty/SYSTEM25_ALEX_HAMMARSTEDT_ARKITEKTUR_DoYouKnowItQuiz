@@ -31,6 +31,33 @@ namespace DoYouKnowIt.Presentation.ViewModels
         private ObservableCollection<Quiz> _quizzes = new ObservableCollection<Quiz>();
         public ObservableCollection<Quiz> Quizzes { get { return _quizzes; } set { _quizzes = value; OnPropertyChanged(nameof(Quizzes)); } }
 
+        private Quiz _selectedQuiz;
+        public Quiz SelectedQuiz
+        {
+            get { return _selectedQuiz; }
+            set
+            {
+                //If same selection? Remove?
+                if (_selectedQuiz == value)
+                    return;
+
+                _selectedQuiz = value;
+                OnPropertyChanged(nameof(SelectedQuiz));
+
+                OnQuizSelected(value);
+            }
+        }
+
+        private async Task OnQuizSelected(Quiz quiz)
+        {
+            if (quiz == null)
+                return;
+
+            await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuizPage(quiz));
+
+            SelectedQuiz = null;
+        }
+
         public async Task LoadData()
         {
             Quizzes = new ObservableCollection<Quiz>(await _quizService.GetAllQuizzesAsync());
