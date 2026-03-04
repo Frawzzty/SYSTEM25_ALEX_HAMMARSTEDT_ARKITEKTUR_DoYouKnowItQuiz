@@ -31,6 +31,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
         private ObservableCollection<Quiz> _quizzes = new ObservableCollection<Quiz>();
         public ObservableCollection<Quiz> Quizzes { get { return _quizzes; } set { _quizzes = value; OnPropertyChanged(nameof(Quizzes)); } }
 
+
         private Quiz _selectedQuiz;
         public Quiz SelectedQuiz
         {
@@ -47,6 +48,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
                 OnQuizSelected(value);
             }
         }
+
 
         private async Task OnQuizSelected(Quiz quiz)
         {

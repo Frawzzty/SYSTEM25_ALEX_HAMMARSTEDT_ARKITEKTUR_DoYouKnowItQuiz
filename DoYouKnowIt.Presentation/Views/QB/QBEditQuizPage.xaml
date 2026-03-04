@@ -18,11 +18,10 @@
 
         <Button
             Text="Save"
-            Command="{Binding SaveQuizAsyncCommand}"/>
+            Command="{Binding SaveQuizCommand}"/>
 
         <Button
-            Text="Add new Question"
-            Command="{Binding EditQuestionAsyncCommand}"/>
+            Text="Add new Question"/>
         
         <Button
             Text="Delete Quiz"

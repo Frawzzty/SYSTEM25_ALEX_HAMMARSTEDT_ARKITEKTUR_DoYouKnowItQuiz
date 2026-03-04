@@ -75,9 +75,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\QB\QBEditQuestionPage.xaml.cs">
-	    <DependentUpon>QBEditQuestionPage.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Views\QB\QbEditQuizPage.xaml.cs">
 	    <DependentUpon>QBEditQuizPage.xaml</DependentUpon>
 	  </Compile>
@@ -87,7 +84,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\QB\QBEditQuestionPage.xaml">
+	  <MauiXaml Update="Resources\Styles\MyColors\MyColors.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\MyStyles\MyStyles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\QB\QBEditQuizPage.xaml">

@@ -22,6 +22,6 @@ public partial class QBSelectPage : ContentPage
 
     private async void OnClickAddNewQuiz(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new QBEditQuizPage(null));
+        await Navigation.PushAsync(new QBEditQuizPage(null)); //0
     }
 }
