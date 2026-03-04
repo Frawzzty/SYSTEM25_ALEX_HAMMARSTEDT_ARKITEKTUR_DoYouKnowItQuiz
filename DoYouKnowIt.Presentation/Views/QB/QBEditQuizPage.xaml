@@ -2,21 +2,25 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DoYouKnowIt.Presentation.Views.QB.QBEditQuizPage"
-             Title="QbEditQuizPage">
+             Title="Quiz Builder - Edit Quiz"
+             BackgroundColor="{StaticResource BgDefault}">
     <VerticalStackLayout 
         Margin="25"
         Spacing="10">
         <Entry
             Placeholder="Quiz Title..."
-            Text="{Binding QuizTitle}"/>
+            Text="{Binding QuizTitle}"
+            Style="{StaticResource EntryDefault}"/>
 
         <Entry
             Placeholder="Quiz Description..."
-            Text="{Binding QuizDescription}"/>
+            Text="{Binding QuizDescription}"
+            Style="{StaticResource EntryDefault}"/>
 
         <Entry
             Placeholder="Quiz ImageUrl..."
-            Text="{Binding QuizImageUrl}"/>
+            Text="{Binding QuizImageUrl}"
+            Style="{StaticResource EntryDefault}"/>
 
         <Button
             Text="Save"

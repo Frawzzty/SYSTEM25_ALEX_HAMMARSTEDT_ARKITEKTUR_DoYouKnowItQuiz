@@ -2,17 +2,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DoYouKnowIt.Presentation.Views.QB.QBEditQuestionPage"
-             Title="QBEditQuestionPage">
+             Title="Quiz Builder - Edit Question"
+             BackgroundColor="{StaticResource BgDefault}">
     <VerticalStackLayout
         Margin="25"
         Spacing="10">
         <Entry
             Placeholder="Question Text..."
-            Text="{Binding QuestionText}"/>
+            Text="{Binding QuestionText}"
+            Style="{StaticResource EntryDefault}"/>
 
         <Entry
             Placeholder="Question ImageUrl..."
-            Text="{Binding QuestionImageUrl}"/>
+            Text="{Binding QuestionImageUrl}"
+            Style="{StaticResource EntryDefault}"/>
 
         <Button
             Text="Save"
@@ -41,10 +44,15 @@
                 <DataTemplate>
 
                     <HorizontalStackLayout
-                        VerticalOptions="Center">
+                        VerticalOptions="Center"
+                        Spacing="10">
                         <Label
                             Text="{Binding AnswerText}"
                             FontSize="25"/>
+                        <Label
+                            Text="{Binding IsTrue}"
+                            FontSize="15"
+                            />
                     </HorizontalStackLayout>
 
                 </DataTemplate>

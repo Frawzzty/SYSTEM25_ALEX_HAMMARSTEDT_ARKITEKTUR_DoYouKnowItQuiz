@@ -7,7 +7,7 @@ namespace DoYouKnowIt.Presentation
 {
     public partial class MainPage : ContentPage
     {
-        IQuizService _quizService;
+        private IQuizService _quizService;
         public MainPage(IQuizService quizService)
         {
             InitializeComponent();
@@ -16,46 +16,35 @@ namespace DoYouKnowIt.Presentation
             
         }
 
-        protected async override void OnAppearing()
+        private async void OnClickedPlay(object sender, EventArgs e)
+        {
+            
+        }
+
+        private async void OnClickedProfile(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void OnClickedLeaderboard(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void OnClickedQuizBuilder(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Views.QB.QBSelectPage());
+        }
+
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await LoadQuizzes();
-        }
 
-        private async Task LoadQuizzes()
-        {
-            CollectionViewQuiz.ItemsSource = await _quizService.GetAllQuizzesAsync();
-        }
+            ImageLogo.Rotation = 0;
 
-        private async void OnClickAddQuiz(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrWhiteSpace(EntryTitle.Text) && !string.IsNullOrWhiteSpace(EntryDescription.Text) && !string.IsNullOrWhiteSpace(EntryImageUrl.Text))
-            {
-                await _quizService.CreateQuizAsync(new Quiz()
-                {
-                    Title = EntryTitle.Text,
-                    Description = EntryDescription.Text,
-                    ImageUrl = EntryImageUrl.Text,
-                });
+            await ImageLogo.RotateTo(360, 1100, Easing.CubicInOut);
 
-                EntryTitle.Text = "";
-                EntryDescription.Text = "";
-                EntryImageUrl.Text = "";
-
-                await LoadQuizzes();
-            }
-            else
-            {
-                await DisplayAlert("Error", "Make sure entries are not empty", "OK");
-            }
-
-
-        }
-
-        private async void OnClickDeleteQuiz(object sender, EventArgs e)
-        {
-            await _quizService.DeleteQuizAsync(int.Parse(EntryQuizId.Text));
-            await LoadQuizzes();
+            ImageLogo.Rotation = 0;
         }
     }
 }

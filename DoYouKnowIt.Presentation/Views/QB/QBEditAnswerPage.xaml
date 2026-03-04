@@ -2,14 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DoYouKnowIt.Presentation.Views.QB.QBEditAnswerPage"
-             Title="QBEditAnswerPage">
+             Title="Quiz Builder - Edit Answer"
+             BackgroundColor="{StaticResource BgDefault}">
     <VerticalStackLayout
         Margin="25"
         Spacing="10">
         
         <Entry
             Placeholder="Answer Text..."
-            Text="{Binding AnswerText}"/>
+            Text="{Binding AnswerText}"
+            Style="{StaticResource EntryDefault}"/>
         
         <HorizontalStackLayout>
             <CheckBox

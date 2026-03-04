@@ -2,41 +2,56 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DoYouKnowIt.Presentation.Views.QB.QBSelectPage"
-             Title="Quiz Builder - Select">
+             Title="Quiz Builder - Select"
+             BackgroundColor="{StaticResource BgDefault}"
+             >
+    
     <VerticalStackLayout 
         Margin="25"
-        Spacing="10">
+        Spacing="10"
+        >
+        
         <Button
             Text="Add new Quiz"
-            Clicked="OnClickAddNewQuiz"/>
+            Clicked="OnClickAddNewQuiz"
+            Style="{StaticResource BtnGreen}"
+            HorizontalOptions="Start"/>
+        
         <CollectionView
             ItemsSource="{Binding Quizzes}"
             SelectedItem="{Binding SelectedQuiz}"
             SelectionMode="Single">
             <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <HorizontalStackLayout Spacing="15">
-                        <Border
-                            StrokeShape="RoundRectangle 10"
-                            Stroke="Black"
-                            WidthRequest="75"
-                            HeightRequest="75"
-                            BackgroundColor="White">
-                            <Image
-                            Source="{Binding ImageUrl}"
-                            />
-                        </Border>
-           
-                        <VerticalStackLayout
-                            VerticalOptions="Center">
-                            <Label
-                            Text="{Binding Title}"
-                            FontSize="25"/>
-                            <Label
-                            Text="{Binding Description}"
-                            FontSize="15"/>
-                        </VerticalStackLayout>
-                    </HorizontalStackLayout>
+                <DataTemplate
+                    >
+                    <Border
+                        BackgroundColor="{StaticResource ItemBackground}"
+                        StrokeShape="RoundRectangle 10"
+                        Padding="10">
+                        <HorizontalStackLayout
+                            BackgroundColor="{StaticResource White}"
+                            Spacing="15">
+                            <Border
+                                StrokeShape="RoundRectangle 10"
+                                WidthRequest="75"
+                                HeightRequest="75"
+                                BackgroundColor="White">
+                                <Image
+                                    Source="{Binding ImageUrl}"/>
+                            </Border>
+
+                            <VerticalStackLayout
+                                VerticalOptions="Center">
+                                <Label
+                                    Text="{Binding Title}"
+                                    FontSize="25"/>
+                                <Label
+                                    Text="{Binding Description}"
+                                    FontSize="15"/>
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Border>
+                    
    
                 </DataTemplate>
             </CollectionView.ItemTemplate>
