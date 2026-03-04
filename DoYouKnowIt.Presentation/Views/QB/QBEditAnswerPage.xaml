@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DoYouKnowIt.Presentation.Views.QB.QBEditAnswerPage"
+             Title="QBEditAnswerPage">
+    <VerticalStackLayout
+        Margin="25"
+        Spacing="10">
+        
+        <Entry
+            Placeholder="Answer Text..."
+            Text="{Binding AnswerText}"/>
+        
+        <HorizontalStackLayout>
+            <CheckBox
+               IsChecked="{Binding IsTrue}"
+            />
+            <Label
+                VerticalOptions="Center"
+                Text="True"
+            />
+
+        </HorizontalStackLayout>
+        
+        <Button
+            Text="Save"
+            Command="{Binding SaveAnswerCommand}"
+            Style="{StaticResource BtnGreen}"
+            HorizontalOptions="Start"/>
+
+        <Button
+            Text="Delete Answer"
+            Command="{Binding DeleteAnswerCommand}"
+            Style="{StaticResource BtnRed}"
+            HorizontalOptions="Start"/>
+
+
+    </VerticalStackLayout>
+</ContentPage>

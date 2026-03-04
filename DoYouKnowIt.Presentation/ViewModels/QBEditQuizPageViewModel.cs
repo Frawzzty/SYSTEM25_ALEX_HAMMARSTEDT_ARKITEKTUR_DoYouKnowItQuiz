@@ -16,13 +16,15 @@ namespace DoYouKnowIt.Presentation.ViewModels
     internal class QBEditQuizPageViewModel : INotifyPropertyChanged
     {
         private IQuizService _quizService;
+        //private IQuestionService _questionService; //Not used atm
 
         public QBEditQuizPageViewModel(Quiz quiz)
         {
             _quizService = new QuizService();
+            //_questionService = new QuestionService();
 
             //Load quiz
-            if(quiz != null)
+            if (quiz != null)
             {
                 _quiz = quiz;
                 LoadQuizInputs();
@@ -34,12 +36,14 @@ namespace DoYouKnowIt.Presentation.ViewModels
 
 
             //Commands
+            AddNewQuestionCommand = new Command(async () => await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(_quiz.Id, null)));
             SaveQuizCommand = new Command(async () => await SaveQuiz());
             DeleteQuizCommand = new Command(async () => await DeleteQuiz());
         }
 
 
         #region Commands
+        public ICommand AddNewQuestionCommand { get; set; }
         public ICommand SaveQuizCommand { get; set; }
         public ICommand DeleteQuizCommand { get; set; }
         #endregion
@@ -66,7 +70,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
                 _selectedQuestion = value;
                 OnPropertyChanged(nameof(SelectedQuestion));
 
-                OnQuizSelected(value);
+                OnQuestionSelected(value);
             }
         }
 
@@ -122,7 +126,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
         private async Task SaveQuiz()
         {
             //Check inputs are valid
-            if (string.IsNullOrWhiteSpace(QuizTitle) && string.IsNullOrWhiteSpace(QuizDescription) && string.IsNullOrWhiteSpace(QuizImageUrl))
+            if (string.IsNullOrEmpty(QuizTitle) || string.IsNullOrEmpty(QuizDescription) || string.IsNullOrEmpty(QuizImageUrl))
             {
                 Shell.Current.DisplayAlert("Bad inputs","Make sure inputs are not empty","OK");
                 return;
@@ -158,12 +162,12 @@ namespace DoYouKnowIt.Presentation.ViewModels
         }
 
 
-        private async Task OnQuizSelected(Question question)
+        private async Task OnQuestionSelected(Question question)
         {
             if (question == null)
                 return;
 
-            //await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(Quiz.Id, question));
+            await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(_quiz.Id, SelectedQuestion));
 
             SelectedQuestion = null;
         }

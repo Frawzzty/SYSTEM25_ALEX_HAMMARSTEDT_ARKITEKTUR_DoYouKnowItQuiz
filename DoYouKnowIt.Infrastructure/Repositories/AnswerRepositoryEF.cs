@@ -15,9 +15,9 @@ namespace DoYouKnowIt.Infrastructure.Repositories
         private readonly MyDbContext _context = new MyDbContext();
 
         public async Task<Answer?> GetByIdAsync(int answerId)
-            => await _context.Answers.Where(x => x.Id == answerId).SingleOrDefaultAsync();
+            => await _context.Answers.Where(x => x.Id == answerId).AsNoTracking().SingleOrDefaultAsync();
         public async Task<List<Answer>> GetAllAsync()
-            => await _context.Answers.ToListAsync();
+            => await _context.Answers.AsNoTracking().ToListAsync();
 
 
 
@@ -40,7 +40,7 @@ namespace DoYouKnowIt.Infrastructure.Repositories
 
         public async Task DeleteAsync(int answerId)
         {
-            var answer = await _context.Questions.FirstOrDefaultAsync(x => x.Id == answerId);
+            var answer = await _context.Answers.FirstOrDefaultAsync(x => x.Id == answerId);
             if (answer != null)
             {
                 _context.Remove(answer);

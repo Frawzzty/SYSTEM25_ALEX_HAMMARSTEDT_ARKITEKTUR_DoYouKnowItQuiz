@@ -16,9 +16,9 @@ namespace DoYouKnowIt.Infrastructure.Repositories
 
 
         public async Task<Question?> GetByIdAsync(int questionId) 
-            => await _context.Questions.Where(x => x.Id == questionId).Include(x => x.Answers).SingleOrDefaultAsync();
+            => await _context.Questions.Where(x => x.Id == questionId).Include(x => x.Answers).AsNoTracking().SingleOrDefaultAsync();
         public async Task<List<Question>> GetAllAsync() 
-            => await _context.Questions.Include(x => x.Answers).ToListAsync();
+            => await _context.Questions.Include(x => x.Answers).AsNoTracking().ToListAsync();
 
 
 

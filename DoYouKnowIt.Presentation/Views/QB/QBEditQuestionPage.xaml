@@ -1,44 +1,41 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DoYouKnowIt.Presentation.Views.QB.QBEditQuizPage"
-             Title="QbEditQuizPage">
-    <VerticalStackLayout 
+             x:Class="DoYouKnowIt.Presentation.Views.QB.QBEditQuestionPage"
+             Title="QBEditQuestionPage">
+    <VerticalStackLayout
         Margin="25"
         Spacing="10">
         <Entry
-            Placeholder="Quiz Title..."
-            Text="{Binding QuizTitle}"/>
+            Placeholder="Question Text..."
+            Text="{Binding QuestionText}"/>
 
         <Entry
-            Placeholder="Quiz Description..."
-            Text="{Binding QuizDescription}"/>
-
-        <Entry
-            Placeholder="Quiz ImageUrl..."
-            Text="{Binding QuizImageUrl}"/>
+            Placeholder="Question ImageUrl..."
+            Text="{Binding QuestionImageUrl}"/>
 
         <Button
             Text="Save"
-            Command="{Binding SaveQuizCommand}"
+            Command="{Binding SaveQuestionCommand}"
             Style="{StaticResource BtnGreen}"
             HorizontalOptions="Start"/>
 
         <Button
-            Text="Add new Question"
-            Command="{Binding AddNewQuestionCommand}"
+            Text="Add new Answer"
+            Command="{Binding AddNewAnswerCommand}"
             Style="{StaticResource BtnNavigation}"
             HorizontalOptions="Start"/>
-        
+
         <Button
-            Text="Delete Quiz"
-            Command="{Binding DeleteQuizCommand}"
+            Text="Delete Question"
+            Command="{Binding DeleteQuestionCommand}"
             Style="{StaticResource BtnRed}"
             HorizontalOptions="Start"/>
 
+        
         <CollectionView
-            ItemsSource="{Binding Questions}"
-            SelectedItem="{Binding SelectedQuestion}"
+            ItemsSource="{Binding Answers}"
+            SelectedItem="{Binding SelectedAnswer}"
             SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
@@ -46,12 +43,13 @@
                     <HorizontalStackLayout
                         VerticalOptions="Center">
                         <Label
-                            Text="{Binding QuestionText}"
+                            Text="{Binding AnswerText}"
                             FontSize="25"/>
                     </HorizontalStackLayout>
 
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
     </VerticalStackLayout>
 </ContentPage>
