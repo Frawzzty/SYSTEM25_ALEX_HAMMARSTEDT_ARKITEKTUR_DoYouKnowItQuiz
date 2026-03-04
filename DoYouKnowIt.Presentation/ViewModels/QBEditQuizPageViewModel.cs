@@ -54,7 +54,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
 
 
         private Question _selectedQuestion;
-        public Question SelectedQuestion
+        public Question SelectedQuestion //Bind to CollectionView.SelectedItem
         {
             get { return _selectedQuestion; }
             set
@@ -103,7 +103,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
         public async Task RefreshQuestionList()
         {
             //CHeck its not a new quiz
-            if (_quiz == null && _quiz.Id == 0)
+            if (_quiz == null || _quiz.Id == 0)
                 return;
 
             var questionData = await _quizService.GetQuizAsync(_quiz.Id);
