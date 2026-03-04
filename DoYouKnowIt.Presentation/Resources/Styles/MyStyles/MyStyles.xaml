@@ -4,6 +4,34 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+    <Style x:Key="BtnNavigation" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource BtnNavigation}"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="WidthRequest" Value="150"/>
+    </Style>
 
- 
+    <Style x:Key="BtnBlue" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource BtnBlue}"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="WidthRequest" Value="150"/>
+    </Style>
+
+    <Style x:Key="BtnRed" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource BtnRed}"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="WidthRequest" Value="150"/>
+    </Style>
+
+    <Style x:Key="BtnGreen" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource BtnGreen}"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="WidthRequest" Value="150"/>
+    </Style>
+
+    <Style x:Key="EntryDefault" TargetType="Entry">
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="PlaceholderColor" Value="#8A8A8A" />
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="ClearButtonVisibility" Value="WhileEditing" />
+    </Style>
 </ResourceDictionary>

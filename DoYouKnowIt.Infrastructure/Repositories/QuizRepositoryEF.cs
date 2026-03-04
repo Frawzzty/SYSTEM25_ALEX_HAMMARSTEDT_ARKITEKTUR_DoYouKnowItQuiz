@@ -16,11 +16,11 @@ namespace DoYouKnowIt.Infrastructure.Repositories
         private readonly MyDbContext _context = new MyDbContext();
 
         public async Task<Quiz?> GetByIdAsync(int quizId) 
-            => await _context.Quizzes.Where(x => x.Id == quizId).Include(x => x.Questions).ThenInclude(x => x.Answers).SingleOrDefaultAsync();
+            => await _context.Quizzes.Where(x => x.Id == quizId).Include(x => x.Questions).ThenInclude(x => x.Answers).AsNoTracking().SingleOrDefaultAsync();
         
 
         public async Task<List<Quiz>> GetAllAsync() 
-            => await _context.Quizzes.Include(x => x.Questions).ThenInclude(x => x.Answers).ToListAsync();
+            => await _context.Quizzes.Include(x => x.Questions).ThenInclude(x => x.Answers).AsNoTracking().ToListAsync();
        
 
 

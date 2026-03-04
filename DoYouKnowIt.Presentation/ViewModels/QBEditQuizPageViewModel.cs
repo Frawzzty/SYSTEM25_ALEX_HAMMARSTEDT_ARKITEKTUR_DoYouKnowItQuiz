@@ -106,13 +106,13 @@ namespace DoYouKnowIt.Presentation.ViewModels
             if (_quiz == null && _quiz.Id == 0)
                 return;
 
-            var data = await _quizService.GetQuizAsync(_quiz.Id);
+            var questionData = await _quizService.GetQuizAsync(_quiz.Id);
 
-            if (data == null)
+            if (questionData == null)
                 return;
 
             Questions.Clear();
-            foreach(var question in data.Questions)
+            foreach(var question in questionData.Questions)
             {
                 Questions.Add(question);
             }

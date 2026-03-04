@@ -2,6 +2,7 @@
 using DoYouKnowIt.Application.Interfaces;
 using DoYouKnowIt.Application.Services;
 using DoYouKnowIt.Infrastructure.Repositories;
+using DoYouKnowIt.Presentation.Views.QB;
 using Microsoft.Extensions.Logging;
 
 namespace DoYouKnowIt.Presentation
@@ -27,8 +28,12 @@ namespace DoYouKnowIt.Presentation
             builder.Services.AddScoped<IQuizService, QuizService>();
             builder.Services.AddScoped<IQuestionService, QuestionService>();
             builder.Services.AddScoped<IAnswerService, AnswerService>();
-            //builder.Services.AddScoped(typeof(IRepositoryService<>), typeof(RepositoryService<>)); //Did not work
 
+            builder.Services.AddScoped<IQuizRepository, QuizRepositoryEF>();
+            builder.Services.AddScoped<IQuestionRepository, QuestionRepositoryEF>();
+            builder.Services.AddScoped<IAnswerRepository, AnswerRepositoryEF>();
+
+            //builder.Services.AddTransient<QBEditQuizPage>();
 
 
             return builder.Build();
