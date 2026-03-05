@@ -32,7 +32,7 @@ namespace DoYouKnowIt.Presentation
 
         private async void OnClickGoQueryTestPage(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync($"{nameof(Views.Test.QueryPropTestPage)}?quizId=5");
+            await Shell.Current.GoToAsync($"{nameof(Views.Test.QueryPropTestPage)}?quizId=4");
         }
     }
 }

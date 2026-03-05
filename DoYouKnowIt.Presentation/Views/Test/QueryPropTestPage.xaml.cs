@@ -18,9 +18,14 @@ public partial class QueryPropTestPage : ContentPage, IQueryAttributable
 	public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
 		if (BindingContext is QueryPropTestPageViewModel vm &&
-			query.TryGetValue("quizId", out var id))
+			query.TryGetValue("quizId", out var idParam))
 		{
-			vm.QuizId = id?.ToString();
+			if(int.TryParse(idParam.ToString(), out int id))
+			{
+                vm.QuizId = id;
+            }
+			
+			vm.LoadQuiz();
 		}
     }
 }

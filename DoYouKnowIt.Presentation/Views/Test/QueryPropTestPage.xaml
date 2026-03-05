@@ -7,7 +7,19 @@
         <Label 
             Text="{Binding QuizId}"
             FontSize="40"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            VerticalOptions="Start"/>
+        <Label 
+            Text="{Binding Quiz.Title}"
+            FontSize="40"
+            VerticalOptions="Start"/>
+        <Label 
+            Text="{Binding Quiz.Description}"
+            FontSize="40"
+            VerticalOptions="Start"/>
+        <Label 
+            Text="{Binding Quiz.ImageUrl}"
+            FontSize="40"
+            VerticalOptions="Start"/>
+
     </VerticalStackLayout>
 </ContentPage>
