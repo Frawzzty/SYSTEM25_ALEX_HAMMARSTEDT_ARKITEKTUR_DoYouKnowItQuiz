@@ -8,18 +8,22 @@
             Text="{Binding QuizId}"
             FontSize="40"
             VerticalOptions="Start"/>
-        <Label 
+        <Entry 
             Text="{Binding Quiz.Title}"
             FontSize="40"
             VerticalOptions="Start"/>
-        <Label 
+        <Entry 
             Text="{Binding Quiz.Description}"
             FontSize="40"
             VerticalOptions="Start"/>
-        <Label 
+        <Entry 
             Text="{Binding Quiz.ImageUrl}"
             FontSize="40"
             VerticalOptions="Start"/>
+
+        <Button
+            Text="Save Quiz"
+            Command="{Binding SaveQuizCommand}"/>
 
     </VerticalStackLayout>
 </ContentPage>

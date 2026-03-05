@@ -1,5 +1,6 @@
 
 using DoYouKnowIt.Presentation.ViewModels.Test;
+using System.Threading.Tasks;
 
 namespace DoYouKnowIt.Presentation.Views.Test;
 
@@ -12,7 +13,6 @@ public partial class QueryPropTestPage : ContentPage, IQueryAttributable
 		BindingContext = vm;
 
     }
-
 
 	//Set ID in viewmodel
 	public void ApplyQueryAttributes(IDictionary<string, object> query)
@@ -28,4 +28,5 @@ public partial class QueryPropTestPage : ContentPage, IQueryAttributable
 			vm.LoadQuiz();
 		}
     }
+
 }
