@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:DoYouKnowIt.Presentation.Controls"
              x:Class="DoYouKnowIt.Presentation.Views.QB.QBSelectPage"
              Title="Quiz Builder - Select"
              BackgroundColor="{StaticResource BgDefault}"
@@ -24,35 +25,11 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate
                     >
-                    <Border
-                        BackgroundColor="{StaticResource ItemBackground}"
-                        StrokeShape="RoundRectangle 10"
-                        Padding="10">
-                        <HorizontalStackLayout
-                            BackgroundColor="{StaticResource White}"
-                            Spacing="15">
-                            <Border
-                                StrokeShape="RoundRectangle 10"
-                                WidthRequest="75"
-                                HeightRequest="75"
-                                BackgroundColor="White">
-                                <Image
-                                    Source="{Binding ImageUrl}"/>
-                            </Border>
-
-                            <VerticalStackLayout
-                                VerticalOptions="Center">
-                                <Label
-                                    Text="{Binding Title}"
-                                    FontSize="25"/>
-                                <Label
-                                    Text="{Binding Description}"
-                                    FontSize="15"/>
-                            </VerticalStackLayout>
-                        </HorizontalStackLayout>
-                    </Border>
-                    
-   
+                    <controls:QuizCardControl
+                        Padding="5"
+                        QuizTitle="{Binding Title}"
+                        QuizDescription="{Binding Description}"
+                        QuizImageUrl="{Binding ImageUrl}"/>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

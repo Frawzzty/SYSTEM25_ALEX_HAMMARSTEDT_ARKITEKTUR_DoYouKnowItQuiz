@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:DoYouKnowIt.Presentation.Controls"
              x:Class="DoYouKnowIt.Presentation.MainPage"
              BackgroundColor="{StaticResource BgDefault}">
 
     <ScrollView>
         <VerticalStackLayout
             HorizontalOptions="Center"
-            WidthRequest="800"
             Margin="25"
             Spacing="25">
 
@@ -17,33 +17,29 @@
                 HeightRequest="300"/>
 
 
-            <Button
-                Text="Play"
-                Style="{StaticResource BtnNavigation}"
-                Clicked="OnClickedPlay"
-                HeightRequest="60"
-                WidthRequest="200"/>
+            <FlexLayout
+                Direction="Row"
+                Wrap="Wrap"
+                AlignItems="Center"
+                JustifyContent="Center">
 
-            <Button
-                Text="Profile"
-                Style="{StaticResource BtnNavigation}"
-                Clicked="OnClickedProfile"
-                HeightRequest="60"
-                WidthRequest="200"/>
+                <controls:NavBlockButton
+                    ButtonText="Play"
+                    ButtonCommand="{Binding GoPlayPageCommand}"/>
 
-            <Button
-                Text="Leaderboard"
-                Style="{StaticResource BtnNavigation}"
-                Clicked="OnClickedLeaderboard"
-                HeightRequest="60"
-                WidthRequest="200"/>
+                <controls:NavBlockButton
+                    ButtonText="Leaderboard"
+                    ButtonCommand="{Binding GoLeaderboardPageCommand}"/>
 
-            <Button
-                Text="Quiz Builder"
-                Style="{StaticResource BtnNavigation}"
-                Clicked="OnClickedQuizBuilder"
-                HeightRequest="60"
-                WidthRequest="200"/>
+                <controls:NavBlockButton
+                    ButtonText="Profile"
+                    ButtonCommand="{Binding GoProfilePageCommand}"/>
+
+                <controls:NavBlockButton
+                    ButtonText="Quiz builder"
+                    ButtonCommand="{Binding GoQuizBuilderPageCommand}"/>
+
+            </FlexLayout>
 
 
 

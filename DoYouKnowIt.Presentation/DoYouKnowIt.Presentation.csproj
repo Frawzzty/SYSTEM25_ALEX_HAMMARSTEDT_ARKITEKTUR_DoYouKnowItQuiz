@@ -71,7 +71,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Controls\" />
 	  <Folder Include="Resources\Images\Logos\" />
 	  <Folder Include="Views\Play\" />
 	</ItemGroup>
@@ -86,6 +85,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Controls\NavBlockButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Controls\QuizCardControl.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\MyStyles\MyColors.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
