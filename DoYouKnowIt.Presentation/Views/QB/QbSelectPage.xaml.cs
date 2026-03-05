@@ -8,13 +8,13 @@ public partial class QBSelectPage : ContentPage
 	public QBSelectPage()
 	{
 		InitializeComponent();
-		BindingContext = new ViewModels.QBSelectPageViewModel();
+		BindingContext = new ViewModels.QB.QBSelectPageViewModel();
 	}
 
     protected async override void OnAppearing()
     {
         base.OnAppearing();
-		if(BindingContext is ViewModels.QBSelectPageViewModel vm)
+		if(BindingContext is ViewModels.QB.QBSelectPageViewModel vm)
 		{
 			await vm.LoadData();
 		}

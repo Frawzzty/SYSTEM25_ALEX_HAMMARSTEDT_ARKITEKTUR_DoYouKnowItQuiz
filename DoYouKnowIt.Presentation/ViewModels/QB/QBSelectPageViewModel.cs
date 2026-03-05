@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoYouKnowIt.Presentation.ViewModels
+namespace DoYouKnowIt.Presentation.ViewModels.QB
 {
     internal class QBSelectPageViewModel : INotifyPropertyChanged
     {

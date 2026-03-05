@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace DoYouKnowIt.Presentation.ViewModels
+namespace DoYouKnowIt.Presentation.ViewModels.QB
 {
     internal class QBEditQuizPageViewModel : INotifyPropertyChanged
     {

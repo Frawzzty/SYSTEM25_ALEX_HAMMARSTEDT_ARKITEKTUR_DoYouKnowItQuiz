@@ -7,14 +7,14 @@ public partial class QBEditQuizPage : ContentPage
 	public QBEditQuizPage(Quiz quiz)
 	{
 		InitializeComponent();
-		BindingContext = new ViewModels.QBEditQuizPageViewModel(quiz);
+		BindingContext = new ViewModels.QB.QBEditQuizPageViewModel(quiz);
 	}
 
     protected async override void OnAppearing()
     {
         base.OnAppearing();
         
-        if(BindingContext is ViewModels.QBEditQuizPageViewModel vm)
+        if(BindingContext is ViewModels.QB.QBEditQuizPageViewModel vm)
         {
             await vm.RefreshQuestionList();
         }
