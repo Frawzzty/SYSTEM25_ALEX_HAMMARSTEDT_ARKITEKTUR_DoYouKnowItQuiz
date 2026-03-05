@@ -44,16 +44,30 @@
             ItemsSource="{Binding Questions}"
             SelectedItem="{Binding SelectedQuestion}"
             SelectionMode="Single">
+            
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    Orientation="Vertical"
+                    ItemSpacing="5"/>
+            </CollectionView.ItemsLayout>
+
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-
-                    <HorizontalStackLayout
-                        VerticalOptions="Center">
-                        <Label
+                    
+                    <Border
+                        Stroke="{StaticResource ItemBorder}"
+                        StrokeShape="RoundRectangle 5"
+                        BackgroundColor="{StaticResource ItemBackground}"
+                        Padding="20">
+                        <VerticalStackLayout
+                            VerticalOptions="Center">
+                            <Label
                             Text="{Binding QuestionText}"
-                            FontSize="25"/>
-                    </HorizontalStackLayout>
-
+                            TextColor="White"
+                            FontSize="20"/>
+                        </VerticalStackLayout>
+                    </Border>
+                    
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

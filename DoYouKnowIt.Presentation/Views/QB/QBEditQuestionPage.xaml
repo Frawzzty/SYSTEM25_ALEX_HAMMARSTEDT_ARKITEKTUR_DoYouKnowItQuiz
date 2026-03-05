@@ -40,21 +40,35 @@
             ItemsSource="{Binding Answers}"
             SelectedItem="{Binding SelectedAnswer}"
             SelectionMode="Single">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    Orientation="Vertical"
+                    ItemSpacing="5"/>
+            </CollectionView.ItemsLayout>
+            
             <CollectionView.ItemTemplate>
                 <DataTemplate>
 
-                    <HorizontalStackLayout
-                        VerticalOptions="Center"
-                        Spacing="10">
-                        <Label
-                            Text="{Binding AnswerText}"
-                            FontSize="25"/>
-                        <Label
-                            Text="{Binding IsTrue}"
-                            FontSize="15"
-                            />
-                    </HorizontalStackLayout>
-
+                    <Border
+                        Stroke="{StaticResource ItemBorder}"
+                        StrokeShape="RoundRectangle 5"
+                        BackgroundColor="{StaticResource ItemBackground}"
+                        Padding="20">
+                        <HorizontalStackLayout
+                            VerticalOptions="Center"
+                            Spacing="10">
+                            <Label
+                                Text="{Binding AnswerText}"
+                                FontSize="25"
+                                TextColor="White"/>
+                            <Label
+                                Text="{Binding IsTrue}"
+                                FontSize="15"
+                                TextColor="White"/>
+                        </HorizontalStackLayout>
+                    </Border>
+                    
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

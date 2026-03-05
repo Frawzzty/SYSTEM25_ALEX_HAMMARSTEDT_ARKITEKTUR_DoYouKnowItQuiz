@@ -16,6 +16,7 @@
         <HorizontalStackLayout>
             <CheckBox
                IsChecked="{Binding IsTrue}"
+               Color="#65D14B"
             />
             <Label
                 VerticalOptions="Center"
