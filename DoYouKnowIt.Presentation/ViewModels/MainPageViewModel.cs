@@ -19,7 +19,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
             //GoPlayPageCommand = new Command(async () => { });
             //GoLeaderboardPageCommand = new Command(async () => { });
             //GoProfilePageCommand = new Command(async () => { });
-            GoQuizBuilderPageCommand = new Command(async () => { await Shell.Current.Navigation.PushAsync(new Views.QB.QBSelectPage()); });
+            GoQuizBuilderPageCommand = new Command(async () => { await Shell.Current.GoToAsync(nameof(Views.QB.QBSelectPage)); });
 
         }
 

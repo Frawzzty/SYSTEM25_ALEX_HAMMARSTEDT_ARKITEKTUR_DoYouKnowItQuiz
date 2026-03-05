@@ -1,14 +1,15 @@
 using Domain.Entities.Models.EntityFrameworkModels;
 using DoYouKnowIt.Application.Services;
+using DoYouKnowIt.Presentation.ViewModels.QB;
 
 namespace DoYouKnowIt.Presentation.Views.QB;
 
 public partial class QBSelectPage : ContentPage
 {
-	public QBSelectPage()
+	public QBSelectPage(QBSelectPageViewModel vm)
 	{
 		InitializeComponent();
-		BindingContext = new ViewModels.QB.QBSelectPageViewModel();
+		BindingContext = vm;
 	}
 
     protected async override void OnAppearing()

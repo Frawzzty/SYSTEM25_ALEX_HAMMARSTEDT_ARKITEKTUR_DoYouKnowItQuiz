@@ -13,12 +13,12 @@ using System.Threading.Tasks;
 
 namespace DoYouKnowIt.Presentation.ViewModels.QB
 {
-    internal class QBSelectPageViewModel : INotifyPropertyChanged
+    public class QBSelectPageViewModel : INotifyPropertyChanged
     {
         IQuizService _quizService;
-        public QBSelectPageViewModel()
+        public QBSelectPageViewModel(IQuizService quizService)
         {
-            _quizService = new QuizService();
+            _quizService = quizService;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

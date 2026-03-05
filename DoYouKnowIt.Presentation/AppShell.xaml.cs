@@ -6,6 +6,7 @@
         {
             InitializeComponent();
             Routing.RegisterRoute(nameof(Views.Test.QueryPropTestPage), typeof(Views.Test.QueryPropTestPage));
+            Routing.RegisterRoute(nameof(Views.QB.QBSelectPage), typeof(Views.QB.QBSelectPage));
         }
     }
 }
