@@ -12,6 +12,7 @@ namespace DoYouKnowIt.Application.Services
 {
     public class QuizService : IQuizService
     {
+        
         IQuizRepository _quizRepo = new QuizRepositoryEF();
 
         public async Task<Quiz?> GetQuizAsync(int quizId) 

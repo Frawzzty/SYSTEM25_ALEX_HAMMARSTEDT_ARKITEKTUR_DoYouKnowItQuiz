@@ -1,0 +1,26 @@
+
+using DoYouKnowIt.Presentation.ViewModels.Test;
+
+namespace DoYouKnowIt.Presentation.Views.Test;
+
+public partial class QueryPropTestPage : ContentPage, IQueryAttributable
+{
+
+	public QueryPropTestPage(QueryPropTestPageViewModel vm)
+	{
+		InitializeComponent();
+		BindingContext = vm;
+
+    }
+
+
+	//Set ID in viewmodel
+	public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+		if (BindingContext is QueryPropTestPageViewModel vm &&
+			query.TryGetValue("quizId", out var id))
+		{
+			vm.QuizId = id?.ToString();
+		}
+    }
+}

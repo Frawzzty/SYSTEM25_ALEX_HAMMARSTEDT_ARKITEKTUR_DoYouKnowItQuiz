@@ -29,5 +29,10 @@ namespace DoYouKnowIt.Presentation
 
             ImageLogo.Rotation = 0;
         }
+
+        private async void OnClickGoQueryTestPage(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"{nameof(Views.Test.QueryPropTestPage)}?quizId=5");
+        }
     }
 }
