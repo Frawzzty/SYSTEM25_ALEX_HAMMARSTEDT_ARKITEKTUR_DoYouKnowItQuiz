@@ -108,7 +108,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
         private async Task SaveQuiz()
         {
             //Check inputs are valid
-            if (!await ValidateQuiz())
+            if (!ValidateQuiz())
                 return;
 
             //Save new
@@ -149,7 +149,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
 
         #endregion
 
-        private async Task<bool> ValidateQuiz()
+        private bool ValidateQuiz()
         {
             string errorMessage = "";
             bool isSucess = true;
