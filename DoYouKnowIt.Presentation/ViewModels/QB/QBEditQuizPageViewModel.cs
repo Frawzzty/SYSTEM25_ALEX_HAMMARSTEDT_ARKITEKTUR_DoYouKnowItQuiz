@@ -27,8 +27,8 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
 
             //Commands
             AddNewQuestionCommand = new Command(async () => { await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(_quiz.Id, null)); });
-            SaveQuizCommand = new Command(async () =>       { await SaveQuiz();     await Shell.Current.Navigation.PopAsync(); });
-            DeleteQuizCommand = new Command(async () =>     { await DeleteQuiz();   await Shell.Current.Navigation.PopAsync(); });
+            SaveQuizCommand = new Command(async () =>       { await SaveQuiz(); });
+            DeleteQuizCommand = new Command(async () =>     { await DeleteQuiz(); });
         }
 
         private int _quizId;
@@ -108,23 +108,21 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
         private async Task SaveQuiz()
         {
             //Check inputs are valid
-            if (string.IsNullOrEmpty(_quiz.Title) || string.IsNullOrEmpty(_quiz.Description) || string.IsNullOrEmpty(_quiz.ImageUrl))
-            {
-                await Shell.Current.DisplayAlert("Bad inputs","Make sure inputs are not empty","OK");
+            if (!await ValidateQuiz())
                 return;
-            }
 
             //Save new
-            if (_quiz != null && _quiz.Id == 0)
+            if (Quiz != null && Quiz.Id == 0)
             {
-                await _quizService.CreateQuizAsync(_quiz);
+                await _quizService.CreateQuizAsync(Quiz);
             }
             //Update existing
             else
             {
-                await _quizService.UpdateQuizAsync(_quiz);
+                await _quizService.UpdateQuizAsync(Quiz);
             }
-            
+
+            await Shell.Current.Navigation.PopAsync();
         }
 
         private async Task DeleteQuiz()
@@ -134,6 +132,8 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             {
                 await _quizService.DeleteQuizAsync(Quiz.Id);
             }
+
+            await Shell.Current.Navigation.PopAsync();
         }
 
 
@@ -148,5 +148,34 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
         }
 
         #endregion
+
+        private async Task<bool> ValidateQuiz()
+        {
+            string errorMessage = "";
+            bool isSucess = true;
+
+            if (string.IsNullOrEmpty(Quiz.Title))
+            {
+                errorMessage += "Missing Quiz Title" + "\n";
+                isSucess = false;
+            }
+
+            if (string.IsNullOrEmpty(Quiz.Description))
+            {
+                errorMessage += "Missing Quiz Description" + "\n";
+                isSucess = false;
+            }
+
+            if (string.IsNullOrEmpty(Quiz.ImageUrl))
+            {
+                errorMessage += "Missing Quiz Image URL";
+                isSucess = false;
+            }
+
+            if(!isSucess)
+                Shell.Current.DisplayAlert("Validation Error", errorMessage, "OK");
+
+            return isSucess;
+        }
     }
 }
