@@ -40,7 +40,10 @@ namespace DoYouKnowIt.Presentation
 
             builder.Services.AddTransient<Views.QB.QBSelectPage>();
             builder.Services.AddTransient<ViewModels.QB.QBSelectPageViewModel>();
-            
+
+            builder.Services.AddTransient<Views.QB.QBEditQuizPage>();
+            builder.Services.AddTransient<ViewModels.QB.QBEditQuizPageViewModel>();
+
 
 
             return builder.Build();

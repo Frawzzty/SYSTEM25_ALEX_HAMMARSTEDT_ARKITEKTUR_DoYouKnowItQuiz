@@ -13,45 +13,78 @@ namespace DoYouKnowIt.Infrastructure.Repositories
 {
     public class QuizRepositoryEF : IQuizRepository
     {
-        private readonly MyDbContext _context = new MyDbContext();
+        private readonly MyDbContext _context;
 
-        public async Task<Quiz?> GetByIdAsync(int quizId) 
-            => await _context.Quizzes.Where(x => x.Id == quizId).Include(x => x.Questions).ThenInclude(x => x.Answers).AsNoTracking().SingleOrDefaultAsync();
+        public QuizRepositoryEF(MyDbContext context)
+        {
+            _context = context;
+        }
+
+
+        public async Task<Quiz?> GetByIdAsync(int quizId)
+        {
+            using (var context = new MyDbContext())
+            {
+                return await context.Quizzes.Where(x => x.Id == quizId).Include(x => x.Questions).ThenInclude(x => x.Answers).SingleOrDefaultAsync();
+            }
+        }
+          
         
+        public async Task<List<Quiz>> GetAllAsync()
+        {
+            using (var context = new MyDbContext())
+            {
+                return await context.Quizzes.Include(x => x.Questions).ThenInclude(x => x.Answers).ToListAsync();
+            }
 
-        public async Task<List<Quiz>> GetAllAsync() 
-            => await _context.Quizzes.Include(x => x.Questions).ThenInclude(x => x.Answers).AsNoTracking().ToListAsync();
+        }
+            
        
-
 
         public async Task AddAsync(Quiz quiz)
         {
             if (quiz != null)
             {
-                await _context.Quizzes.AddAsync(quiz);
-                await _context.SaveChangesAsync();
+                using (var context = new MyDbContext()) 
+                {
+                    await context.Quizzes.AddAsync(quiz);
+                    await context.SaveChangesAsync();
+                }
             }
         }
+
 
         public async Task UpdateAsync(Quiz quiz)
         {
-            if (quiz != null)
+            if (quiz == null)
+                return;
+
+            using (var context = new MyDbContext()) //Problems with Update same obj Since using its using the same dbContext
             {
-                _context.Update(quiz);
-                await _context.SaveChangesAsync();
+                context.Update(quiz);
+                await context.SaveChangesAsync();
             }
+
         }
+
 
         public async Task DeleteAsync(int quizId)
         {
-            var quiz = await _context.Quizzes.FirstOrDefaultAsync(x => x.Id == quizId);
-            if (quiz != null)
+            if (quizId == 0)
+                return;
+
+            using (var context = new MyDbContext())
             {
-                _context.Remove(quiz);
-                await _context.SaveChangesAsync();
+                var quiz = await context.Quizzes.FirstOrDefaultAsync(x => x.Id == quizId);
+
+                if (quiz == null)
+                    return;
+
+                context.Remove(quiz);
+                await context.SaveChangesAsync();
+
             }
+
         }
-
-
     }
 }

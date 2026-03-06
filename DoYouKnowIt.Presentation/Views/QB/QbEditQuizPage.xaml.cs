@@ -2,13 +2,32 @@ using Domain.Entities.Models.EntityFrameworkModels;
 
 namespace DoYouKnowIt.Presentation.Views.QB;
 
-public partial class QBEditQuizPage : ContentPage
+public partial class QBEditQuizPage : ContentPage, IQueryAttributable
 {
-	public QBEditQuizPage(Quiz quiz)
+	public QBEditQuizPage(ViewModels.QB.QBEditQuizPageViewModel vm)
 	{
 		InitializeComponent();
-		BindingContext = new ViewModels.QB.QBEditQuizPageViewModel(quiz);
+		BindingContext = vm;
 	}
+
+    public async void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        //Get ID from GoToAsync Query Property
+        if (BindingContext is ViewModels.QB.QBEditQuizPageViewModel vm)
+        {
+            if (query.TryGetValue("QuizId", out var idParam))
+            {
+                if (int.TryParse(idParam.ToString(), out int id))
+                {
+                    vm.QuizId = id;
+                }
+            }
+
+            await vm.InitializeData();
+
+        }
+        
+    }
 
     protected async override void OnAppearing()
     {
@@ -16,7 +35,7 @@ public partial class QBEditQuizPage : ContentPage
         
         if(BindingContext is ViewModels.QB.QBEditQuizPageViewModel vm)
         {
-            await vm.RefreshQuestionList();
+            //await vm.RefreshQuestionList();
         }
     }
 }

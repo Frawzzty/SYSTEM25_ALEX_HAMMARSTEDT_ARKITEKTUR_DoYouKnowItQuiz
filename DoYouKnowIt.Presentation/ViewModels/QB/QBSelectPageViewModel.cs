@@ -55,7 +55,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             if (quiz == null)
                 return;
 
-            await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuizPage(quiz));
+            await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditQuizPage)}?QuizId={quiz.Id}");
 
             SelectedQuiz = null;
         }

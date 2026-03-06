@@ -1,6 +1,7 @@
 ﻿using Domain.Entities.Interfaces;
 using Domain.Entities.Models.EntityFrameworkModels;
 using DoYouKnowIt.Application.Interfaces;
+using DoYouKnowIt.Infrastructure.Data;
 using DoYouKnowIt.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace DoYouKnowIt.Application.Services
     public class QuizService : IQuizService
     {
         
-        IQuizRepository _quizRepo = new QuizRepositoryEF();
+        IQuizRepository _quizRepo = new QuizRepositoryEF(new MyDbContext());
 
         public async Task<Quiz?> GetQuizAsync(int quizId) 
             => await _quizRepo.GetByIdAsync(quizId);

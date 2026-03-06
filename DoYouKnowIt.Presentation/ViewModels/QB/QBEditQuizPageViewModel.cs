@@ -13,34 +13,26 @@ using System.Windows.Input;
 
 namespace DoYouKnowIt.Presentation.ViewModels.QB
 {
-    internal class QBEditQuizPageViewModel : INotifyPropertyChanged
+    [QueryProperty(nameof(QuizId), "QuizId")]
+    public class QBEditQuizPageViewModel : INotifyPropertyChanged
     {
         private IQuizService _quizService;
         //private IQuestionService _questionService; //Not used atm
 
-        public QBEditQuizPageViewModel(Quiz quiz)
+        public QBEditQuizPageViewModel(IQuizService quizService)
         {
-            _quizService = new QuizService();
+            _quizService = quizService;
             //_questionService = new QuestionService();
-
-            //Load quiz
-            if (quiz != null)
-            {
-                _quiz = quiz;
-                LoadQuizInputs();
-            }
-            else
-            {
-                _quiz = new Quiz();
-            }
 
 
             //Commands
-            AddNewQuestionCommand = new Command(async () => await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(_quiz.Id, null)));
-            SaveQuizCommand = new Command(async () => await SaveQuiz());
-            DeleteQuizCommand = new Command(async () => await DeleteQuiz());
+            AddNewQuestionCommand = new Command(async () => { await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(_quiz.Id, null)); });
+            SaveQuizCommand = new Command(async () =>       { await SaveQuiz();     await Shell.Current.Navigation.PopAsync(); });
+            DeleteQuizCommand = new Command(async () =>     { await DeleteQuiz();   await Shell.Current.Navigation.PopAsync(); });
         }
 
+        private int _quizId;
+        public int QuizId { get { return _quizId; } set { _quizId = value; OnPropertyChanged(nameof(QuizId)); } }
 
         #region Commands
         public ICommand AddNewQuestionCommand { get; set; }
@@ -76,41 +68,31 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
 
 
         private Quiz? _quiz;
+        public Quiz? Quiz
+        {
+            get { return _quiz; } set { _quiz = value; OnPropertyChanged(nameof(Quiz)); }
+        }
 
-        private string _quizTitle;
-        private string _quizDescription;
-        private string _quizImageUrl;
-        public string QuizTitle         { get { return _quizTitle; }        set { _quizTitle = value;       OnPropertyChanged(nameof(QuizTitle)); } }
-        public string QuizDescription   { get { return _quizDescription; }  set { _quizDescription = value; OnPropertyChanged(nameof(QuizDescription)); } }
-        public string QuizImageUrl      { get { return _quizImageUrl; }     set { _quizImageUrl = value;    OnPropertyChanged(nameof(QuizImageUrl)); } }
-
+        public async Task InitializeData()
+        {
+            //Get quiz if new create new Quiz()
+            Quiz = await _quizService.GetQuizAsync(QuizId) ?? new();
+            await RefreshQuestionList();
+        }
 
         private ObservableCollection<Question> _questions = new();
         public ObservableCollection<Question> Questions { get { return _questions; } set { _questions = value; OnPropertyChanged(nameof(Questions)); } }
 
         #region Methods
 
-        private void LoadQuizInputs()
-        {
-            QuizTitle = _quiz.Title;
-            QuizDescription = _quiz.Description;
-            QuizImageUrl = _quiz.ImageUrl;
-        }
-
-        private void SetQuiz()
-        {
-            _quiz.Title = QuizTitle;
-            _quiz.Description = QuizDescription;
-            _quiz.ImageUrl = QuizImageUrl;
-        }
 
         public async Task RefreshQuestionList()
         {
             //CHeck its not a new quiz
-            if (_quiz == null || _quiz.Id == 0)
+            if (Quiz == null || QuizId == 0)
                 return;
 
-            var questionData = await _quizService.GetQuizAsync(_quiz.Id);
+            var questionData = await _quizService.GetQuizAsync(QuizId);
 
             if (questionData == null)
                 return;
@@ -126,14 +108,11 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
         private async Task SaveQuiz()
         {
             //Check inputs are valid
-            if (string.IsNullOrEmpty(QuizTitle) || string.IsNullOrEmpty(QuizDescription) || string.IsNullOrEmpty(QuizImageUrl))
+            if (string.IsNullOrEmpty(_quiz.Title) || string.IsNullOrEmpty(_quiz.Description) || string.IsNullOrEmpty(_quiz.ImageUrl))
             {
-                Shell.Current.DisplayAlert("Bad inputs","Make sure inputs are not empty","OK");
+                await Shell.Current.DisplayAlert("Bad inputs","Make sure inputs are not empty","OK");
                 return;
             }
-
-            //Set quiz properties to entry bound inputs
-            SetQuiz();
 
             //Save new
             if (_quiz != null && _quiz.Id == 0)
@@ -145,20 +124,16 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             {
                 await _quizService.UpdateQuizAsync(_quiz);
             }
-
-            await Shell.Current.Navigation.PopAsync();
             
         }
 
         private async Task DeleteQuiz()
         {
             //Delete quiz
-            if (_quiz != null && _quiz.Id > 0)
+            if (Quiz != null && Quiz.Id > 0)
             {
-                await _quizService.DeleteQuizAsync(_quiz.Id);
+                await _quizService.DeleteQuizAsync(Quiz.Id);
             }
-
-            await Shell.Current.Navigation.PopAsync();
         }
 
 
@@ -167,10 +142,11 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             if (question == null)
                 return;
 
-            await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(_quiz.Id, SelectedQuestion));
+            await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(Quiz.Id, SelectedQuestion));
 
             SelectedQuestion = null;
         }
+
         #endregion
     }
 }
