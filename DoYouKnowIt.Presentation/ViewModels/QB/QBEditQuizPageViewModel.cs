@@ -107,8 +107,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
 
         private async Task SaveQuiz()
         {
-            //Check inputs are valid
-            if (!ValidateQuiz())
+            if (ValidateQuiz() == false)
                 return;
 
             //Save new
