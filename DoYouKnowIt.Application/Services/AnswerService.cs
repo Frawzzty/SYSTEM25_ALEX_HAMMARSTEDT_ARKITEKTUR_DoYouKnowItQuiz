@@ -14,6 +14,11 @@ namespace DoYouKnowIt.Application.Services
     {
         IAnswerRepository _answerRepo = new AnswerRepositoryEF();
 
+        public AnswerService(IAnswerRepository answerRepo)
+        {
+            _answerRepo = answerRepo;
+        }
+
         public async Task<Answer?> GetAnswerAsync(int answerId)
             => await _answerRepo.GetByIdAsync(answerId);
 

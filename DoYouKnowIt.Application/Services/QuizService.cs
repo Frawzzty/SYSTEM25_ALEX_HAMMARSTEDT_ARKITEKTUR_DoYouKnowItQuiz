@@ -13,8 +13,13 @@ namespace DoYouKnowIt.Application.Services
 {
     public class QuizService : IQuizService
     {
-        
-        IQuizRepository _quizRepo = new QuizRepositoryEF(new MyDbContext());
+
+        private readonly IQuizRepository _quizRepo;
+
+        public QuizService(IQuizRepository quizRepo)
+        {
+            _quizRepo = quizRepo;
+        }
 
         public async Task<Quiz?> GetQuizAsync(int quizId) 
             => await _quizRepo.GetByIdAsync(quizId);

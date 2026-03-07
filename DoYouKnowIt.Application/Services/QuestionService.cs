@@ -12,7 +12,12 @@ namespace DoYouKnowIt.Application.Services
 {
     public class QuestionService : IQuestionService
     {
-        IQuestionRepository _questionRepo = new QuestionRepositoryEF();
+        private readonly IQuestionRepository _questionRepo;
+
+        public QuestionService(IQuestionRepository qustionRepo)
+        {
+            _questionRepo = qustionRepo;
+        }
 
         public async Task<Question?> GetQuestionAsync(int questionId)
             => await _questionRepo.GetByIdAsync(questionId);

@@ -13,12 +13,7 @@ namespace DoYouKnowIt.Infrastructure.Repositories
 {
     public class QuizRepositoryEF : IQuizRepository
     {
-        private readonly MyDbContext _context;
-
-        public QuizRepositoryEF(MyDbContext context)
-        {
-            _context = context;
-        }
+        
 
 
         public async Task<Quiz?> GetByIdAsync(int quizId)

@@ -12,12 +12,21 @@ namespace DoYouKnowIt.Infrastructure.Repositories
 {
     public class AnswerRepositoryEF : IAnswerRepository
     {
-        private readonly MyDbContext _context = new MyDbContext();
 
         public async Task<Answer?> GetByIdAsync(int answerId)
-            => await _context.Answers.Where(x => x.Id == answerId).AsNoTracking().SingleOrDefaultAsync();
-        public async Task<List<Answer>> GetAllAsync()
-            => await _context.Answers.AsNoTracking().ToListAsync();
+        {
+            using (var context = new MyDbContext())
+            {
+                return await context.Answers.Where(x => x.Id == answerId).AsNoTracking().SingleOrDefaultAsync();
+            }
+        }
+        public async Task<List<Answer>> GetAllAsync() 
+        {
+            using (var context = new MyDbContext())
+            {
+                return await context.Answers.AsNoTracking().ToListAsync();
+            }
+        }
 
 
 
