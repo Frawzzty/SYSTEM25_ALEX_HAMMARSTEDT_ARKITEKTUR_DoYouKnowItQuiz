@@ -17,6 +17,9 @@
 
             //QUIZ PLAY
 
+
+            //CountryFlag lookpup
+            Routing.RegisterRoute(nameof(Views.ApiNInjas.CountrFlagLookupPage), typeof(Views.ApiNInjas.CountrFlagLookupPage));
         }
     }
 }

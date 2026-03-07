@@ -97,6 +97,9 @@
 	  <MauiXaml Update="Resources\Styles\MyStyles\MyStyles.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\ApiNInjas\CountrFlagLookupPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\QB\QBEditAnswerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

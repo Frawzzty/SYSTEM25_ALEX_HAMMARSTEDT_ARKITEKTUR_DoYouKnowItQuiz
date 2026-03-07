@@ -20,6 +20,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
             //GoLeaderboardPageCommand = new Command(async () => { });
             //GoProfilePageCommand = new Command(async () => { });
             GoQuizBuilderPageCommand = new Command(async () => { await Shell.Current.GoToAsync(nameof(Views.QB.QBSelectPage)); });
+            GoCountryFlagLookupPageCommand = new Command(async () => { await Shell.Current.GoToAsync(nameof(Views.ApiNInjas.CountrFlagLookupPage)); });
 
         }
 
@@ -37,6 +38,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
         //public ICommand GoLeaderboardPageCommand { get; set; }
         //public ICommand GoProfilePageCommand { get; set; }
         public ICommand GoQuizBuilderPageCommand { get; set; }
+        public ICommand GoCountryFlagLookupPageCommand { get; set; }
         #endregion
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Domain.Entities.Interfaces;
 using DoYouKnowIt.Application.Interfaces;
 using DoYouKnowIt.Application.Services;
+using DoYouKnowIt.Application.Services.ApiNinjas;
+using DoYouKnowIt.Infrastructure.Data;
 using DoYouKnowIt.Infrastructure.Repositories;
 using DoYouKnowIt.Presentation.ViewModels.Test;
 using Microsoft.Extensions.Logging;
@@ -51,7 +53,9 @@ namespace DoYouKnowIt.Presentation
             builder.Services.AddTransient<Views.QB.QBEditAnswerPage>();
             builder.Services.AddTransient<ViewModels.QB.QBEditAnswerPageViewModel>();
 
-
+            //API Ninjas 
+            builder.Services.AddTransient<ApiNinjasClient>();
+            builder.Services.AddTransient<ApiNinjasCountryService>();
             return builder.Build();
         }
     }

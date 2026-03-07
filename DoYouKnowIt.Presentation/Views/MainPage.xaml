@@ -42,6 +42,10 @@
                     ButtonText="Quiz builder"
                     ButtonCommand="{Binding GoQuizBuilderPageCommand}"/>
 
+                <controls:NavBlockButton
+                    ButtonText="Country Flags"
+                    ButtonCommand="{Binding GoCountryFlagLookupPageCommand}"/>
+
             </FlexLayout>
             
             
