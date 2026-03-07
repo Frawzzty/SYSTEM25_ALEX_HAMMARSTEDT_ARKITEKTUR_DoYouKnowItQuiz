@@ -26,26 +26,35 @@ namespace DoYouKnowIt.Infrastructure.Repositories
         {
             if(question != null)
             {
-                await _context.Questions.AddAsync(question);
-                await _context.SaveChangesAsync();
+                using (var context = new MyDbContext())
+                {
+                    await context.Questions.AddAsync(question);
+                    await context.SaveChangesAsync();
+                }
             }
         }
         public async Task UpdateAsync(Question question)
         {
             if (question != null)
             {
-                _context.Update(question);
-                await _context.SaveChangesAsync();
+                using (var context = new MyDbContext()) 
+                {
+                    context.Update(question);
+                    await context.SaveChangesAsync();
+                }
             }
         }
 
         public async Task DeleteAsync(int questionId)
         {
-            var question = await _context.Questions.FirstOrDefaultAsync(x => x.Id == questionId);
-            if (question != null)
+            using (var context = new MyDbContext())
             {
-                _context.Remove(question);
-                await _context.SaveChangesAsync();
+                var question = await context.Questions.FirstOrDefaultAsync(x => x.Id == questionId);
+                if (question != null)
+                {
+                    context.Remove(question);
+                    await context.SaveChangesAsync();
+                }
             }
         }
     }

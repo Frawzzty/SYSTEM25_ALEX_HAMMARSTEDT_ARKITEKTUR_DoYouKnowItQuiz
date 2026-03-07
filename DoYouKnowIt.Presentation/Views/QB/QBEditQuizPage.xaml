@@ -8,7 +8,7 @@
         Margin="25"
         Spacing="10">
         <Label
-            Text="{Binding QuizId, StringFormat='ID: {0}'}"/>
+            Text="{Binding QuizId, StringFormat='QuizId: {0}'}"/>
         <Entry
             Placeholder="Quiz Title..."
             Text="{Binding Quiz.Title}"

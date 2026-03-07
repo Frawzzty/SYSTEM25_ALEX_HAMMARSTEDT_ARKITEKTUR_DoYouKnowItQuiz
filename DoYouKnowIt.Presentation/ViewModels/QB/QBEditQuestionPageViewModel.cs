@@ -12,30 +12,28 @@ using System.Windows.Input;
 
 namespace DoYouKnowIt.Presentation.ViewModels.QB
 {
-    internal class QBEditQuestionPageViewModel : INotifyPropertyChanged
+    [QueryProperty(nameof(QuizId), "QuizId")]
+    [QueryProperty(nameof(QuestionId), "QuestionId")]
+    public class QBEditQuestionPageViewModel : INotifyPropertyChanged
     {
         IQuestionService _questionService;
         IAnswerService _answerService;
-        public QBEditQuestionPageViewModel(int quizId, Question question)
+        public QBEditQuestionPageViewModel(IQuestionService questionService, IAnswerService answerService)
         {
-            _questionService = new QuestionService();
-            _answerService = new AnswerService();
+            _questionService = questionService;
+            _answerService = answerService;
 
-            if (question != null)
-            {
-                _question = question;
-                LoadQuestionInputs();
-            }
-            else
-            {
-                _question = new();
-                _question.QuizId = quizId; //If new question set correct QuizId
-            }
 
-            
             SaveQuestionCommand = new Command(async () => await SaveQuestion());
             DeleteQuestionCommand = new Command(async () => await DeleteQuestion());
             AddNewAnswerCommand = new Command(async () => await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditAnswerPage(_question.Id, null)));
+        }
+
+        public async Task InitializeData()
+        {
+            //Get Question, if new create new Question() with correct QuizId
+            Question = await _questionService.GetQuestionAsync(QuestionId) ?? new() { QuizId = QuizId};
+            await RefreshQuestionList();
         }
 
         #region Commands
@@ -52,17 +50,26 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
         }
         #endregion
 
+        //Query Props====================
+        private int _quizId;
+        public int QuizId { get { return _quizId; } set { _quizId = value; OnPropertyChanged(nameof(QuizId)); } }
 
+        private int _questionId;
+        public int QuestionId { get { return _questionId; } set { _questionId = value; OnPropertyChanged(nameof(QuestionId)); } }
+        //===============================
+
+
+        //Question related props
         private Question? _question;
+        public Question? Question { get { return _question; } set { _question = value; OnPropertyChanged(nameof(Question)); } }
 
-        private string _questionText;
-        private string _questionImageUrl;
-        public string QuestionText { get { return _questionText; } set { _questionText = value; OnPropertyChanged(nameof(QuestionText)); } }
-        public string QuestionImageUrl { get { return _questionImageUrl; } set { _questionImageUrl = value; OnPropertyChanged(nameof(QuestionImageUrl)); } }
 
+        //Question List
         private ObservableCollection<Answer> _answers = new();
         public ObservableCollection<Answer> Answers { get { return _answers; } set { _answers = value; OnPropertyChanged(nameof(Answers)); } }
 
+
+        //Collection view selection
         private Answer _selectedAnswer;
         public Answer SelectedAnswer 
         { 
@@ -93,42 +100,25 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             if (_question == null || _question.Id == 0)
                 return;
 
-            var answerData = await _questionService.GetQuestionAsync(_question.Id);
+            var question = await _questionService.GetQuestionAsync(_question.Id);
 
-            if (answerData == null)
+            if (question == null)
                 return;
 
             Answers.Clear();
-            foreach (var question in answerData.Answers)
+            foreach (var answer in question.Answers)
             {
-                Answers.Add(question);
+                Answers.Add(answer);
             }
 
         }
 
-        private void LoadQuestionInputs()
-        {
-            QuestionText = _question.QuestionText;
-            QuestionImageUrl = _question.QuestionImageUrl;
-        }
-
-        private void SetQuestion()
-        {
-            _question.QuestionText = QuestionText;
-            _question.QuestionImageUrl = QuestionImageUrl;
-        }
 
         private async Task SaveQuestion()
         {
             //Check inputs are valid
-            if (string.IsNullOrWhiteSpace(QuestionText) || string.IsNullOrWhiteSpace(QuestionImageUrl))
-            {
-                Shell.Current.DisplayAlert("Bad inputs", "Make sure inputs are not empty", "OK");
+            if (ValidateQuestion() == false)
                 return;
-            }
-
-            //Set quiz properties to entry bound inputs
-            SetQuestion();
 
             //Save new
             if (_question != null && _question.Id == 0)
@@ -155,6 +145,27 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             await Shell.Current.Navigation.PopAsync();
         }
 
+        private bool ValidateQuestion()
+        {
+            string errorMessage = "";
+            bool isSucess = true;
 
+            if (string.IsNullOrEmpty(Question.QuestionText))
+            {
+                errorMessage += "Missing Question text" + "\n";
+                isSucess = false;
+            }
+
+            if (string.IsNullOrEmpty(Question.QuestionImageUrl))
+            {
+                errorMessage += "Missing Question Image URL";
+                isSucess = false;
+            }
+
+            if (!isSucess)
+                Shell.Current.DisplayAlert("Validation Error", errorMessage, "OK");
+
+            return isSucess;
+        }
     }
 }

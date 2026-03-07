@@ -38,12 +38,18 @@ namespace DoYouKnowIt.Presentation
             builder.Services.AddTransient<QueryPropTestPageViewModel>();
             builder.Services.AddTransient<Views.Test.QueryPropTestPage>();
 
+            //QuizBuilder Views & ViewModels
             builder.Services.AddTransient<Views.QB.QBSelectPage>();
             builder.Services.AddTransient<ViewModels.QB.QBSelectPageViewModel>();
 
             builder.Services.AddTransient<Views.QB.QBEditQuizPage>();
             builder.Services.AddTransient<ViewModels.QB.QBEditQuizPageViewModel>();
 
+            builder.Services.AddTransient<Views.QB.QBEditQuestionPage>();
+            builder.Services.AddTransient<ViewModels.QB.QBEditQuestionPageViewModel>();
+
+            builder.Services.AddTransient<Views.QB.QBEditAnswerPage>();
+            builder.Services.AddTransient<ViewModels.QB.QBEditAnswerPageViewModel>();
 
 
             return builder.Build();

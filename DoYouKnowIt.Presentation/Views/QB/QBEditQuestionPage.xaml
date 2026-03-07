@@ -7,14 +7,19 @@
     <VerticalStackLayout
         Margin="25"
         Spacing="10">
+
+        <Label
+            Text="{Binding QuizId, StringFormat='QuizId: {0}'}"/>
+        <Label
+            Text="{Binding QuestionId, StringFormat='QuestionId: {0}'}"/>
         <Entry
             Placeholder="Question Text..."
-            Text="{Binding QuestionText}"
+            Text="{Binding Question.QuestionText}"
             Style="{StaticResource EntryDefault}"/>
 
         <Entry
             Placeholder="Question ImageUrl..."
-            Text="{Binding QuestionImageUrl}"
+            Text="{Binding Question.QuestionImageUrl}"
             Style="{StaticResource EntryDefault}"/>
 
         <Button

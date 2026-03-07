@@ -26,7 +26,11 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
 
 
             //Commands
-            AddNewQuestionCommand = new Command(async () => { await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(_quiz.Id, null)); });
+            AddNewQuestionCommand = new Command(async () => {
+                await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditQuestionPage)}?QuizId={QuizId}&QuestionId={0}");
+                //await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(_quiz.Id, null));
+                });
+
             SaveQuizCommand = new Command(async () =>       { await SaveQuiz(); });
             DeleteQuizCommand = new Command(async () =>     { await DeleteQuiz(); });
         }
@@ -141,7 +145,8 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             if (question == null)
                 return;
 
-            await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(Quiz.Id, SelectedQuestion));
+            //await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(Quiz.Id, SelectedQuestion));
+            await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditQuestionPage)}?QuizId={question.QuizId}&QuestionId={question.Id}");
 
             SelectedQuestion = null;
         }
