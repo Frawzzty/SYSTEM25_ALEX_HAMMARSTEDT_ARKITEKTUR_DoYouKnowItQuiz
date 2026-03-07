@@ -7,15 +7,19 @@
     <VerticalStackLayout
         Margin="25"
         Spacing="10">
-        
+
+        <Label
+            Text="{Binding QuestionId, StringFormat='QuestionId: {0}'}"/>
+        <Label
+            Text="{Binding AnswerId, StringFormat='AnswerId: {0}'}"/>
         <Entry
             Placeholder="Answer Text..."
-            Text="{Binding AnswerText}"
+            Text="{Binding Answer.AnswerText}"
             Style="{StaticResource EntryDefault}"/>
         
         <HorizontalStackLayout>
             <CheckBox
-               IsChecked="{Binding IsTrue}"
+               IsChecked="{Binding Answer.IsTrue}"
                Color="#65D14B"
             />
             <Label

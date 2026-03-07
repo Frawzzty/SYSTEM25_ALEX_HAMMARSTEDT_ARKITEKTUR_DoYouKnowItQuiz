@@ -26,7 +26,9 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
 
             SaveQuestionCommand = new Command(async () => await SaveQuestion());
             DeleteQuestionCommand = new Command(async () => await DeleteQuestion());
-            AddNewAnswerCommand = new Command(async () => await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditAnswerPage(_question.Id, null)));
+            AddNewAnswerCommand = new Command(async () => { await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditAnswerPage)}?QuestionId={Question.Id}&AnswerId={0}"); });
+
+            
         }
 
         public async Task InitializeData()
@@ -89,7 +91,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             if (question == null)
                 return;
 
-            await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditAnswerPage(_question.Id, SelectedAnswer));
+            await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditAnswerPage)}?QuestionId={Question.Id}&AnswerId={SelectedAnswer.Id}"); 
 
             SelectedAnswer = null;
         }
