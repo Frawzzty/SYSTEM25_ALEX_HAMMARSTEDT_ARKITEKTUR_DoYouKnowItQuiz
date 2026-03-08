@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:DoYouKnowIt.Presentation.Controls"
+             x:Class="DoYouKnowIt.Presentation.Views.Play.PlaySelectQuizPage"
+             Title="Play - Select Quiz"
+             BackgroundColor="{StaticResource BgDefault}">
+    <VerticalStackLayout
+        Margin="25"
+        Spacing="10"
+        HorizontalOptions="Center">
+
+        <Image
+            HeightRequest="200"
+            Source="image_playquiz1_transparent.png"/>
+
+        <SearchBar
+            Text="{Binding SearchbarText}"
+            Placeholder="search for quiz..."
+            BackgroundColor="White"/>
+
+        <CollectionView
+            ItemsSource="{Binding Quizzes}"
+            SelectionMode="Single"
+            SelectedItem="{Binding SelectedQuiz}"
+            >
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    Orientation="Vertical"
+                    ItemSpacing="5"/>
+            </CollectionView.ItemsLayout>
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <controls:QuizCardControl
+                        QuizTitle="{Binding Title}"
+                        QuizDescription="{Binding Description}"
+                        QuizImageUrl="{Binding ImageUrl}"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

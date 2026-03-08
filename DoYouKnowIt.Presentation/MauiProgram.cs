@@ -4,7 +4,11 @@ using DoYouKnowIt.Application.Services;
 using DoYouKnowIt.Application.Services.ApiNinjas;
 using DoYouKnowIt.Infrastructure.Data;
 using DoYouKnowIt.Infrastructure.Repositories;
+using DoYouKnowIt.Presentation.ViewModels.Play;
+using DoYouKnowIt.Presentation.ViewModels.QB;
 using DoYouKnowIt.Presentation.ViewModels.Test;
+using DoYouKnowIt.Presentation.Views.Play;
+using DoYouKnowIt.Presentation.Views.QB;
 using Microsoft.Extensions.Logging;
 
 namespace DoYouKnowIt.Presentation
@@ -41,17 +45,21 @@ namespace DoYouKnowIt.Presentation
             builder.Services.AddTransient<Views.Test.QueryPropTestPage>();
 
             //QuizBuilder Views & ViewModels
-            builder.Services.AddTransient<Views.QB.QBSelectPage>();
-            builder.Services.AddTransient<ViewModels.QB.QBSelectPageViewModel>();
+            builder.Services.AddTransient<QBSelectPage>();
+            builder.Services.AddTransient<QBSelectPageViewModel>();
 
-            builder.Services.AddTransient<Views.QB.QBEditQuizPage>();
-            builder.Services.AddTransient<ViewModels.QB.QBEditQuizPageViewModel>();
+            builder.Services.AddTransient<QBEditQuizPage>();
+            builder.Services.AddTransient<QBEditQuizPageViewModel>();
 
-            builder.Services.AddTransient<Views.QB.QBEditQuestionPage>();
-            builder.Services.AddTransient<ViewModels.QB.QBEditQuestionPageViewModel>();
+            builder.Services.AddTransient<QBEditQuestionPage>();
+            builder.Services.AddTransient<QBEditQuestionPageViewModel>();
 
-            builder.Services.AddTransient<Views.QB.QBEditAnswerPage>();
-            builder.Services.AddTransient<ViewModels.QB.QBEditAnswerPageViewModel>();
+            builder.Services.AddTransient<QBEditAnswerPage>();
+            builder.Services.AddTransient<QBEditAnswerPageViewModel>();
+
+            //PlayQuiz pages
+            builder.Services.AddTransient<PlaySelectQuizPage>();
+            builder.Services.AddTransient<PlaySelectQuizPageViewModel>();
 
             //API Ninjas 
             builder.Services.AddTransient<ApiNinjasClient>();

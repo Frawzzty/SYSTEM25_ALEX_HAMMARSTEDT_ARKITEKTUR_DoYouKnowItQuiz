@@ -72,7 +72,6 @@
 
 	<ItemGroup>
 	  <Folder Include="Resources\Images\Logos\" />
-	  <Folder Include="Views\Play\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -98,6 +97,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ApiNInjas\CountrFlagLookupPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Play\PlaySelectQuizPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\QB\QBEditAnswerPage.xaml">

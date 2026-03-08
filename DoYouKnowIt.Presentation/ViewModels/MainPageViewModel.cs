@@ -16,7 +16,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
         {
 
 
-            //GoPlayPageCommand = new Command(async () => { });
+            GoPlayPageCommand = new Command(async () => { await Shell.Current.GoToAsync(nameof(Views.Play.PlaySelectQuizPage)); });
             //GoLeaderboardPageCommand = new Command(async () => { });
             //GoProfilePageCommand = new Command(async () => { });
             GoQuizBuilderPageCommand = new Command(async () => { await Shell.Current.GoToAsync(nameof(Views.QB.QBSelectPage)); });
@@ -34,7 +34,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
         #endregion
 
         #region Commands
-        //public ICommand GoPlayPageCommand { get; set; }
+        public ICommand GoPlayPageCommand { get; set; }
         //public ICommand GoLeaderboardPageCommand { get; set; }
         //public ICommand GoProfilePageCommand { get; set; }
         public ICommand GoQuizBuilderPageCommand { get; set; }

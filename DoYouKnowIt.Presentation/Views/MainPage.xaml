@@ -16,10 +16,6 @@
                 Source="logo_main_transparent.png"
                 HeightRequest="300"/>
 
-            <Button
-                Text="QueryPropPage"
-                Clicked="OnClickGoQueryTestPage"/>
-
             <FlexLayout
                 Direction="Row"
                 Wrap="Wrap"
