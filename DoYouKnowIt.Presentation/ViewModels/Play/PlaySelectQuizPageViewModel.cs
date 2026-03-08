@@ -1,5 +1,6 @@
 ﻿using Domain.Entities.Models.EntityFrameworkModels;
 using DoYouKnowIt.Application.Interfaces;
+using DoYouKnowIt.Presentation.Views.Play;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,7 +33,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
             if(SelectedQuiz == null)
                 return;
 
-            //await Shell.Current.GoToAsync(nameof(SELECTION PREVIEW PAGE));
+            await Shell.Current.GoToAsync($"{nameof(PlayPlayQuizPage)}?QuizId={SelectedQuiz.Id}");
 
             //Reset selection
             SelectedQuiz = null;
