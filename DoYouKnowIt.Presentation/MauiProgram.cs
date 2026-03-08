@@ -61,6 +61,9 @@ namespace DoYouKnowIt.Presentation
             builder.Services.AddTransient<PlaySelectQuizPage>();
             builder.Services.AddTransient<PlaySelectQuizPageViewModel>();
 
+            builder.Services.AddTransient<PlayPlayQuizPage>();
+            builder.Services.AddTransient<PlayPlayQuizPageViewModel>();
+
             //API Ninjas 
             builder.Services.AddTransient<ApiNinjasClient>();
             builder.Services.AddTransient<ApiNinjasCountryService>();

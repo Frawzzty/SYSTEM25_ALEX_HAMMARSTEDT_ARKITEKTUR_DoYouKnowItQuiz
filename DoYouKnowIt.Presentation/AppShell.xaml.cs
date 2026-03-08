@@ -17,7 +17,7 @@
 
             //QUIZ PLAY
             Routing.RegisterRoute(nameof(Views.Play.PlaySelectQuizPage), typeof(Views.Play.PlaySelectQuizPage));
-            //Routing.RegisterRoute(nameof(Views.Play.PlaySelectQuizPage), typeof(Views.Play.PlaySelectQuizPage));
+            Routing.RegisterRoute(nameof(Views.Play.PlayPlayQuizPage), typeof(Views.Play.PlayPlayQuizPage));
 
 
             //CountryFlag lookpup
