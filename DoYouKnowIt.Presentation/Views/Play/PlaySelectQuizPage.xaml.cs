@@ -1,4 +1,6 @@
 using DoYouKnowIt.Presentation.ViewModels.Play;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Platform;
 
 namespace DoYouKnowIt.Presentation.Views.Play;
 
@@ -8,8 +10,10 @@ public partial class PlaySelectQuizPage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = vm;
-	}
 
+    }
+
+    bool isRunningAnimations = true;
     protected async override void OnAppearing()
     {
         base.OnAppearing();
@@ -18,5 +22,28 @@ public partial class PlaySelectQuizPage : ContentPage
 		{
 			await vm.LoadQuizzes();
 		}
+
+        isRunningAnimations = true;
+        RunAnimations();
     }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+
+        isRunningAnimations = false;
+        Microsoft.Maui.Controls.ViewExtensions.CancelAnimations(ImageTopQuizPlay);
+    }
+
+    private async void RunAnimations()
+    {
+        while (isRunningAnimations)
+        {
+            ImageTopQuizPlay.Scale = 1;
+            await ImageTopQuizPlay.ScaleTo(1.1, 2000, Easing.CubicInOut);
+            await ImageTopQuizPlay.ScaleTo(1, 2000);
+            ImageTopQuizPlay.Scale = 1;
+        }
+    }
+
 }

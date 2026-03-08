@@ -30,6 +30,11 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
             {
                 Quiz = await _quizService.GetQuizAsync(QuizId);
             }
+            else
+            {
+                await Shell.Current.DisplayAlert("Error", "Going back...\nQuizId was 0", "OK");
+                await Shell.Current.Navigation.PopAsync(); //Possible crash if triggered when page is still loading in
+            }
             
         }
 
@@ -41,8 +46,5 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
         }
         #endregion
 
-
     }
-
-
 }

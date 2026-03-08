@@ -11,6 +11,7 @@
         HorizontalOptions="Center">
 
         <Image
+            x:Name="ImageTopQuizPlay"
             HeightRequest="200"
             Source="image_playquiz1_transparent.png"/>
 
