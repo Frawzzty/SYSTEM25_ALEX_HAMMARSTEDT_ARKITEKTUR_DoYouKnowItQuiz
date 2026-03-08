@@ -17,7 +17,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
         public PlaySelectQuizPageViewModel(IQuizService quizService)
         {
             _quizService = quizService;
-            LoadQuizzes();
+  
         }
 
         #region OnChanged
@@ -66,7 +66,8 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
         }
 
 
-        private async Task LoadQuizzes()
+        //Load on Appearing in page codebehind
+        public async Task LoadQuizzes()
         {
             Quizzes = new ObservableCollection<Quiz>(await _quizService.GetAllQuizzesAsync());
             _originalQuizList = Quizzes.ToList();
