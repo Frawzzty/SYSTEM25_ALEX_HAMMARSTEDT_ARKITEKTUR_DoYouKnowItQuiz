@@ -9,6 +9,11 @@
             Margin="25"
             Spacing="25">
 
+        <!--No dedicated viewmodel for this page, only codebehind-->
+        <Label
+           Text="&lt;Image> wont display .SVG images"
+           />
+
         <Entry
             Text="{Binding CountryIso2}"
             Placeholder="country iso2..."

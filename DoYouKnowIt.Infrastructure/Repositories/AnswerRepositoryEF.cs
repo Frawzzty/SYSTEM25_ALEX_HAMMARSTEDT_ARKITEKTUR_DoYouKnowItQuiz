@@ -10,25 +10,25 @@ using System.Threading.Tasks;
 
 namespace DoYouKnowIt.Infrastructure.Repositories
 {
+
+
+    //Not optimal: Using "using" on each Db call to resolve issue with overlapping calls / same object beeing tracked twice.
     public class AnswerRepositoryEF : IAnswerRepository
     {
-
         public async Task<Answer?> GetByIdAsync(int answerId)
         {
             using (var context = new MyDbContext())
             {
-                return await context.Answers.Where(x => x.Id == answerId).AsNoTracking().SingleOrDefaultAsync();
+                return await context.Answers.Where(x => x.Id == answerId).SingleOrDefaultAsync();
             }
         }
         public async Task<List<Answer>> GetAllAsync() 
         {
             using (var context = new MyDbContext())
             {
-                return await context.Answers.AsNoTracking().ToListAsync();
+                return await context.Answers.ToListAsync();
             }
         }
-
-
 
         public async Task AddAsync(Answer answer)
         {
@@ -52,7 +52,6 @@ namespace DoYouKnowIt.Infrastructure.Repositories
                 }
             }
         }
-
         public async Task DeleteAsync(int answerId)
         {
             using (var context = new MyDbContext()) 

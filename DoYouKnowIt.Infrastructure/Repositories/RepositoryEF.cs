@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace DoYouKnowIt.Infrastructure.Repositories
 {
+    //Unused
     public class RepositoryEF<T> : IRepository<T> where T : class
     {
         private readonly MyDbContext _context = new MyDbContext();

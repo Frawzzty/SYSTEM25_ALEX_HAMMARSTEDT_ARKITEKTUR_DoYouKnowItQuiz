@@ -67,7 +67,13 @@ public partial class CountrFlagLookupPage : ContentPage, INotifyPropertyChanged
     
     private async void LoadCountry()
     {
-        if (CountryIso2 != "")
+        //Check inputs
+        if (string.IsNullOrWhiteSpace(CountryIso2))
+        {
+            DisplayAlert("Error", "Input is null or empty", "OK");
+        }
+        //Get country
+        else
         {
             Country = await _countryFlagService.GetCountry(CountryIso2) ?? new Country();
             if (Country == null)
@@ -76,6 +82,7 @@ public partial class CountrFlagLookupPage : ContentPage, INotifyPropertyChanged
             ImageSquareUrl = Country.SquareImageUrl;
             ImageRectangleUrl = Country.RectangleimageUrl;
         }
+
        
     }
 

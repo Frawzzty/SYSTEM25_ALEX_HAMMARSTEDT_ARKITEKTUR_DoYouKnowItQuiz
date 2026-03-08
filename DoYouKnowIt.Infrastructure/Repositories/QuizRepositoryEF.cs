@@ -11,11 +11,9 @@ using System.Threading.Tasks;
 
 namespace DoYouKnowIt.Infrastructure.Repositories
 {
+    //Not optimal: Using "using" on each Db call to resolve issue with overlapping calls / same object beeing tracked twice.
     public class QuizRepositoryEF : IQuizRepository
     {
-        
-
-
         public async Task<Quiz?> GetByIdAsync(int quizId)
         {
             using (var context = new MyDbContext())
@@ -24,7 +22,6 @@ namespace DoYouKnowIt.Infrastructure.Repositories
             }
         }
           
-        
         public async Task<List<Quiz>> GetAllAsync()
         {
             using (var context = new MyDbContext())
@@ -33,8 +30,6 @@ namespace DoYouKnowIt.Infrastructure.Repositories
             }
 
         }
-            
-       
 
         public async Task AddAsync(Quiz quiz)
         {
@@ -47,8 +42,6 @@ namespace DoYouKnowIt.Infrastructure.Repositories
                 }
             }
         }
-
-
         public async Task UpdateAsync(Quiz quiz)
         {
             if (quiz == null)
@@ -61,8 +54,6 @@ namespace DoYouKnowIt.Infrastructure.Repositories
             }
 
         }
-
-
         public async Task DeleteAsync(int quizId)
         {
             if (quizId == 0)
