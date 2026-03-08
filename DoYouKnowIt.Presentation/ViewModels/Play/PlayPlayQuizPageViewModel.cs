@@ -2,10 +2,12 @@
 using DoYouKnowIt.Application.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace DoYouKnowIt.Presentation.ViewModels.Play
 {
@@ -16,7 +18,13 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
         public PlayPlayQuizPageViewModel(IQuizService quizService)
         {
             _quizService = quizService;
+            NextQuestionCommand = new Command(() => { _questionIndex++; LoadCurrentRound(); });
         }
+
+        public ICommand NextQuestionCommand { get; set; }
+
+        private int _questionIndex = 0;
+
 
         private int _quizId;
         public int QuizId { get { return _quizId; } set { _quizId = value; OnPropertyChanged(nameof(QuizId)); } }
@@ -24,11 +32,25 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
         private Quiz _quiz;
         public Quiz Quiz { get { return _quiz; } set { _quiz = value; OnPropertyChanged(nameof(Quiz)); } }
 
+
+        private Question _currentQuestion;
+        public Question CurrentQuestion { get { return _currentQuestion; } set { _currentQuestion = value; OnPropertyChanged(nameof(CurrentQuestion)); } }
+
+        private ObservableCollection<Answer> _currentAnswers = new();
+        public ObservableCollection<Answer> CurrentAnswers { get { return _currentAnswers; } set { _currentAnswers = value; OnPropertyChanged(nameof(CurrentAnswers)); } }
         public async Task LoadData()
         {
             if (QuizId != 0) 
             {
-                Quiz = await _quizService.GetQuizAsync(QuizId);
+                await LoadQuiz();
+
+                if (Quiz.Questions != null)
+                {
+                    LoadCurrentRound();
+                }
+                    
+                else
+                    Shell.Current.DisplayAlert("Error", "No questions found", "OK");
             }
             else
             {
@@ -37,6 +59,29 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
             }
             
         }
+
+        private async Task LoadQuiz()
+        {
+            Quiz = await _quizService.GetQuizAsync(QuizId);
+        }
+
+        private void LoadCurrentRound()
+        {
+            
+            if(_questionIndex >= Quiz.Questions.Count)
+            {
+                Shell.Current.DisplayAlert("Out of range?", "Shit", "ok");
+            }
+            else
+            {
+                //Load question
+                CurrentQuestion = Quiz.Questions.ToList()[_questionIndex];
+                //Load answers
+                CurrentAnswers = new ObservableCollection<Answer>(CurrentQuestion.Answers);
+            }
+
+        }
+
 
         #region On Change
         public event PropertyChangedEventHandler? PropertyChanged;
