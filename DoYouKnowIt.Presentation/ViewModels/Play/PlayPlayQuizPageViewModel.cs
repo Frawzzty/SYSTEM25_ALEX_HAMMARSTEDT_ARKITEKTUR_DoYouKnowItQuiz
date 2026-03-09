@@ -1,4 +1,5 @@
 ﻿using Domain.Entities.Models.EntityFrameworkModels;
+using Domain.Entities.Models.Game;
 using DoYouKnowIt.Application.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -18,16 +19,13 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
         public PlayPlayQuizPageViewModel(IQuizService quizService)
         {
             _quizService = quizService;
-            //NextQuestionCommand = new Command(() => { _questionIndex++; LoadCurrentRound(); });
         }
+
+        private QuizResult _quizResult;
 
         public ICommand NextQuestionCommand { get; set; }
 
         private int _questionIndex = 0;
-
-        private int _totalScore = 0;
-        public int TotalScore { get { return _totalScore; } set { _totalScore = value; OnPropertyChanged(nameof(TotalScore)); } }
-
 
         private int _quizId;
         public int QuizId { get { return _quizId; } set { _quizId = value; OnPropertyChanged(nameof(QuizId)); } }
@@ -52,48 +50,50 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
         }
         public async Task LoadData()
         {
-            if (QuizId != 0) 
-            {
-                await LoadQuiz();
-
-                if (Quiz.Questions != null)
-                {
-                    LoadRound();
-                }
-                    
-                else
-                    Shell.Current.DisplayAlert("Error", "No questions found", "OK");
-            }
-            else
+            //Check loading error
+            if(QuizId == 0)
             {
                 await Shell.Current.DisplayAlert("Error", "Going back...\nQuizId was 0", "OK");
                 await Shell.Current.Navigation.PopAsync(); //Possible crash if triggered when page is still loading in
+                return;
             }
-            
+
+            //Load Quiz
+            await LoadQuiz();
+            if (Quiz.Questions != null)
+            {
+                await LoadRound();
+            }
+            else
+            {
+                Shell.Current.DisplayAlert("Error", "No questions found", "OK");
+            }
+                
         }
 
         private async Task LoadQuiz()
         {
             Quiz = await _quizService.GetQuizAsync(QuizId);
+
+            if (Quiz == null)
+                return;
+
+           _quizResult = new QuizResult(Quiz);
         }
 
-        private void LoadRound()
+        private async Task LoadRound()
         {
-            
+            //If no questions left. Go to result page
             if(_questionIndex >= Quiz.Questions.Count)
             {
-                Shell.Current.DisplayAlert("Out of range", "Send user to Result page", "I will add this function");
-                CurrentAnswers = null;
-                CurrentQuestion = null;
+                await Shell.Current.Navigation.PushAsync(new Views.Play.PlayResultQuizPage(_quizResult));
             }
+            //Load next question and answers
             else
             {
-                //Load question
                 CurrentQuestion = Quiz.Questions.ToList()[_questionIndex];
-                //Load answers
                 CurrentAnswers = new ObservableCollection<Answer>(CurrentQuestion.Answers);
             }
-
         }
 
 
@@ -110,11 +110,31 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
                 return;
 
             //Validate answer
-            if(SelectedAnswer.IsTrue)
+            QuizRoundResult quizRoundResult;
+            List<string> trueAnswers = CurrentAnswers.Where(x => x.IsTrue == true).Select(x => x.AnswerText).ToList();
+            if (SelectedAnswer.IsTrue)
             {
-                TotalScore++;
+                quizRoundResult = new QuizRoundResult(
+                    true, 
+                    CurrentQuestion.QuestionText, 
+                    trueAnswers, 
+                    SelectedAnswer.AnswerText, 
+                    1);
             }
+            else
+            {
+                quizRoundResult = new QuizRoundResult(
+                    false, 
+                    CurrentQuestion.QuestionText, 
+                    trueAnswers, 
+                    SelectedAnswer.AnswerText, 
+                    0);
+            }
+            
+            //Add RoundResult
+            _quizResult.AddRoundResult(quizRoundResult);
 
+            //Load Next round
             _questionIndex++;
             LoadRound();
 

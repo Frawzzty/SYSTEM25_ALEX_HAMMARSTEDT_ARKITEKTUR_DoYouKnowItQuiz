@@ -1,4 +1,5 @@
 ﻿using Domain.Entities.Interfaces;
+using Domain.Entities.Models.Game;
 using DoYouKnowIt.Application.Interfaces;
 using DoYouKnowIt.Application.Services;
 using DoYouKnowIt.Application.Services.ApiNinjas;
@@ -38,8 +39,7 @@ namespace DoYouKnowIt.Presentation
             builder.Services.AddScoped<IQuizRepository, QuizRepositoryEF>();
             builder.Services.AddScoped<IQuestionRepository, QuestionRepositoryEF>();
             builder.Services.AddScoped<IAnswerRepository, AnswerRepositoryEF>();
-
-
+            
             
             builder.Services.AddTransient<QueryPropTestPageViewModel>();
             builder.Services.AddTransient<Views.Test.QueryPropTestPage>();
@@ -63,6 +63,8 @@ namespace DoYouKnowIt.Presentation
 
             builder.Services.AddTransient<PlayPlayQuizPage>();
             builder.Services.AddTransient<PlayPlayQuizPageViewModel>();
+
+            
 
             //API Ninjas 
             builder.Services.AddTransient<ApiNinjasClient>();

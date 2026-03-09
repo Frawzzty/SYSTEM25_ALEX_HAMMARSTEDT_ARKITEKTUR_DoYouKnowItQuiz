@@ -1,0 +1,39 @@
+﻿using Domain.Entities.Models.EntityFrameworkModels;
+using Domain.Entities.Models.Game;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DoYouKnowIt.Presentation.ViewModels.Play
+{
+    public class PlayResultQuizPageViewModel : INotifyPropertyChanged
+    {
+        #region On Change
+        public event PropertyChangedEventHandler? PropertyChanged;
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+
+        public PlayResultQuizPageViewModel(QuizResult quizResult)
+        {
+            QuizResult = quizResult;
+            RoundResults = new ObservableCollection<QuizRoundResult>(QuizResult.RoundResults);
+            TotalScore = QuizResult.GetTotalScore();
+        }
+
+        QuizResult _quizResult;
+        public QuizResult QuizResult { get { return _quizResult; } set { _quizResult = value; OnPropertyChanged(nameof(QuizResult)); } }
+
+        private ObservableCollection<QuizRoundResult> _roundResults = new ObservableCollection<QuizRoundResult>();
+        public ObservableCollection<QuizRoundResult> RoundResults { get { return _roundResults; } set { _roundResults = value; OnPropertyChanged(nameof(RoundResults)); } }
+
+        private int _totalScore;
+        public int TotalScore { get { return _totalScore; } set { _totalScore = value; OnPropertyChanged(nameof(TotalScore)); } }
+    }
+}

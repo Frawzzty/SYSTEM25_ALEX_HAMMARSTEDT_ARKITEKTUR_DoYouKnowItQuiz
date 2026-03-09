@@ -17,7 +17,7 @@
     
     <!--Items / QuizCards-->
     <Color x:Key="ItemBackground">#4B7F99</Color>
-    <Color x:Key="ItemBorder">#3C677A</Color>
+    <Color x:Key="ItemBorder">#305463</Color>
 
     <!--Items / GRADIENT-->
     <Color x:Key="QCardDark">#568AA6</Color>
