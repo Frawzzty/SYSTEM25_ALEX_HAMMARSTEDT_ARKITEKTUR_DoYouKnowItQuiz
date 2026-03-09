@@ -5,6 +5,7 @@
              Title="PlayResultQuizPage"
              BackgroundColor="{StaticResource BgDefault}">
     <ScrollView>
+
         <VerticalStackLayout HorizontalOptions="Center"
             Margin="25"
             Spacing="10">
@@ -12,12 +13,10 @@
                 Text="{Binding TotalScore, StringFormat='Total Score: {0} '}"
                 TextColor="White"
                 FontSize="25"
-                FontAttributes="Bold"
-                HorizontalTextAlignment="Center"/>
+                FontAttributes="Bold"/>
 
             <CollectionView HorizontalOptions="Center"
                 ItemsSource="{Binding RoundResults}"
-                SelectionMode="Single"
                 >
 
                 <CollectionView.ItemsLayout>
@@ -75,6 +74,7 @@
                 Style="{StaticResource BtnGreen}"
                 Command="{Binding PopToRootCommand}"
                 />
+
         </VerticalStackLayout>
     </ScrollView>
     
