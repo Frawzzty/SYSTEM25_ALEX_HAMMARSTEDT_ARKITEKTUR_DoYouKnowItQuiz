@@ -121,7 +121,8 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
             {
                 quizRoundResult = new QuizRoundResult(
                     true, 
-                    CurrentQuestion.QuestionText, 
+                    CurrentQuestion.QuestionText,
+                    CurrentQuestion.QuestionImageUrl,
                     trueAnswers, 
                     SelectedAnswer.AnswerText, 
                     1);
@@ -130,7 +131,8 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
             {
                 quizRoundResult = new QuizRoundResult(
                     false, 
-                    CurrentQuestion.QuestionText, 
+                    CurrentQuestion.QuestionText,
+                    CurrentQuestion.QuestionImageUrl,
                     trueAnswers, 
                     SelectedAnswer.AnswerText, 
                     0);

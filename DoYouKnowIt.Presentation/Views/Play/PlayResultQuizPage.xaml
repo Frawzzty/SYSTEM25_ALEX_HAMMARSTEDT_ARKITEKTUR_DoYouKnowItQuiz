@@ -5,57 +5,76 @@
              Title="PlayResultQuizPage"
              BackgroundColor="{StaticResource BgDefault}">
     <ScrollView>
-        <VerticalStackLayout
-    Margin="25"
-    Spacing="10">
+        <VerticalStackLayout HorizontalOptions="Center"
+            Margin="25"
+            Spacing="10">
             <Label 
-        Text="{Binding TotalScore, StringFormat='Total Score: {0} '}"
-        TextColor="White"
-        FontSize="25"
-        FontAttributes="Bold"/>
+                Text="{Binding TotalScore, StringFormat='Total Score: {0} '}"
+                TextColor="White"
+                FontSize="25"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center"/>
 
-            <CollectionView
-       
-        ItemsSource="{Binding RoundResults}"
-        SelectionMode="Single"
-        >
+            <CollectionView HorizontalOptions="Center"
+                ItemsSource="{Binding RoundResults}"
+                SelectionMode="Single"
+                >
 
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout
+                         
                 Orientation="Vertical"
                 ItemSpacing="10"/>
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border
-                    StrokeShape="RoundRectangle 10"
-                    Background="{StaticResource ItemBackground}" 
-                    Stroke="{StaticResource ItemBorder}"
-                    StrokeThickness="1.5"
-                    Padding="10">
-                            <VerticalStackLayout 
-                        Spacing="5">
-                                <Label TextColor="White" FontSize="20" Text="{Binding IsCorrect, StringFormat='Correct: {0}'}"/>
-                                <Label TextColor="White" FontSize="20" Text="{Binding RoundScore, StringFormat='Points: {0}'}"/>
-                                <Border Margin="0, 10"></Border>
-                                <Label TextColor="White" FontSize="20" Text="{Binding QuestionText, StringFormat='Q: {0}'}"/>
-                                <Label TextColor="White" FontSize="20" Text="{Binding CorrectAnswersString, StringFormat='A: {0}'}"/>
-                                <Border Margin="0, 10"></Border>
-                                <Label TextColor="White" FontSize="20" Text="{Binding UserAnswerText, StringFormat='Your answer: {0}'}"/>
-                            </VerticalStackLayout>
+                        <Grid>
+                            <Border HorizontalOptions="Center"
+                                StrokeShape="RoundRectangle 10"
+                                Background="{StaticResource ItemBackground}" 
+                                Stroke="{StaticResource ItemBorder}"
+                                StrokeThickness="1.5"
+                                Padding="20">
+                                <HorizontalStackLayout Spacing="50" HorizontalOptions="Center">
+                                    <VerticalStackLayout 
+                                    WidthRequest="500"
+                                    Spacing="5">
+                                        <Label TextColor="White" FontSize="20" Text="{Binding IsCorrect, StringFormat='Correct: {0}'}"/>
+                                        <Label TextColor="White" FontSize="20" Text="{Binding RoundScore, StringFormat='Points: {0}'}"/>
+                                        <Border Margin="0, 10"></Border>
+                                        <Label TextColor="White" FontSize="20" Text="{Binding QuestionText, StringFormat='Q: {0}'}"/>
+                                        <Label TextColor="White" FontSize="20" Text="{Binding CorrectAnswersString, StringFormat='A: {0}'}"/>
+                                        <Border Margin="0, 10"></Border>
+                                        <Label TextColor="White" FontSize="20" Text="{Binding UserAnswerText, StringFormat='Your answer: {0}'}"/>
+                                    </VerticalStackLayout>
 
-                        </Border>
+                                    <Border HorizontalOptions="Center"
+                                        StrokeShape="RoundRectangle 10"
+                                        BackgroundColor="White"
+                                        StrokeThickness="2"
+                                        Stroke="Black"
+                                        MaximumWidthRequest="400"
+                                        HeightRequest="225"
+                                        >
+                                        <Image
+                                        Source="{Binding QuestionImageUrl}"
+                                        Aspect="AspectFill"
+                                        BackgroundColor="White"/>
+                                    </Border>
 
+                                </HorizontalStackLayout>
+                            </Border>
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
             <Button
-        Text="Done"
-        Style="{StaticResource BtnGreen}"
-        Command="{Binding PopToRootCommand}"
-        />
+                Text="Done"
+                Style="{StaticResource BtnGreen}"
+                Command="{Binding PopToRootCommand}"
+                />
         </VerticalStackLayout>
     </ScrollView>
     

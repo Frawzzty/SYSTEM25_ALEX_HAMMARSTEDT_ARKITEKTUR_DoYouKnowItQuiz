@@ -9,7 +9,7 @@ namespace Domain.Entities.Models.Game
 {
     public class QuizRoundResult
     {
-        public QuizRoundResult(bool isCorrect, string questionText, List<string> correctAnswers, string userAnswerText, int roundScore)
+        public QuizRoundResult(bool isCorrect, string questionText, string imageUrl, List<string> correctAnswers, string userAnswerText, int roundScore)
         {
             IsCorrect = isCorrect;
             RoundScore = roundScore;
@@ -19,6 +19,7 @@ namespace Domain.Entities.Models.Game
             UserAnswerText = userAnswerText;
 
             CorrectAnswersString = string.Join(", ", CorrectAnswers);
+            QuestionImageUrl = imageUrl;
         }
 
         public bool IsCorrect { get; set; }
@@ -26,7 +27,9 @@ namespace Domain.Entities.Models.Game
         
         public string QuestionText { get; set; }
         public List<string> CorrectAnswers { get; set; }
-        public string CorrectAnswersString { get; set; }
+        public string CorrectAnswersString { get; set; } //Concated list of correct answers
         public string UserAnswerText { get; set; }
+
+        public string QuestionImageUrl { get; set; }
     }
 }
