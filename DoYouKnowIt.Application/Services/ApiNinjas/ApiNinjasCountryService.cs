@@ -3,6 +3,7 @@ using DoYouKnowIt.Infrastructure.Data;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -28,7 +29,16 @@ namespace DoYouKnowIt.Application.Services.ApiNinjas
 
             Country country = null;
             string responseString = await response.Content.ReadAsStringAsync();
-            country = JsonSerializer.Deserialize<Country>(responseString);
+            
+            try
+            {
+                country = JsonSerializer.Deserialize<Country>(responseString);
+            }
+            catch (Exception ex) 
+            {
+                Debug.WriteLine($"{nameof(GetCountry)} failed. Could not Deserialize response string");
+            }
+            
 
             return country;
         }
