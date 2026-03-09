@@ -4,50 +4,59 @@
              x:Class="DoYouKnowIt.Presentation.Views.Play.PlayResultQuizPage"
              Title="PlayResultQuizPage"
              BackgroundColor="{StaticResource BgDefault}">
-    <VerticalStackLayout
-        Margin="25"
-        Spacing="10">
-        <Label 
-            Text="{Binding TotalScore, StringFormat='Total Score: {0} '}"
-            TextColor="White"
-            FontSize="25"
-            FontAttributes="Bold"/>
+    <ScrollView>
+        <VerticalStackLayout
+    Margin="25"
+    Spacing="10">
+            <Label 
+        Text="{Binding TotalScore, StringFormat='Total Score: {0} '}"
+        TextColor="White"
+        FontSize="25"
+        FontAttributes="Bold"/>
 
-        <CollectionView
-           
-            ItemsSource="{Binding RoundResults}"
-            SelectionMode="Single"
-            >
+            <CollectionView
+       
+        ItemsSource="{Binding RoundResults}"
+        SelectionMode="Single"
+        >
 
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout
-                    Orientation="Vertical"
-                    ItemSpacing="10"/>
-            </CollectionView.ItemsLayout>
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                Orientation="Vertical"
+                ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Border
-                        StrokeShape="RoundRectangle 10"
-                        Background="{StaticResource ItemBackground}" 
-                        Stroke="{StaticResource ItemBorder}"
-                        StrokeThickness="1.5"
-                        Padding="10">
-                        <VerticalStackLayout 
-                            Spacing="5">
-                            <Label TextColor="White" FontSize="20" Text="{Binding IsCorrect, StringFormat='Correct: {0}'}"/>
-                            <Label TextColor="White" FontSize="20" Text="{Binding RoundScore, StringFormat='Points: {0}'}"/>
-                            <Border Margin="0, 10"></Border>
-                            <Label TextColor="White" FontSize="20" Text="{Binding QuestionText, StringFormat='Q: {0}'}"/>
-                            <Label TextColor="White" FontSize="20" Text="{Binding CorrectAnswersString, StringFormat='A: {0}'}"/>
-                            <Border Margin="0, 10"></Border>
-                            <Label TextColor="White" FontSize="20" Text="{Binding UserAnswerText, StringFormat='Your answer: {0}'}"/>
-                        </VerticalStackLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                    StrokeShape="RoundRectangle 10"
+                    Background="{StaticResource ItemBackground}" 
+                    Stroke="{StaticResource ItemBorder}"
+                    StrokeThickness="1.5"
+                    Padding="10">
+                            <VerticalStackLayout 
+                        Spacing="5">
+                                <Label TextColor="White" FontSize="20" Text="{Binding IsCorrect, StringFormat='Correct: {0}'}"/>
+                                <Label TextColor="White" FontSize="20" Text="{Binding RoundScore, StringFormat='Points: {0}'}"/>
+                                <Border Margin="0, 10"></Border>
+                                <Label TextColor="White" FontSize="20" Text="{Binding QuestionText, StringFormat='Q: {0}'}"/>
+                                <Label TextColor="White" FontSize="20" Text="{Binding CorrectAnswersString, StringFormat='A: {0}'}"/>
+                                <Border Margin="0, 10"></Border>
+                                <Label TextColor="White" FontSize="20" Text="{Binding UserAnswerText, StringFormat='Your answer: {0}'}"/>
+                            </VerticalStackLayout>
 
-                    </Border>
-                    
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+                        </Border>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button
+        Text="Done"
+        Style="{StaticResource BtnGreen}"
+        Command="{Binding PopToRootCommand}"
+        />
+        </VerticalStackLayout>
+    </ScrollView>
+    
 </ContentPage>

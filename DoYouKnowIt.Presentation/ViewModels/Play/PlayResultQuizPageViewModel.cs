@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace DoYouKnowIt.Presentation.ViewModels.Play
 {
@@ -25,7 +26,13 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
             QuizResult = quizResult;
             RoundResults = new ObservableCollection<QuizRoundResult>(QuizResult.RoundResults);
             TotalScore = QuizResult.GetTotalScore();
+
+            PopToRootCommand = new Command(async () => await Shell.Current.Navigation.PopToRootAsync());
         }
+
+        public ICommand PopToRootCommand { get; set; }
+
+
 
         QuizResult _quizResult;
         public QuizResult QuizResult { get { return _quizResult; } set { _quizResult = value; OnPropertyChanged(nameof(QuizResult)); } }

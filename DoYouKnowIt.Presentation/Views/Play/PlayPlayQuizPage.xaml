@@ -17,7 +17,8 @@
             <Border
                 StrokeShape="RoundRectangle 10"
                 BackgroundColor="White"
-                StrokeThickness="5"
+                StrokeThickness="2"
+                Stroke="Black"
                 HorizontalOptions="Center"
                 MaximumWidthRequest="800"
                 HeightRequest="450"

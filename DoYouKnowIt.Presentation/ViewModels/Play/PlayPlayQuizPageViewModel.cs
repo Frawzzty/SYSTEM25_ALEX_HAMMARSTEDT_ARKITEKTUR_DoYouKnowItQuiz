@@ -33,6 +33,8 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
         private Quiz _quiz;
         public Quiz Quiz { get { return _quiz; } set { _quiz = value; OnPropertyChanged(nameof(Quiz)); } }
 
+        private List<Question> _randomizedQuestionList = new List<Question>();
+
 
         private Question _currentQuestion;
         public Question CurrentQuestion { get { return _currentQuestion; } set { _currentQuestion = value; OnPropertyChanged(nameof(CurrentQuestion)); } }
@@ -48,9 +50,11 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
                 OnSelectedAnswer();
             } 
         }
+
+        //Runs one time
         public async Task LoadData()
         {
-            //Check loading error
+            //Check if QuizId is valid
             if(QuizId == 0)
             {
                 await Shell.Current.DisplayAlert("Error", "Going back...\nQuizId was 0", "OK");
@@ -62,6 +66,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
             await LoadQuiz();
             if (Quiz.Questions != null)
             {
+                _randomizedQuestionList = Quiz.Questions.OrderBy(_ => Random.Shared.Next()).ToList(); //Shuffle question order
                 await LoadRound();
             }
             else
@@ -84,15 +89,15 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
         private async Task LoadRound()
         {
             //If no questions left. Go to result page
-            if(_questionIndex >= Quiz.Questions.Count)
+            if(_questionIndex >= _randomizedQuestionList.Count)
             {
                 await Shell.Current.Navigation.PushAsync(new Views.Play.PlayResultQuizPage(_quizResult));
             }
             //Load next question and answers
             else
             {
-                CurrentQuestion = Quiz.Questions.ToList()[_questionIndex];
-                CurrentAnswers = new ObservableCollection<Answer>(CurrentQuestion.Answers);
+                CurrentQuestion = _randomizedQuestionList[_questionIndex];
+                CurrentAnswers = new ObservableCollection<Answer>(CurrentQuestion.Answers.OrderBy(_ => Random.Shared.Next()).ToList()); //Randomize answer list order
             }
         }
 

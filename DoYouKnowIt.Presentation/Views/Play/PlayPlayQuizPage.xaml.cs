@@ -11,6 +11,7 @@ public partial class PlayPlayQuizPage : ContentPage, IQueryAttributable
 
 	}
 
+    //Set Query Properties values in the ViewModel
     public async void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         if (BindingContext is not PlayPlayQuizPageViewModel vm)
