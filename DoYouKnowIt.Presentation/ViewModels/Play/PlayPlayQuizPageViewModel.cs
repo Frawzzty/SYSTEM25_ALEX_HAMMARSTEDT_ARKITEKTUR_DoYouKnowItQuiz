@@ -18,12 +18,15 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
         public PlayPlayQuizPageViewModel(IQuizService quizService)
         {
             _quizService = quizService;
-            NextQuestionCommand = new Command(() => { _questionIndex++; LoadCurrentRound(); });
+            //NextQuestionCommand = new Command(() => { _questionIndex++; LoadCurrentRound(); });
         }
 
         public ICommand NextQuestionCommand { get; set; }
 
         private int _questionIndex = 0;
+
+        private int _totalScore = 0;
+        public int TotalScore { get { return _totalScore; } set { _totalScore = value; OnPropertyChanged(nameof(TotalScore)); } }
 
 
         private int _quizId;
@@ -38,6 +41,15 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
 
         private ObservableCollection<Answer> _currentAnswers = new();
         public ObservableCollection<Answer> CurrentAnswers { get { return _currentAnswers; } set { _currentAnswers = value; OnPropertyChanged(nameof(CurrentAnswers)); } }
+
+        private Answer _selectedAnswer;
+        public Answer SelectedAnswer {
+            get { return _selectedAnswer; } 
+            set { _selectedAnswer = value; 
+                OnPropertyChanged(nameof(SelectedAnswer));
+                OnSelectedAnswer();
+            } 
+        }
         public async Task LoadData()
         {
             if (QuizId != 0) 
@@ -46,7 +58,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
 
                 if (Quiz.Questions != null)
                 {
-                    LoadCurrentRound();
+                    LoadRound();
                 }
                     
                 else
@@ -65,12 +77,14 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
             Quiz = await _quizService.GetQuizAsync(QuizId);
         }
 
-        private void LoadCurrentRound()
+        private void LoadRound()
         {
             
             if(_questionIndex >= Quiz.Questions.Count)
             {
-                Shell.Current.DisplayAlert("Out of range?", "Shit", "ok");
+                Shell.Current.DisplayAlert("Out of range", "Send user to Result page", "I will add this function");
+                CurrentAnswers = null;
+                CurrentQuestion = null;
             }
             else
             {
@@ -88,6 +102,24 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
         private void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke( this, new PropertyChangedEventArgs(propertyName));  
+        }
+
+        private void OnSelectedAnswer()
+        {
+            if (SelectedAnswer == null)
+                return;
+
+            //Validate answer
+            if(SelectedAnswer.IsTrue)
+            {
+                TotalScore++;
+            }
+
+            _questionIndex++;
+            LoadRound();
+
+            //Deselect answer
+            SelectedAnswer = null;
         }
         #endregion
 

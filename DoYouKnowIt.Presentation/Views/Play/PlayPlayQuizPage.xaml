@@ -12,6 +12,8 @@
             HorizontalOptions="Center"
             MaximumWidthRequest="800">
 
+            <Label
+                Text="{Binding TotalScore, StringFormat='Score {0}'}"/>
             <Border
                 StrokeShape="RoundRectangle 10"
                 BackgroundColor="White"
@@ -39,18 +41,31 @@
 
             <CollectionView
                 ItemsSource="{Binding CurrentAnswers}"
+                SelectedItem="{Binding SelectedAnswer}"
+                SelectionMode="Single"
                 >
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                        Orientation="Vertical"
+                        ItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Button 
-                            Margin="0,5"
-                            Text="{Binding AnswerText}"
-                            FontSize="20"
-                            HorizontalOptions="Fill"
+                        
+                        <Border
                             BackgroundColor="{StaticResource ItemBackground}"
-                            Command="{Binding BindingContext.NextQuestionCommand, Source={x:Reference Root}}"
-                            CommandParameter="{Binding .}"
-                            />
+                            StrokeShape="RoundRectangle 15"
+                            Padding="10">
+                            <Label
+                                Margin="10,0"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding AnswerText}"
+                                TextColor="White"
+                                FontSize="20"
+                                HorizontalOptions="Fill"/>
+                        </Border>
+                        
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
