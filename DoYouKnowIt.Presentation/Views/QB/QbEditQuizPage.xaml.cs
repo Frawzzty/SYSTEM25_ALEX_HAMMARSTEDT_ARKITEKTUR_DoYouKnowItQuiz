@@ -23,7 +23,7 @@ public partial class QBEditQuizPage : ContentPage, IQueryAttributable
                 }
             }
 
-            await vm.InitializeData();
+            await vm.LoadData();
 
         }
         
@@ -35,7 +35,8 @@ public partial class QBEditQuizPage : ContentPage, IQueryAttributable
         
         if(BindingContext is ViewModels.QB.QBEditQuizPageViewModel vm)
         {
-            //await vm.RefreshQuestionList();
+            if (vm.IsInitialized)
+                await vm.LoadData();
         }
     }
 }

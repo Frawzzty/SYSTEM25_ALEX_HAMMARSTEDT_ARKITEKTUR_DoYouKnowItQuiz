@@ -17,22 +17,18 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
     public class QBEditQuizPageViewModel : INotifyPropertyChanged
     {
         private IQuizService _quizService;
-        //private IQuestionService _questionService; //Not used atm
 
+        public bool IsInitialized = false;
         public QBEditQuizPageViewModel(IQuizService quizService)
         {
             _quizService = quizService;
-            //_questionService = new QuestionService();
-
 
             //Commands
             AddNewQuestionCommand = new Command(async () => {
-                await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditQuestionPage)}?QuizId={QuizId}&QuestionId={0}");
-                //await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(_quiz.Id, null));
-                });
+                await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditQuestionPage)}?QuizId={QuizId}&QuestionId={0}");});
 
-            SaveQuizCommand = new Command(async () =>       { await SaveQuiz(); });
-            DeleteQuizCommand = new Command(async () =>     { await DeleteQuiz(); });
+            SaveQuizCommand = new Command(async () => { await SaveQuiz(); });
+            DeleteQuizCommand = new Command(async () => { await DeleteQuiz(); });
         }
 
         private int _quizId;
@@ -52,9 +48,9 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
         }
         #endregion
 
-
+        //Bound to CollectionView.ItemSelected
         private Question _selectedQuestion;
-        public Question SelectedQuestion //Bind to CollectionView.SelectedItem
+        public Question SelectedQuestion
         {
             get { return _selectedQuestion; }
             set
@@ -65,7 +61,6 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
 
                 _selectedQuestion = value;
                 OnPropertyChanged(nameof(SelectedQuestion));
-
                 OnQuestionSelected(value);
             }
         }
@@ -77,37 +72,25 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             get { return _quiz; } set { _quiz = value; OnPropertyChanged(nameof(Quiz)); }
         }
 
-        public async Task InitializeData()
-        {
-            //Get quiz if new create new Quiz()
-            Quiz = await _quizService.GetQuizAsync(QuizId) ?? new();
-            await RefreshQuestionList();
-        }
-
         private ObservableCollection<Question> _questions = new();
         public ObservableCollection<Question> Questions { get { return _questions; } set { _questions = value; OnPropertyChanged(nameof(Questions)); } }
 
-        #region Methods
 
-
-        public async Task RefreshQuestionList()
+        //Refreshes on appearing
+        public async Task LoadData()
         {
-            //CHeck its not a new quiz
-            if (Quiz == null || QuizId == 0)
+
+            Quiz = await _quizService.GetQuizAsync(QuizId) ?? new();
+
+            if (Quiz == null)
                 return;
 
-            var questionData = await _quizService.GetQuizAsync(QuizId);
-
-            if (questionData == null)
-                return;
-
-            Questions.Clear();
-            foreach(var question in questionData.Questions)
-            {
-                Questions.Add(question);
-            }
-            
+            Questions = new ObservableCollection<Question>(Quiz.Questions);
+            IsInitialized = true;
         }
+
+
+        #region Methods
 
         private async Task SaveQuiz()
         {
@@ -116,15 +99,12 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
 
             //Save new
             if (Quiz != null && Quiz.Id == 0)
-            {
                 await _quizService.CreateQuizAsync(Quiz);
-            }
+
             //Update existing
             else
-            {
                 await _quizService.UpdateQuizAsync(Quiz);
-            }
-
+            
             await Shell.Current.Navigation.PopAsync();
         }
 
@@ -145,7 +125,6 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             if (question == null)
                 return;
 
-            //await Shell.Current.Navigation.PushAsync(new Views.QB.QBEditQuestionPage(Quiz.Id, SelectedQuestion));
             await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditQuestionPage)}?QuizId={question.QuizId}&QuestionId={question.Id}");
 
             SelectedQuestion = null;
@@ -155,29 +134,29 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
 
         private bool ValidateQuiz()
         {
-            string errorMessage = "";
+            string errorMessages = "";
             bool isSucess = true;
 
             if (string.IsNullOrEmpty(Quiz.Title))
             {
-                errorMessage += "Missing Quiz Title" + "\n";
+                errorMessages += "Missing Quiz Title" + "\n";
                 isSucess = false;
             }
 
             if (string.IsNullOrEmpty(Quiz.Description))
             {
-                errorMessage += "Missing Quiz Description" + "\n";
+                errorMessages += "Missing Quiz Description" + "\n";
                 isSucess = false;
             }
 
             if (string.IsNullOrEmpty(Quiz.ImageUrl))
             {
-                errorMessage += "Missing Quiz Image URL";
+                errorMessages += "Missing Quiz Image URL";
                 isSucess = false;
             }
 
             if(!isSucess)
-                Shell.Current.DisplayAlert("Validation Error", errorMessage, "OK");
+                Shell.Current.DisplayAlert("Validation Error", errorMessages, "OK");
 
             return isSucess;
         }
