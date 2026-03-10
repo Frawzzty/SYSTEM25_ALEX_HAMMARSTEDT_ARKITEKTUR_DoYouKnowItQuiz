@@ -114,32 +114,8 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
             if (SelectedAnswer == null)
                 return;
 
-            //Validate answer
-            QuizRoundResult quizRoundResult;
-            List<string> trueAnswers = CurrentAnswers.Where(x => x.IsTrue == true).Select(x => x.AnswerText).ToList();
-            if (SelectedAnswer.IsTrue)
-            {
-                quizRoundResult = new QuizRoundResult(
-                    true, 
-                    CurrentQuestion.QuestionText,
-                    CurrentQuestion.QuestionImageUrl,
-                    trueAnswers, 
-                    SelectedAnswer.AnswerText, 
-                    1);
-            }
-            else
-            {
-                quizRoundResult = new QuizRoundResult(
-                    false, 
-                    CurrentQuestion.QuestionText,
-                    CurrentQuestion.QuestionImageUrl,
-                    trueAnswers, 
-                    SelectedAnswer.AnswerText, 
-                    0);
-            }
-            
-            //Add RoundResult
-            _quizResult.AddRoundResult(quizRoundResult);
+            //Add RoundResult - Validation and scoring handled inside Object
+            _quizResult.AddRoundResult(new QuizRoundResult2(CurrentQuestion, SelectedAnswer));
 
             //Load Next round
             _questionIndex++;

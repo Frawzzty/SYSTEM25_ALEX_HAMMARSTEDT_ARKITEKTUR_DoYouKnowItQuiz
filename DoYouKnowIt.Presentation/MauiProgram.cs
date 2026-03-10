@@ -26,9 +26,9 @@ namespace DoYouKnowIt.Presentation
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-#if DEBUG
+            #if DEBUG
     		builder.Logging.AddDebug();
-#endif
+            #endif
 
             //Dependency Injection
             builder.Services.AddScoped<IQuizService, QuizService>();

@@ -43,9 +43,9 @@
                                         <Label TextColor="White" FontSize="20" Text="{Binding RoundScore, StringFormat='Points: {0}'}"/>
                                         <Border Margin="0, 10"></Border>
                                         <Label TextColor="White" FontSize="20" Text="{Binding QuestionText, StringFormat='Q: {0}'}"/>
-                                        <Label TextColor="White" FontSize="20" Text="{Binding CorrectAnswersString, StringFormat='A: {0}'}"/>
+                                        <Label TextColor="White" FontSize="20" Text="{Binding CorrectAnswersText, StringFormat='A: {0}'}"/>
                                         <Border Margin="0, 10"></Border>
-                                        <Label TextColor="White" FontSize="20" Text="{Binding UserAnswerText, StringFormat='Your answer: {0}'}"/>
+                                        <Label TextColor="White" FontSize="20" Text="{Binding SelectedAnswerText, StringFormat='Your answer: {0}'}"/>
                                     </VerticalStackLayout>
 
                                     <Border HorizontalOptions="Center"

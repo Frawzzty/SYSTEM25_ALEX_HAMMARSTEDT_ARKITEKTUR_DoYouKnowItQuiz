@@ -18,6 +18,7 @@ namespace Domain.Entities.Models.Game
 
         public Quiz Quiz { get; set; }
         public List<QuizRoundResult> RoundResults { get; set; } = new();
+        public List<QuizRoundResult2> RoundResult2 { get; set; } = new();
 
         public void AddRoundResult(QuizRoundResult roundResult)
         {
@@ -25,6 +26,14 @@ namespace Domain.Entities.Models.Game
                 return;
 
             RoundResults.Add(roundResult);
+        }
+
+        public void AddRoundResult(QuizRoundResult2 roundResult)
+        {
+            if (roundResult == null)
+                return;
+
+            RoundResult2.Add(roundResult);
         }
 
         public int GetTotalScore()
