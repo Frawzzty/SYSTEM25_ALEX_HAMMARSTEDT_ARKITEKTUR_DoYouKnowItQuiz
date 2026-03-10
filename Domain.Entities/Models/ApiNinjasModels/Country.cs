@@ -1,7 +1,6 @@
-﻿
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
-namespace Domain.Entities.Models.ApiNinjasModels; //Close to remove namespace måswings
+namespace Domain.Entities.Models.ApiNinjasModels; //Semi colon to remove outerbrackets
 
 public class Country
 {

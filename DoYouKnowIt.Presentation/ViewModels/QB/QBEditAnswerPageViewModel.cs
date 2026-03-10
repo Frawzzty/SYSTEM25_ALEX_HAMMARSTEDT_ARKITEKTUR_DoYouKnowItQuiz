@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Models.EntityFrameworkModels;
+﻿using Domain.Entities.Models.DbModels;
 using DoYouKnowIt.Application.Interfaces;
 using DoYouKnowIt.Application.Services;
 using System;

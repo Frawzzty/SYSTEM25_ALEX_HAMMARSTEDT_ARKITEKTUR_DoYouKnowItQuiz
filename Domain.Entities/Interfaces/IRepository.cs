@@ -1,11 +1,4 @@
-﻿using Domain.Entities.Models.EntityFrameworkModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Domain.Entities.Interfaces
+﻿namespace Domain.Entities.Interfaces
 {
     public interface IRepository<T> where T : class
     {

@@ -1,4 +1,4 @@
-using Domain.Entities.Models.EntityFrameworkModels;
+using Domain.Entities.Models.DbModels;
 
 namespace DoYouKnowIt.Presentation.Views.QB;
 

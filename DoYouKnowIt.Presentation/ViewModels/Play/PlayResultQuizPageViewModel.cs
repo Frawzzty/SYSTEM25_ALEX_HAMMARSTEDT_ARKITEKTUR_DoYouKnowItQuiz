@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Models.EntityFrameworkModels;
+﻿using Domain.Entities.Models.DbModels;
 using Domain.Entities.Models.Game;
 using System;
 using System.Collections.Generic;
