@@ -19,29 +19,25 @@ namespace DoYouKnowIt.Application.Services
             _repo = repo;
         }
 
-        public Task<T?> GetOneAsync(int entityId)
+        public async Task<T?> GetOneAsync(int entityId)
+            => await _repo.GetByIdAsync(entityId);
+
+        public async Task<List<T>> GetAllAsync()
+            => await _repo.GetAllAsync();
+
+        public async Task CreateAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _repo.AddAsync(entity);
         }
 
-        public Task<List<T>> GetAllAsync()
+        public async Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _repo.UpdateAsync(entity);
         }
 
-        public Task CreateAsync(T entity)
+        public async Task DeleteAsync(int entityId)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(T entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync(int entityId)
-        {
-            throw new NotImplementedException();
+            await _repo.DeleteAsync(entityId);
         }
 
 
