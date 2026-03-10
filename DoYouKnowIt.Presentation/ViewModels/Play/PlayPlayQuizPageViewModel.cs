@@ -115,7 +115,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
                 return;
 
             //Add RoundResult - Validation and scoring handled inside Object
-            _quizResult.AddRoundResult(new QuizRoundResult2(CurrentQuestion, SelectedAnswer));
+            _quizResult.AddRoundResult(new QuizRoundResult(CurrentQuestion, SelectedAnswer));
 
             //Load Next round
             _questionIndex++;
