@@ -13,7 +13,7 @@ namespace DoYouKnowIt.Infrastructure.Repositories
     public class RepositoryEF<T> : IRepository<T> where T : class
     {
 
-        //Cannot include
+        //Cannot include...
         public async Task<T?> GetByIdAsync(int entityId)
         {
             using (var context = new MyDbContext()) 
@@ -22,7 +22,7 @@ namespace DoYouKnowIt.Infrastructure.Repositories
             }
         }
           
-        //Cannot include
+        //Cannot include...
         public async Task<List<T>> GetAllAsync()
         {
             using (var context = new MyDbContext())
