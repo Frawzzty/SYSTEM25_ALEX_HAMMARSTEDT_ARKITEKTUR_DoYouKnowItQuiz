@@ -25,7 +25,19 @@ public partial class QBEditAnswerPage : ContentPage, IQueryAttributable
                 }
             }
 
-            await vm.InitializeData();
+            await vm.LoadData();
+        }
+    }
+
+    //Delete this method? Not needed since this page does not need to refresh?
+    protected async override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if(BindingContext is ViewModels.QB.QBEditAnswerPageViewModel vm)
+        {
+            if (vm.IsInitialized)
+                await vm.LoadData();
         }
     }
 }

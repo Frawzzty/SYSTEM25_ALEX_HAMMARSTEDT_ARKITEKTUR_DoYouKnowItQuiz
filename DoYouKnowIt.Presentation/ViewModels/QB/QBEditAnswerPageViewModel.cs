@@ -16,6 +16,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
     public class QBEditAnswerPageViewModel : INotifyPropertyChanged
     {
         private IAnswerService _answerService;
+        public bool IsInitialized = false;
         public QBEditAnswerPageViewModel(IAnswerService answerService)
         {
             _answerService = answerService;
@@ -24,7 +25,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             DeleteAnswerCommand = new Command(async () => await DeleteAnswer());
         }
 
-        public async Task InitializeData()
+        public async Task LoadData()
         {
             //Get Answer, if new create new Answer() with correct QuestionId
             Answer = await _answerService.GetAnswerAsync(AnswerId) ?? new() { QuestionId = QuestionId };

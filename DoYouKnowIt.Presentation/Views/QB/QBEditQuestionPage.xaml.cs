@@ -28,17 +28,18 @@ public partial class QBEditQuestionPage : ContentPage, IQueryAttributable
                 }
             }
 
-            await vm.InitializeData();
+            await vm.LoadData();
         }
     }
 
-    protected override void OnAppearing()
+    protected async override void OnAppearing()
     {
         base.OnAppearing();
 
         if(BindingContext is ViewModels.QB.QBEditQuestionPageViewModel vm)
         {
-            //vm.RefreshQuestionList();
+            if(vm.IsInitialized)
+                await vm.LoadData();
         }
     }
 }

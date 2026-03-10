@@ -18,24 +18,29 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
     {
         IQuestionService _questionService;
         IAnswerService _answerService;
+
+        public bool IsInitialized = false;
         public QBEditQuestionPageViewModel(IQuestionService questionService, IAnswerService answerService)
         {
             _questionService = questionService;
             _answerService = answerService;
 
-
+            //Commands
             SaveQuestionCommand = new Command(async () => await SaveQuestion());
             DeleteQuestionCommand = new Command(async () => await DeleteQuestion());
             AddNewAnswerCommand = new Command(async () => { await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditAnswerPage)}?QuestionId={Question.Id}&AnswerId={0}"); });
-
-            
         }
 
-        public async Task InitializeData()
+        public async Task LoadData()
         {
             //Get Question, if new create new Question() with correct QuizId
             Question = await _questionService.GetQuestionAsync(QuestionId) ?? new() { QuizId = QuizId};
-            await RefreshQuestionList();
+
+            if (Question == null)
+                return;
+
+            Answers = new ObservableCollection<Answer>(Question.Answers);
+            IsInitialized = true;
         }
 
         #region Commands
@@ -85,7 +90,6 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             } 
         }
 
-
         private async Task OnQuestionSelected(Answer question)
         {
             if (question == null)
@@ -94,25 +98,6 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditAnswerPage)}?QuestionId={Question.Id}&AnswerId={SelectedAnswer.Id}"); 
 
             SelectedAnswer = null;
-        }
-
-        public async Task RefreshQuestionList()
-        {
-            //CHeck its not a new quiz
-            if (_question == null || _question.Id == 0)
-                return;
-
-            var question = await _questionService.GetQuestionAsync(_question.Id);
-
-            if (question == null)
-                return;
-
-            Answers.Clear();
-            foreach (var answer in question.Answers)
-            {
-                Answers.Add(answer);
-            }
-
         }
 
 
