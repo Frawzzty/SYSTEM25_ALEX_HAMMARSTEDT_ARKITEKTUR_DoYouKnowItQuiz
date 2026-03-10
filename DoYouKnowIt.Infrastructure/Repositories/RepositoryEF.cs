@@ -10,23 +10,36 @@ using System.Threading.Tasks;
 
 namespace DoYouKnowIt.Infrastructure.Repositories
 {
-    //Unused
     public class RepositoryEF<T> : IRepository<T> where T : class
     {
-        private readonly MyDbContext _context = new MyDbContext();
 
-        public async Task<T?> GetByIdAsync(int entityId) 
-            => await _context.Set<T>().FindAsync(entityId);
+        public async Task<T?> GetByIdAsync(int entityId)
+        {
+            using (var context = new MyDbContext()) 
+            {
+                return await context.Set<T>().FindAsync(entityId);
+            }
+        }
+          
         public async Task<List<T>> GetAllAsync()
-            => await _context.Set<T>().ToListAsync();
+        {
+            using (var context = new MyDbContext())
+            {
+                return await context.Set<T>().ToListAsync();
+            }
+        }
+         
 
 
         public async Task AddAsync(T entity)
         {
             if (entity != null)
             {
-                await _context.Set<T>().AddAsync(entity);
-                await _context.SaveChangesAsync();
+                using (var context = new MyDbContext())
+                {
+                    await context.Set<T>().AddAsync(entity);
+                    await context.SaveChangesAsync();
+                }
             }
         }
 
@@ -34,18 +47,24 @@ namespace DoYouKnowIt.Infrastructure.Repositories
         {
             if (entity != null)
             {
-                _context.Set<T>().Update(entity);
-                await _context.SaveChangesAsync();
+                using (var context = new MyDbContext())
+                {
+                    context.Set<T>().Update(entity);
+                    await context.SaveChangesAsync();
+                }
             }
         }
 
         public async Task DeleteAsync(int entityId)
         {
-            var entity = await _context.Set<T>().FindAsync(entityId);
-            if (entity != null)
+            using (var context = new MyDbContext())
             {
-                _context.Set<T>().Remove(entity);
-                await _context.SaveChangesAsync();
+                var entity = await context.Set<T>().FindAsync(entityId);
+                if (entity != null)
+                {
+                    context.Set<T>().Remove(entity);
+                    await context.SaveChangesAsync();
+                }
             }
         }
     }
