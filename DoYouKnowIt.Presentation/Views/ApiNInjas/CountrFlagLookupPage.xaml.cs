@@ -90,4 +90,9 @@ public partial class CountrFlagLookupPage : ContentPage, INotifyPropertyChanged
     {
         LoadCountry();
     }
+
+    private async void OnClickedGoBack(object sender, EventArgs e)
+    {
+        await Navigation.PopAsync();
+    }
 }

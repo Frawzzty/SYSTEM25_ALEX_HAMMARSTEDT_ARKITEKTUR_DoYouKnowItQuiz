@@ -14,11 +14,19 @@
            Text="&lt;Image> wont display .SVG images"
            />
 
-        <Entry
+        <HorizontalStackLayout Spacing="20">
+            <Entry WidthRequest="200"
             Text="{Binding CountryIso2}"
             Placeholder="country iso2..."
             Style="{StaticResource EntryDefault}"
             />
+
+            <Button
+            Text="Get country"
+            Clicked="OnClickedGetCountry"
+            Style="{StaticResource BtnBlue}"/>
+        </HorizontalStackLayout>
+
         <Label
             Text="{Binding ImageSquareUrl}"
             />
@@ -26,8 +34,10 @@
             Text="{Binding ImageRectangleUrl}"
             />
 
+
         <Button
-            Text="Get country"
-            Clicked="OnClickedGetCountry"/>
+            Text="Go Back"
+            Clicked="OnClickedGoBack"
+            Style="{StaticResource BtnNavigation}"/>
     </VerticalStackLayout>
 </ContentPage>
