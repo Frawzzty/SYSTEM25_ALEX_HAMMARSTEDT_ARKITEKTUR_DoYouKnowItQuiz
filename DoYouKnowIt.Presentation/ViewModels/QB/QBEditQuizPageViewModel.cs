@@ -86,7 +86,6 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
                 return;
 
             Questions = new ObservableCollection<Question>(Quiz.Questions);
-            IsInitialized = true;
         }
 
 

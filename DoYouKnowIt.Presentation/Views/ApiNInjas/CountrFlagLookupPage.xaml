@@ -34,7 +34,6 @@
             Text="{Binding ImageRectangleUrl}"
             />
 
-
         <Button
             Text="Go Back"
             Clicked="OnClickedGoBack"

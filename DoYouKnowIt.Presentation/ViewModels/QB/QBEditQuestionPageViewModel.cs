@@ -40,7 +40,6 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
                 return;
 
             Answers = new ObservableCollection<Answer>(Question.Answers);
-            IsInitialized = true;
         }
 
         #region Commands

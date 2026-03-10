@@ -24,6 +24,7 @@ public partial class QBEditQuizPage : ContentPage, IQueryAttributable
             }
 
             await vm.LoadData();
+            vm.IsInitialized = true;
         }
     }
 
