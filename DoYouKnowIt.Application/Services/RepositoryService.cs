@@ -12,14 +12,14 @@ namespace DoYouKnowIt.Application.Services
 {
     public class RepositoryService<T> : IRepositoryService<T> where T : class
     {
-        IRepository<T> _repo = new RepositoryEF<T>();
+        private readonly IRepository<T> _repo;
 
-        public Task CreateAsync(T entity)
+        public RepositoryService(IRepository<T> repo)
         {
-            throw new NotImplementedException();
+            _repo = repo;
         }
 
-        public Task DeleteAsync(int entityId)
+        public Task<T?> GetOneAsync(int entityId)
         {
             throw new NotImplementedException();
         }
@@ -29,7 +29,7 @@ namespace DoYouKnowIt.Application.Services
             throw new NotImplementedException();
         }
 
-        public Task<T?> GetOneAsync(int entityId)
+        public Task CreateAsync(T entity)
         {
             throw new NotImplementedException();
         }
@@ -38,5 +38,12 @@ namespace DoYouKnowIt.Application.Services
         {
             throw new NotImplementedException();
         }
+
+        public Task DeleteAsync(int entityId)
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
 }

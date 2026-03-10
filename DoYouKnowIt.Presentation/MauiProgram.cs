@@ -1,4 +1,5 @@
 ﻿using Domain.Entities.Interfaces;
+using Domain.Entities.Models.DbModels;
 using Domain.Entities.Models.Game;
 using DoYouKnowIt.Application.Interfaces;
 using DoYouKnowIt.Application.Services;
@@ -38,6 +39,16 @@ namespace DoYouKnowIt.Presentation
             builder.Services.AddScoped<IQuizRepository, QuizRepositoryEF>();
             builder.Services.AddScoped<IQuestionRepository, QuestionRepositoryEF>();
             builder.Services.AddScoped<IAnswerRepository, AnswerRepositoryEF>();
+
+            //Generics Repos
+            builder.Services.AddScoped<IRepository<Quiz>, RepositoryEF<Quiz>>();
+            builder.Services.AddScoped<IRepository<Question>, RepositoryEF<Question>>();
+            builder.Services.AddScoped<IRepository<Answer>, RepositoryEF<Answer>>();
+
+            //Generics Services
+            builder.Services.AddScoped<IRepositoryService<Quiz>, RepositoryService<Quiz>>();
+            builder.Services.AddScoped<IRepositoryService<Question>, RepositoryService<Question>>();
+            builder.Services.AddScoped<IRepositoryService<Answer>, RepositoryService<Answer>>();
 
             //QuizBuilder Views & ViewModels
             builder.Services.AddTransient<QBSelectPage>();
