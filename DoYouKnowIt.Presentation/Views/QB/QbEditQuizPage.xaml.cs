@@ -24,9 +24,7 @@ public partial class QBEditQuizPage : ContentPage, IQueryAttributable
             }
 
             await vm.LoadData();
-
         }
-        
     }
 
     protected async override void OnAppearing()

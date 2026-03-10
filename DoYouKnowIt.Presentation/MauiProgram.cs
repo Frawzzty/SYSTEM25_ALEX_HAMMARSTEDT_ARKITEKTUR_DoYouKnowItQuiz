@@ -7,7 +7,6 @@ using DoYouKnowIt.Infrastructure.Data;
 using DoYouKnowIt.Infrastructure.Repositories;
 using DoYouKnowIt.Presentation.ViewModels.Play;
 using DoYouKnowIt.Presentation.ViewModels.QB;
-using DoYouKnowIt.Presentation.ViewModels.Test;
 using DoYouKnowIt.Presentation.Views.Play;
 using DoYouKnowIt.Presentation.Views.QB;
 using Microsoft.Extensions.Logging;
@@ -39,10 +38,6 @@ namespace DoYouKnowIt.Presentation
             builder.Services.AddScoped<IQuizRepository, QuizRepositoryEF>();
             builder.Services.AddScoped<IQuestionRepository, QuestionRepositoryEF>();
             builder.Services.AddScoped<IAnswerRepository, AnswerRepositoryEF>();
-            
-            
-            builder.Services.AddTransient<QueryPropTestPageViewModel>();
-            builder.Services.AddTransient<Views.Test.QueryPropTestPage>();
 
             //QuizBuilder Views & ViewModels
             builder.Services.AddTransient<QBSelectPage>();
