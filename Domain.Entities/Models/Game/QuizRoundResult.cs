@@ -9,27 +9,45 @@ namespace Domain.Entities.Models.Game
 {
     public class QuizRoundResult
     {
-        public QuizRoundResult(bool isCorrect, string questionText, string imageUrl, List<string> correctAnswers, string userAnswerText, int roundScore)
+        public QuizRoundResult(Question question, Answer selectedAnswer)
         {
-            IsCorrect = isCorrect;
-            RoundScore = roundScore;
+            _question = question;
+            _selectedAnswer = selectedAnswer;
 
-            QuestionText = questionText;
-            CorrectAnswers = correctAnswers;
-            UserAnswerText = userAnswerText;
+            if (_question == null || selectedAnswer == null)
+                return;
 
-            CorrectAnswersString = string.Join(", ", CorrectAnswers);
-            QuestionImageUrl = imageUrl;
+            LoadData();
         }
 
-        public bool IsCorrect { get; set; }
-        public int RoundScore { get; set; }
-        
-        public string QuestionText { get; set; }
-        public List<string> CorrectAnswers { get; set; }
-        public string CorrectAnswersString { get; set; } //Concated list of correct answers
-        public string UserAnswerText { get; set; }
+        //Calc vars
+        private Question _question;
+        private Answer _selectedAnswer;
 
-        public string QuestionImageUrl { get; set; }
+
+        //Display vars
+        public bool IsCorrect { get; set; }
+        public int RoundScore { get; set; } = 0;
+
+        public string QuestionText { get; set; }        = string.Empty;
+        public string CorrectAnswersText { get; set; }  = string.Empty;
+        public string SelectedAnswerText { get; set; }  = string.Empty;
+        public string QuestionImageUrl { get; set; }    = string.Empty;
+
+
+
+        //Methods
+        private void LoadData()
+        {
+            if (_selectedAnswer.IsTrue) { IsCorrect = true; RoundScore++; }
+
+            QuestionText = _question.QuestionText;
+
+            CorrectAnswersText = string.Join(", ", _question.Answers.Where(x => x.IsTrue == true).Select(x => x.AnswerText).ToList());
+
+            SelectedAnswerText = _selectedAnswer.AnswerText;
+
+            QuestionImageUrl = _question.QuestionImageUrl;
+        }
     }
 }

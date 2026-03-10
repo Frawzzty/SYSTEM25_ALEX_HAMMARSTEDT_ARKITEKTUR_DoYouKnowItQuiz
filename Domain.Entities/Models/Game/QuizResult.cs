@@ -15,31 +15,21 @@ namespace Domain.Entities.Models.Game
             Quiz = quiz;
         }
 
-
         public Quiz Quiz { get; set; }
-        public List<QuizRoundResult> RoundResults { get; set; } = new();
-        public List<QuizRoundResult2> RoundResult2 { get; set; } = new();
+        public List<QuizRoundResult> RoundResult { get; set; } = new();
 
         public void AddRoundResult(QuizRoundResult roundResult)
         {
             if (roundResult == null)
                 return;
 
-            RoundResults.Add(roundResult);
-        }
-
-        public void AddRoundResult(QuizRoundResult2 roundResult)
-        {
-            if (roundResult == null)
-                return;
-
-            RoundResult2.Add(roundResult);
+            RoundResult.Add(roundResult);
         }
 
         public int GetTotalScore()
         {
             int myScore = 0;
-            foreach (var roundResult in RoundResults)
+            foreach (var roundResult in RoundResult)
             {
                 myScore += roundResult.RoundScore;
             }
