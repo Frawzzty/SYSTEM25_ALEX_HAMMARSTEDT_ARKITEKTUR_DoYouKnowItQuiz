@@ -16,6 +16,24 @@
                 Source="logo_main_transparent.png"
                 HeightRequest="300"/>
 
+            <HorizontalStackLayout 
+                Spacing="10"
+                HorizontalOptions="Center">
+                <Entry 
+                    WidthRequest="150"
+                    Text="{Binding UserName}"
+                    Placeholder="username..."
+                    Style="{StaticResource EntryDefault}"/>
+                <Entry 
+                    WidthRequest="150"
+                    Text="{Binding Password}"
+                    Placeholder="password..."
+                    Style="{StaticResource EntryDefault}"/>
+                <Button 
+                    Text="Login"
+                    Style="{StaticResource  BtnBlue}"
+                    WidthRequest="80"/>
+            </HorizontalStackLayout>
             <FlexLayout
                 Direction="Row"
                 Wrap="Wrap"
