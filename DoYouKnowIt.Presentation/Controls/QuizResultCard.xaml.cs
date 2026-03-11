@@ -23,7 +23,7 @@ public partial class QuizResultCard : ContentView
             QuizResultCardBox.Background = new LinearGradientBrush(
                 new GradientStopCollection
                 {
-                    new GradientStop(new Color(0,120,0), 0.0f),
+                    new GradientStop(new Color(0,120,50), 0.0f),
                     new GradientStop(new Color(0,200,0), 1.0f)
                 },
                 new Point(0, 0),
@@ -36,7 +36,7 @@ public partial class QuizResultCard : ContentView
             QuizResultCardBox.Background = new LinearGradientBrush(
                 new GradientStopCollection
                 {
-                new GradientStop(new Color(140,0,0), 0.0f),
+                new GradientStop(new Color(140,0,50), 0.0f),
                 new GradientStop(new Color(220,0,0), 1.0f)
                 },
                 new Point(0, 0),
