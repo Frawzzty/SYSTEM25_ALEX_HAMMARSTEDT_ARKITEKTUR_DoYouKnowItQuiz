@@ -131,7 +131,6 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             catch (ArgumentOutOfRangeException) { await Shell.Current.DisplayAlert("Error", "Quiz Id was out of range ", "OK"); }
             catch (ArgumentException)           { await Shell.Current.DisplayAlert("Error", "Quiz Id was invalid", "OK"); }
             catch (Exception ex)                { await Shell.Current.DisplayAlert("Error", $"Somethinw went wrong when deleting Quiz: {ex.Message}", "OK"); }
-
         }
 
 
