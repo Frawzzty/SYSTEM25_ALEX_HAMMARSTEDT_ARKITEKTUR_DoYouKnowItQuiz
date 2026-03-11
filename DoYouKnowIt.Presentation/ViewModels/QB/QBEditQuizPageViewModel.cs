@@ -24,8 +24,8 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             _quizService = quizService;
 
             //Commands
-            AddNewQuestionCommand = new Command(async () => {
-                await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditQuestionPage)}?QuizId={QuizId}&QuestionId={0}");});
+            AddNewQuestionCommand = new Command(async () => 
+            { await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditQuestionPage)}?QuizId={QuizId}&QuestionId={0}");});
 
             SaveQuizCommand = new Command(async () => { await SaveQuiz(); });
             DeleteQuizCommand = new Command(async () => { await DeleteQuiz(); });
@@ -61,7 +61,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
 
                 _selectedQuestion = value;
                 OnPropertyChanged(nameof(SelectedQuestion));
-                OnQuestionSelected(value);
+                OnQuestionSelected(value); //When question is selected //ItemSelect is bound to this property
             }
         }
 
@@ -79,7 +79,6 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
         //Refreshes on appearing
         public async Task LoadData()
         {
-
             Quiz = await _quizService.GetQuizAsync(QuizId) ?? new();
 
             if (Quiz == null)
@@ -96,26 +95,43 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             if (ValidateQuiz() == false)
                 return;
 
+
             //Save new
             if (Quiz != null && Quiz.Id == 0)
-                await _quizService.CreateQuizAsync(Quiz);
-
+            {
+                try { await _quizService.CreateQuizAsync(Quiz); }
+                catch (Exception ex) 
+                    { await Shell.Current.DisplayAlert("Error", $"Could not create Quiz: {ex.Message}", "OK"); }
+            }
             //Update existing
             else
-                await _quizService.UpdateQuizAsync(Quiz);
-            
+            {
+                try { await _quizService.UpdateQuizAsync(Quiz); }
+                catch (Exception ex) 
+                    { await Shell.Current.DisplayAlert("Error", $"Could not update Quiz: {ex.Message}", "OK"); }
+            }
+
             await Shell.Current.Navigation.PopAsync();
+
         }
 
         private async Task DeleteQuiz()
         {
             //Delete quiz
-            if (Quiz != null && Quiz.Id > 0)
+            try
             {
-                await _quizService.DeleteQuizAsync(Quiz.Id);
-            }
+                if (Quiz != null && Quiz.Id > 0)
+                {
+                    await _quizService.DeleteQuizAsync(Quiz.Id);
+                }
 
-            await Shell.Current.Navigation.PopAsync();
+                await Shell.Current.Navigation.PopAsync();
+            }
+            catch (NullReferenceException)      { await Shell.Current.DisplayAlert("Error", "Quiz was null", "OK"); }
+            catch (ArgumentOutOfRangeException) { await Shell.Current.DisplayAlert("Error", "Quiz Id was out of range ", "OK"); }
+            catch (ArgumentException)           { await Shell.Current.DisplayAlert("Error", "Quiz Id was invalid", "OK"); }
+            catch (Exception ex)                { await Shell.Current.DisplayAlert("Error", $"Something went wrong: {ex.Message}", "OK"); }
+
         }
 
 
