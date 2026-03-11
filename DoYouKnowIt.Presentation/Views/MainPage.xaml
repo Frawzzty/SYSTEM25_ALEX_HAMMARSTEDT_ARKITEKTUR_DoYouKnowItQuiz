@@ -21,7 +21,7 @@
                 HorizontalOptions="Center">
                 <Entry 
                     WidthRequest="150"
-                    Text="{Binding UserName}"
+                    Text="{Binding Username}"
                     Placeholder="username..."
                     Style="{StaticResource EntryDefault}"/>
                 <Entry 
