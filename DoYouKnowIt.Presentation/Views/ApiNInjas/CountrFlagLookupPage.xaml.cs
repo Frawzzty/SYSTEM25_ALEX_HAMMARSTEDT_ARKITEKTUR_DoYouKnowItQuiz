@@ -75,7 +75,7 @@ public partial class CountrFlagLookupPage : ContentPage, INotifyPropertyChanged
         //Get country
         else
         {
-            Country = await _countryFlagService.GetCountry(CountryIso2) ?? new Country();
+            Country = await _countryFlagService.GetCountryFlags(CountryIso2) ?? new Country();
             if (Country == null)
                 return;
 

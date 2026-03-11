@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DoYouKnowIt.Infrastructure.Data
 {
-    public class ApiNinjasClient
+    public class ApiNinjasDataManager
     {
         
         private readonly string baseUrl = "https://api.api-ninjas.com/";
@@ -14,7 +14,7 @@ namespace DoYouKnowIt.Infrastructure.Data
         private readonly string myKey = "v7ZaTeWShVN2gMG80yebFQBBrcw3xoVe9jOodTkm"; // :D
 
         public HttpClient Client { get;}
-        public ApiNinjasClient()
+        public ApiNinjasDataManager()
         {
             Client = SetClient();
         }

@@ -73,7 +73,7 @@ namespace DoYouKnowIt.Presentation
             
 
             //API Ninjas 
-            builder.Services.AddTransient<ApiNinjasClient>();
+            builder.Services.AddTransient<ApiNinjasDataManager>();
             builder.Services.AddTransient<ApiNinjasCountryService>();
             return builder.Build();
         }

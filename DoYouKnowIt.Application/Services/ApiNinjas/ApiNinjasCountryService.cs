@@ -13,16 +13,16 @@ namespace DoYouKnowIt.Application.Services.ApiNinjas
 {
     public class ApiNinjasCountryService
     {
-        private ApiNinjasClient _client;
-        public ApiNinjasCountryService(ApiNinjasClient client) //Not interface
+        private ApiNinjasDataManager _apiNinjas;
+        public ApiNinjasCountryService(ApiNinjasDataManager apiNinjas) //Not interface
         {
-            _client = client;
+            _apiNinjas = apiNinjas;
         }
 
 
-        public async Task<Country> GetCountry(string iso2)
+        public async Task<Country> GetCountryFlags(string iso2)
         {
-            HttpResponseMessage response = await _client.Client.GetAsync($"v1/countryflag?country={iso2}");
+            HttpResponseMessage response = await _apiNinjas.Client.GetAsync($"v1/countryflag?country={iso2}");
 
             if (!response.IsSuccessStatusCode)
                 return null !;
@@ -36,10 +36,9 @@ namespace DoYouKnowIt.Application.Services.ApiNinjas
             }
             catch (Exception ex) 
             {
-                Debug.WriteLine($"{nameof(GetCountry)} failed. Could not Deserialize response string");
+                Debug.WriteLine($"{nameof(GetCountryFlags)} failed. Could not Deserialize response string");
             }
             
-
             return country;
         }
     }
