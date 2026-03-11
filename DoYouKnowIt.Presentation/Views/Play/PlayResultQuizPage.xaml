@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:DoYouKnowIt.Presentation.Controls"
              x:Class="DoYouKnowIt.Presentation.Views.Play.PlayResultQuizPage"
              Title="PlayResultQuizPage"
              BackgroundColor="{StaticResource BgDefault}">
@@ -28,43 +29,12 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Border HorizontalOptions="Center"
-                                StrokeShape="RoundRectangle 10"
-                                Background="{StaticResource ItemBackground}" 
-                                Stroke="{StaticResource ItemBorder}"
-                                StrokeThickness="1.5"
-                                Padding="20">
-                                <HorizontalStackLayout Spacing="50" HorizontalOptions="Center">
-                                    <VerticalStackLayout 
-                                    WidthRequest="500"
-                                    Spacing="5">
-                                        <Label TextColor="White" FontSize="20" Text="{Binding IsCorrect, StringFormat='Correct: {0}'}"/>
-                                        <Label TextColor="White" FontSize="20" Text="{Binding RoundScore, StringFormat='Points: {0}'}"/>
-                                        <Border Margin="0, 10"></Border>
-                                        <Label TextColor="White" FontSize="20" Text="{Binding QuestionText, StringFormat='Q: {0}'}"/>
-                                        <Label TextColor="White" FontSize="20" Text="{Binding CorrectAnswersText, StringFormat='A: {0}'}"/>
-                                        <Border Margin="0, 10"></Border>
-                                        <Label TextColor="White" FontSize="20" Text="{Binding SelectedAnswerText, StringFormat='Your answer: {0}'}"/>
-                                    </VerticalStackLayout>
-
-                                    <Border HorizontalOptions="Center"
-                                        StrokeShape="RoundRectangle 10"
-                                        BackgroundColor="White"
-                                        StrokeThickness="2"
-                                        Stroke="Black"
-                                        MaximumWidthRequest="400"
-                                        HeightRequest="225"
-                                        >
-                                        <Image
-                                        Source="{Binding QuestionImageUrl}"
-                                        Aspect="AspectFill"
-                                        BackgroundColor="White"/>
-                                    </Border>
-
-                                </HorizontalStackLayout>
-                            </Border>
-                        </Grid>
+                        <controls:QuizResultCard
+                            IsCorrect="{Binding IsCorrect}"
+                            RoundScore="{Binding RoundScore}"
+                            QuestionText="{Binding QuestionText}"
+                            CorrectAnswersText="{Binding CorrectAnswersText}"
+                            SelectedAnswerText="{Binding SelectedAnswerText}"/>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

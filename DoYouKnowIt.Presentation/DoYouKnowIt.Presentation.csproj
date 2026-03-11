@@ -93,6 +93,9 @@
 	  <MauiXaml Update="Controls\QuizCardControl.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Controls\QuizResultCard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Resources\Styles\MyStyles\MyColors.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
