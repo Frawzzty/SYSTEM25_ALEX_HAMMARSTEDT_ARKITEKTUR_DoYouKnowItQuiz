@@ -20,21 +20,32 @@
                 Spacing="10"
                 HorizontalOptions="Center">
                 <Entry 
+                    x:Name="entryUsername"
                     WidthRequest="150"
                     Text="{Binding Username}"
                     Placeholder="username..."
                     Style="{StaticResource EntryDefault}"/>
                 <Entry 
+                    x:Name="entryPassword"
                     WidthRequest="150"
                     Text="{Binding Password}"
+                    IsPassword="True"
                     Placeholder="password..."
                     Style="{StaticResource EntryDefault}"/>
                 <Button 
+                    x:Name="btnLogin"
                     WidthRequest="80"
                     Text="Login"
                     Style="{StaticResource  BtnBlue}"
-                    Command="{Binding LoginCommand}"/>
-                
+                    Clicked="OnClickedLogin"/>
+                <Button 
+                    x:Name="btnLogout"
+                    WidthRequest="80"
+                    Text="Logout"
+                    Style="{StaticResource  BtnRed}"
+                    Clicked="OnClickedLogout"
+                    IsVisible="False"/>
+
             </HorizontalStackLayout>
             <FlexLayout
                 Direction="Row"

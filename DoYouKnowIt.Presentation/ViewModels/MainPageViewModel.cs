@@ -22,7 +22,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
             //GoProfilePageCommand = new Command(async () => { });
             GoQuizBuilderPageCommand = new Command(async () => { await Shell.Current.GoToAsync(nameof(Views.QB.QBSelectPage)); });
             GoCountryFlagLookupPageCommand = new Command(async () => { await GoApiPage(); });
-            LoginCommand = new Command(() => Login(Username, Password));
+            LoginCommand = new Command(() => Login());
         }
 
         #region PropertyChanged
@@ -48,29 +48,47 @@ namespace DoYouKnowIt.Presentation.ViewModels
         public string Username { get { return _username; } set { _username = value; OnPropertyChanged(nameof(Username)); } }
         public string Password { get { return _password; } set { _password = value; OnPropertyChanged(nameof(Password)); } }
 
-        private async Task Login(string username, string password)
+        public async Task<bool> Login()
         {
-            if(await _loginFacade.UserLogin(username, password))
+            if (!IsValidLoginInputs())
+                return false;
+
+            if (await _loginFacade.UserLogin(Username, Password))
             {
-                Shell.Current.DisplayAlert("Logged in", "Yippi", "OK");
+                Shell.Current.DisplayAlert("Login status", "You are now logged in", "OK");
+                Username = "";
+                Password = "";
+                return true;
             }
             else
             {
-                Shell.Current.DisplayAlert("Login failed", "Not yippi", "OK");
+                Shell.Current.DisplayAlert("Login status", "Login failed", "OK");
             }
+
+            return false;
         }
 
         private async Task GoApiPage()
         {
+            if (!IsValidLoginInputs())
+                return;
+            
             if (await _loginFacade.UserIsAdminAsync(Username, Password))
-            {
-
                 await Shell.Current.GoToAsync(nameof(Views.ApiNInjas.CountrFlagLookupPage));
-            }
+            
             else
-            {
                 Shell.Current.DisplayAlert("Error", "You are not admin", "OK");
-            }
+            
+        }
+
+        private bool IsValidLoginInputs()
+        {
+            if (!string.IsNullOrEmpty(Username) || !string.IsNullOrEmpty(Password))
+                return true;
+            
+            Shell.Current.DisplayAlert("Error", "Fill in Username and Password", "OK");
+            return false;
+            
         }
 
     }
