@@ -1,4 +1,6 @@
-﻿using DoYouKnowIt.Application.Interfaces.NewFolder;
+﻿using Domain.Entities.Models.DbModels;
+using DoYouKnowIt.Application.Interfaces;
+using DoYouKnowIt.Application.Interfaces.NewFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,16 @@ namespace DoYouKnowIt.Application.Services.Login
     public class AuthenticationService : IAuthenticationService
     {
         //check login is valid
-        public bool IsAuthenticated(string username, string password)
+        IUserService _userService;
+        public AuthenticationService(IUserService userService)
         {
-            if (username == "admin" && password == "admin")
+            _userService = userService;
+        }
+        public async Task<bool> IsAuthenticatedAsync(string username, string password)
+        {
+            User user = await _userService.GetByLoginAsync(username, password);
+
+            if (user != null)
             {
                 return true;
             }

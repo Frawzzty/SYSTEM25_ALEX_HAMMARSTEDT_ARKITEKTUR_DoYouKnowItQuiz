@@ -48,9 +48,9 @@ namespace DoYouKnowIt.Presentation.ViewModels
         public string Username { get { return _username; } set { _username = value; OnPropertyChanged(nameof(Username)); } }
         public string Password { get { return _password; } set { _password = value; OnPropertyChanged(nameof(Password)); } }
 
-        private void Login(string username, string password)
+        private async Task Login(string username, string password)
         {
-            if(_loginFacade.UserIsAdmin(username, password))
+            if(await _loginFacade.UserLogin(username, password))
             {
                 Shell.Current.DisplayAlert("Logged in", "Yippi", "OK");
             }

@@ -8,6 +8,6 @@ namespace DoYouKnowIt.Application.Interfaces.NewFolder
 {
     public interface IAuthorizationService
     {
-        public bool IsAuthorized(string username, string password);
+        public Task<bool> IsAuthorizedAsync(string username, string password, string role);
     }
 }

@@ -48,22 +48,24 @@ namespace DoYouKnowIt.Presentation
             builder.Services.AddScoped<IQuizService, QuizService>();
             builder.Services.AddScoped<IQuestionService, QuestionService>();
             builder.Services.AddScoped<IAnswerService, AnswerService>();
+            builder.Services.AddScoped<IUserService, UserService>();
+
 
             builder.Services.AddScoped<IQuizRepository, QuizRepositoryEF>();
             builder.Services.AddScoped<IQuestionRepository, QuestionRepositoryEF>();
             builder.Services.AddScoped<IAnswerRepository, AnswerRepositoryEF>();
+            builder.Services.AddScoped<IUserRepository, UserRepositoryEF>();
 
             //Generics Repos
             builder.Services.AddScoped<IRepository<Quiz>, RepositoryEF<Quiz>>();
             builder.Services.AddScoped<IRepository<Question>, RepositoryEF<Question>>();
             builder.Services.AddScoped<IRepository<Answer>, RepositoryEF<Answer>>();
-            builder.Services.AddScoped<IRepository<User>, RepositoryEF<User>>();
+            
 
             //Generics Services
             builder.Services.AddScoped<IRepositoryService<Quiz>, RepositoryService<Quiz>>();
             builder.Services.AddScoped<IRepositoryService<Question>, RepositoryService<Question>>();
             builder.Services.AddScoped<IRepositoryService<Answer>, RepositoryService<Answer>>();
-            builder.Services.AddScoped<IRepositoryService<User>, RepositoryService<User>>();
 
             //QuizBuilder Views & ViewModels
             builder.Services.AddTransient<QBSelectPage>();

@@ -1,9 +1,4 @@
 ﻿using DoYouKnowIt.Application.Interfaces.NewFolder;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DoYouKnowIt.Application.Facades
 {
@@ -18,10 +13,20 @@ namespace DoYouKnowIt.Application.Facades
             _authenticationService = authenticationService;
         }
 
-        public bool UserIsAdmin(string username, string password)
+        public async Task<bool> UserIsAdminAsync(string username, string password)
         {
-            if (_autherizationService.IsAuthenticated(username, password) &&
-                _authenticationService.IsAuthorized(username, password))
+            if (await _autherizationService.IsAuthenticatedAsync(username, password) &&
+                await _authenticationService.IsAuthorizedAsync(username, password, "Admin")) //Make enum? //Double db call
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task<bool> UserLogin(string username, string password)
+        {
+            if (await _autherizationService.IsAuthenticatedAsync(username, password))
             {
                 return true;
             }

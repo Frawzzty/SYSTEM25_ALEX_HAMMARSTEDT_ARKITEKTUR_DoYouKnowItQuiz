@@ -1,4 +1,5 @@
-﻿using DoYouKnowIt.Application.Interfaces.NewFolder;
+﻿using DoYouKnowIt.Application.Interfaces;
+using DoYouKnowIt.Application.Interfaces.NewFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,18 @@ namespace DoYouKnowIt.Application.Services.Login
     public class AuthorizationService : IAuthorizationService
     {
         //Check user permission
-        public bool IsAuthorized(string username, string password)
+        IUserService _userService;
+        public AuthorizationService(IUserService userService)
         {
-            if (username == "admin" && password == "admin")
-            {
-                return true;
-            }
+            _userService = userService;
+        }
+        public async Task<bool> IsAuthorizedAsync(string username, string password, string role)
+        {
+            var user = await _userService.GetByLoginAsync(username, role);
+
+            if (user == null) return false;
+
+            if (user.Role == role) return true;
 
             return false;
         }

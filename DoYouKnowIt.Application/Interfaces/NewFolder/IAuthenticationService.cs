@@ -8,7 +8,7 @@ namespace DoYouKnowIt.Application.Interfaces.NewFolder
 {
     public interface IAuthenticationService
     {
-        public bool IsAuthenticated(string username, string password);
+        public Task<bool> IsAuthenticatedAsync(string username, string password);
 
     }
 }
