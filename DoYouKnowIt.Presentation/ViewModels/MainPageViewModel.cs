@@ -77,8 +77,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
                 await Shell.Current.GoToAsync(nameof(Views.ApiNInjas.CountrFlagLookupPage));
             
             else
-                Shell.Current.DisplayAlert("Error", "You are not admin", "OK");
-            
+                Shell.Current.DisplayAlert("Error", "Please login with an Admin account", "OK");
         }
 
         private bool IsValidLoginInputs()
