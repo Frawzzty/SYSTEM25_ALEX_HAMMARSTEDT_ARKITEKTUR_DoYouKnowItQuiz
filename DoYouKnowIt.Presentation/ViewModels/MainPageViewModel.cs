@@ -68,16 +68,25 @@ namespace DoYouKnowIt.Presentation.ViewModels
             return false;
         }
 
+        public void Logout()
+        {
+            _loginFacade.UserLogout();
+        }
+
         private async Task GoApiPage()
         {
             if (!IsValidLoginInputs())
                 return;
             
             if (await _loginFacade.UserIsAdminAsync(Username, Password))
+            {
                 await Shell.Current.GoToAsync(nameof(Views.ApiNInjas.CountrFlagLookupPage));
-            
+            }
             else
+            {
                 Shell.Current.DisplayAlert("Error", "Please login with an Admin account", "OK");
+            }
+                
         }
 
         private bool IsValidLoginInputs()

@@ -46,6 +46,8 @@ namespace DoYouKnowIt.Presentation
         {
             if (BindingContext is ViewModels.MainPageViewModel vm)
             {
+                vm.Logout();
+
                 entryUsername.IsVisible = true;
                 entryPassword.IsVisible = true;
 

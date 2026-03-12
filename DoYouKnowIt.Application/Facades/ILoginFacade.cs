@@ -10,5 +10,6 @@ namespace DoYouKnowIt.Application.Facades
     {
         Task<bool> UserIsAdminAsync(string username, string password);
         public Task<bool> UserLogin(string username, string password);
+        public void UserLogout();
     }
 }

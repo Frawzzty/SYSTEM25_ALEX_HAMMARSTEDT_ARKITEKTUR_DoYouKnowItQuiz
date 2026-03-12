@@ -1,4 +1,5 @@
-﻿using Domain.Entities.Models.DbModels;
+﻿using Domain.Entities.Models;
+using Domain.Entities.Models.DbModels;
 using DoYouKnowIt.Application.Interfaces;
 using DoYouKnowIt.Application.Interfaces.NewFolder;
 using System;
@@ -13,9 +14,11 @@ namespace DoYouKnowIt.Application.Services.Login
     {
         //check login is valid
         IUserService _userService;
-        public AuthenticationService(IUserService userService)
+        UserSession _userSession;
+        public AuthenticationService(IUserService userService, UserSession userSession)
         {
             _userService = userService;
+            _userSession = userSession;
         }
         public async Task<bool> IsAuthenticatedAsync(string username, string password)
         {
@@ -23,6 +26,7 @@ namespace DoYouKnowIt.Application.Services.Login
 
             if (user != null)
             {
+                _userSession.SetSessionActive(username, password);
                 return true;
             }
 
