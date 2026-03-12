@@ -21,7 +21,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
             //GoLeaderboardPageCommand = new Command(async () => { });
             //GoProfilePageCommand = new Command(async () => { });
             GoQuizBuilderPageCommand = new Command(async () => { await Shell.Current.GoToAsync(nameof(Views.QB.QBSelectPage)); });
-            GoCountryFlagLookupPageCommand = new Command(async () => { await Shell.Current.GoToAsync(nameof(Views.ApiNInjas.CountrFlagLookupPage)); });
+            GoCountryFlagLookupPageCommand = new Command(async () => { await GoApiPage(); });
             LoginCommand = new Command(() => Login(Username, Password));
         }
 
@@ -59,5 +59,19 @@ namespace DoYouKnowIt.Presentation.ViewModels
                 Shell.Current.DisplayAlert("Login failed", "Not yippi", "OK");
             }
         }
+
+        private async Task GoApiPage()
+        {
+            if (await _loginFacade.UserIsAdminAsync(Username, Password))
+            {
+
+                await Shell.Current.GoToAsync(nameof(Views.ApiNInjas.CountrFlagLookupPage));
+            }
+            else
+            {
+                Shell.Current.DisplayAlert("Error", "You are not admin", "OK");
+            }
+        }
+
     }
 }
