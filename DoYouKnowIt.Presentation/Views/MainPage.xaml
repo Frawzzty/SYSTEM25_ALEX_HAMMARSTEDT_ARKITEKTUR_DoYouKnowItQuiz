@@ -30,10 +30,10 @@
                     Placeholder="password..."
                     Style="{StaticResource EntryDefault}"/>
                 <Button 
+                    WidthRequest="80"
                     Text="Login"
                     Style="{StaticResource  BtnBlue}"
-                    Command="{Binding LoginCommand}"
-                    WidthRequest="80"/>
+                    Command="{Binding LoginCommand}"/>
                 
             </HorizontalStackLayout>
             <FlexLayout
