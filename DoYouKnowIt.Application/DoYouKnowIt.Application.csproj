@@ -11,8 +11,4 @@
     <ProjectReference Include="..\DoYouKnowIt.Infrastructure\DoYouKnowIt.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Facades\" />
-  </ItemGroup>
-
 </Project>

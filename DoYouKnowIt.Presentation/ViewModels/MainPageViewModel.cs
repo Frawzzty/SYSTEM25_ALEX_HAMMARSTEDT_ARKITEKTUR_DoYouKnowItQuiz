@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using DoYouKnowIt.Application.Facades;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,19 +10,19 @@ using System.Windows.Input;
 
 namespace DoYouKnowIt.Presentation.ViewModels
 {
-    class MainPageViewModel : INotifyPropertyChanged
+    public class MainPageViewModel : INotifyPropertyChanged
     {
-
-        public MainPageViewModel()
+        ILoginFacade _loginFacade;
+        public MainPageViewModel(ILoginFacade loginFacade)
         {
-
+            _loginFacade = loginFacade;
 
             GoPlayPageCommand = new Command(async () => { await Shell.Current.GoToAsync(nameof(Views.Play.PlaySelectQuizPage)); });
             //GoLeaderboardPageCommand = new Command(async () => { });
             //GoProfilePageCommand = new Command(async () => { });
             GoQuizBuilderPageCommand = new Command(async () => { await Shell.Current.GoToAsync(nameof(Views.QB.QBSelectPage)); });
             GoCountryFlagLookupPageCommand = new Command(async () => { await Shell.Current.GoToAsync(nameof(Views.ApiNInjas.CountrFlagLookupPage)); });
-
+            LoginCommand = new Command(() => Login(Username, Password));
         }
 
         #region PropertyChanged
@@ -39,6 +40,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
         //public ICommand GoProfilePageCommand { get; set; }
         public ICommand GoQuizBuilderPageCommand { get; set; }
         public ICommand GoCountryFlagLookupPageCommand { get; set; }
+        public ICommand LoginCommand { get; set; }
         #endregion
 
         private string _username;
@@ -46,9 +48,16 @@ namespace DoYouKnowIt.Presentation.ViewModels
         public string Username { get { return _username; } set { _username = value; OnPropertyChanged(nameof(Username)); } }
         public string Password { get { return _password; } set { _password = value; OnPropertyChanged(nameof(Password)); } }
 
-        private void Login()
+        private void Login(string username, string password)
         {
-
+            if(_loginFacade.UserIsAdmin(username, password))
+            {
+                Shell.Current.DisplayAlert("Logged in", "Yippi", "OK");
+            }
+            else
+            {
+                Shell.Current.DisplayAlert("Login failed", "Not yippi", "OK");
+            }
         }
     }
 }

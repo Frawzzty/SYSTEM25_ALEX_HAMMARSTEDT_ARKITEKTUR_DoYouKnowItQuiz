@@ -32,6 +32,7 @@
                 <Button 
                     Text="Login"
                     Style="{StaticResource  BtnBlue}"
+                    Command="{Binding LoginCommand}"
                     WidthRequest="80"/>
                 
             </HorizontalStackLayout>

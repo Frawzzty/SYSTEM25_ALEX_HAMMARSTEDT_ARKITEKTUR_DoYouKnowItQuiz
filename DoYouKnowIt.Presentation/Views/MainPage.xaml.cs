@@ -10,10 +10,10 @@ namespace DoYouKnowIt.Presentation
     public partial class MainPage : ContentPage, INotifyPropertyChanged
     {
 
-        public MainPage()
+        public MainPage(ViewModels.MainPageViewModel vm)
         {
             InitializeComponent();
-            BindingContext = new ViewModels.MainPageViewModel();
+            BindingContext = vm;
         }
 
         protected override async void OnAppearing()

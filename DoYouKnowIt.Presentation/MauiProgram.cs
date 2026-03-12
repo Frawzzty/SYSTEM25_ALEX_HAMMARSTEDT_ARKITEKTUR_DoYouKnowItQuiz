@@ -2,7 +2,9 @@
 using Domain.Entities.Models.DbModels;
 using Domain.Entities.Models.Game;
 using DoYouKnowIt.Application.Interfaces;
+using DoYouKnowIt.Application.Interfaces.NewFolder;
 using DoYouKnowIt.Application.Services;
+using DoYouKnowIt.Application.Services.Login;
 using DoYouKnowIt.Application.Services.ApiNinjas;
 using DoYouKnowIt.Infrastructure.Data;
 using DoYouKnowIt.Infrastructure.Repositories;
@@ -11,6 +13,8 @@ using DoYouKnowIt.Presentation.ViewModels.QB;
 using DoYouKnowIt.Presentation.Views.Play;
 using DoYouKnowIt.Presentation.Views.QB;
 using Microsoft.Extensions.Logging;
+using DoYouKnowIt.Application.Facades;
+using DoYouKnowIt.Presentation.ViewModels;
 
 namespace DoYouKnowIt.Presentation
 {
@@ -29,7 +33,16 @@ namespace DoYouKnowIt.Presentation
 
             #if DEBUG
     		builder.Logging.AddDebug();
-            #endif
+#endif
+            //Login facade components
+            builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
+            builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+            builder.Services.AddScoped<IValidationService, ValidationService>();
+
+            builder.Services.AddScoped<ILoginFacade, LoginFacade>();
+
+            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<MainPageViewModel>();
 
             //Dependency Injection
             builder.Services.AddScoped<IQuizService, QuizService>();
