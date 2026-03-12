@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entities.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,10 @@ namespace DoYouKnowIt.Application.Interfaces.NewFolder
 {
     public interface IUserSessionService
     {
+
+        public UserSession GetSession();
+        public void SetSessionActive(string username, string password);
+
+        public void SetSessionInactive();
     }
 }
