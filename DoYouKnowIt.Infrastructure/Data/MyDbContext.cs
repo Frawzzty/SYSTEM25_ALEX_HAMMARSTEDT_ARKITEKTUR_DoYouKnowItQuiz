@@ -13,6 +13,7 @@ namespace DoYouKnowIt.Infrastructure.Data
         public DbSet<Quiz> Quizzes { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<Answer> Answers { get; set; }
+        public DbSet<User> Users { get; set; }
 
 
         static string connStr = "Server=.\\SQLExpress;Database=DoYouKnowItNew;Trusted_Connection=True; TrustServerCertificate=True;";

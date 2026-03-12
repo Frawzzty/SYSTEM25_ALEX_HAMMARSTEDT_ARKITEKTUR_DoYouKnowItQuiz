@@ -15,6 +15,7 @@ using DoYouKnowIt.Presentation.Views.QB;
 using Microsoft.Extensions.Logging;
 using DoYouKnowIt.Application.Facades;
 using DoYouKnowIt.Presentation.ViewModels;
+using Domain.Entities.Models;
 
 namespace DoYouKnowIt.Presentation
 {
@@ -56,11 +57,13 @@ namespace DoYouKnowIt.Presentation
             builder.Services.AddScoped<IRepository<Quiz>, RepositoryEF<Quiz>>();
             builder.Services.AddScoped<IRepository<Question>, RepositoryEF<Question>>();
             builder.Services.AddScoped<IRepository<Answer>, RepositoryEF<Answer>>();
+            builder.Services.AddScoped<IRepository<User>, RepositoryEF<User>>();
 
             //Generics Services
             builder.Services.AddScoped<IRepositoryService<Quiz>, RepositoryService<Quiz>>();
             builder.Services.AddScoped<IRepositoryService<Question>, RepositoryService<Question>>();
             builder.Services.AddScoped<IRepositoryService<Answer>, RepositoryService<Answer>>();
+            builder.Services.AddScoped<IRepositoryService<User>, RepositoryService<User>>();
 
             //QuizBuilder Views & ViewModels
             builder.Services.AddTransient<QBSelectPage>();
