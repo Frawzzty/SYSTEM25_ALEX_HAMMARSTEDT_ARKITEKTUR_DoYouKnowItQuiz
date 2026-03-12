@@ -11,20 +11,17 @@ namespace DoYouKnowIt.Application.Facades
     {
         private readonly IAuthenticationService _autherizationService;
         private readonly IAuthorizationService _authenticationService;
-        private readonly IValidationService _validationService;
 
-        public LoginFacade(IAuthenticationService autherizationService, IAuthorizationService authenticationService, IValidationService validationService)
+        public LoginFacade(IAuthenticationService autherizationService, IAuthorizationService authenticationService)
         {
             _autherizationService = autherizationService;
             _authenticationService = authenticationService;
-            _validationService = validationService;
         }
 
         public bool UserIsAdmin(string username, string password)
         {
             if (_autherizationService.IsAuthenticated(username, password) &&
-                _authenticationService.IsAuthorized(username, password) &&
-                _validationService.IsValidated(username, password))
+                _authenticationService.IsAuthorized(username, password))
             {
                 return true;
             }

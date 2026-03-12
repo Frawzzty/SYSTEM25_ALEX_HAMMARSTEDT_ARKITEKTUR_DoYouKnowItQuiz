@@ -37,7 +37,6 @@ namespace DoYouKnowIt.Presentation
             //Login facade components
             builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
-            builder.Services.AddScoped<IValidationService, ValidationService>();
 
             builder.Services.AddScoped<ILoginFacade, LoginFacade>();
 

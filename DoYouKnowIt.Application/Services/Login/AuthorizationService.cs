@@ -9,7 +9,7 @@ namespace DoYouKnowIt.Application.Services.Login
 {
     public class AuthorizationService : IAuthorizationService
     {
-        //Check permission for action
+        //Check user permission
         public bool IsAuthorized(string username, string password)
         {
             if (username == "admin" && password == "admin")
