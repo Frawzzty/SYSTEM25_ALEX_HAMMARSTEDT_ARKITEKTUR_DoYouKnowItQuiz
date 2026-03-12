@@ -22,8 +22,12 @@ namespace DoYouKnowIt.Application.Services.Login
         }
         public async Task<bool> IsAuthenticatedAsync(string username, string password)
         {
-            User user = await _userService.GetByLoginAsync(username, password);
+            if (_userSession.IsLoggedIn)
+            {
+                return true;
+            }
 
+            var user = await _userService.GetByLoginAsync(username, password);
             if (user != null)
             {
                 _userSession.SetSessionActive(username, password);

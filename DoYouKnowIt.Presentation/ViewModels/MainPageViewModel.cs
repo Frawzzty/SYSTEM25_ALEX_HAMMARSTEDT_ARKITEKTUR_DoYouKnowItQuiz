@@ -1,4 +1,5 @@
-﻿using DoYouKnowIt.Application.Facades;
+﻿using Domain.Entities.Models;
+using DoYouKnowIt.Application.Facades;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,11 @@ namespace DoYouKnowIt.Presentation.ViewModels
     public class MainPageViewModel : INotifyPropertyChanged
     {
         ILoginFacade _loginFacade;
-        public MainPageViewModel(ILoginFacade loginFacade)
+        UserSession _userSession;
+        public MainPageViewModel(ILoginFacade loginFacade, UserSession userSession)
         {
             _loginFacade = loginFacade;
+            _userSession = userSession;
 
             GoPlayPageCommand = new Command(async () => { await Shell.Current.GoToAsync(nameof(Views.Play.PlaySelectQuizPage)); });
             //GoLeaderboardPageCommand = new Command(async () => { });
@@ -75,10 +78,8 @@ namespace DoYouKnowIt.Presentation.ViewModels
 
         private async Task GoApiPage()
         {
-            if (!IsValidLoginInputs())
-                return;
-            
-            if (await _loginFacade.UserIsAdminAsync(Username, Password))
+
+            if (await _loginFacade.UserIsAdminAsync(_userSession.Username, _userSession.Password))
             {
                 await Shell.Current.GoToAsync(nameof(Views.ApiNInjas.CountrFlagLookupPage));
             }

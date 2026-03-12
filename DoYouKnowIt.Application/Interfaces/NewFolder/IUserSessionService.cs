@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace DoYouKnowIt.Application.Interfaces.NewFolder
 {
-    public interface IAuthorizationService
+    public interface IUserSessionService
     {
-        public Task<bool> IsAuthorizedAsync(string role);
     }
 }
