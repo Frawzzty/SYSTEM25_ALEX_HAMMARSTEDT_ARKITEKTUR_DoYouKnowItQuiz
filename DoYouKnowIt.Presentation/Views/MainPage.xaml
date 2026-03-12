@@ -33,6 +33,7 @@
                     Text="Login"
                     Style="{StaticResource  BtnBlue}"
                     WidthRequest="80"/>
+                
             </HorizontalStackLayout>
             <FlexLayout
                 Direction="Row"
