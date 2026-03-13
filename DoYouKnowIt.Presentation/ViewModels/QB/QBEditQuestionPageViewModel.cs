@@ -65,7 +65,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
         //===============================
 
 
-        //Question related props
+        //Question Props
         private Question? _question;
         public Question? Question { get { return _question; } set { _question = value; OnPropertyChanged(nameof(Question)); } }
 

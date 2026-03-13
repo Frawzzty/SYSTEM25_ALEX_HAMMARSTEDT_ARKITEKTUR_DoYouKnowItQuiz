@@ -51,6 +51,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
         public string Username { get { return _username; } set { _username = value; OnPropertyChanged(nameof(Username)); } }
         public string Password { get { return _password; } set { _password = value; OnPropertyChanged(nameof(Password)); } }
 
+        //Login
         public async Task<bool> Login()
         {
             if (!IsValidLoginInputs())
@@ -71,11 +72,13 @@ namespace DoYouKnowIt.Presentation.ViewModels
             return false;
         }
 
+        //Logout
         public void Logout()
         {
             _loginFacade.UserLogout();
         }
 
+        //Api page locked behind Admin permission
         private async Task GoApiPage()
         {
 
@@ -90,6 +93,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
                 
         }
 
+        //Input validation
         private bool IsValidLoginInputs()
         {
             if (!string.IsNullOrEmpty(Username) || !string.IsNullOrEmpty(Password))

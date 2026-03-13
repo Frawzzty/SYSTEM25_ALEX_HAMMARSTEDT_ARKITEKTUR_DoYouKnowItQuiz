@@ -38,39 +38,40 @@ namespace DoYouKnowIt.Presentation
             //Login facade components
             builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
-
             builder.Services.AddScoped<ILoginFacade, LoginFacade>();
 
-            builder.Services.AddTransient<MainPage>();
-            builder.Services.AddTransient<MainPageViewModel>();
+            //UserSession Singelton. Gets the same session on each page
+            builder.Services.AddSingleton<UserSession>();
+            builder.Services.AddScoped<IUserSessionService, UserSessionService>();
 
-            //Dependency Injection
+
+            //Specific repos
+            builder.Services.AddScoped<IQuizRepository, QuizRepositoryEF>();
+            builder.Services.AddScoped<IQuestionRepository, QuestionRepositoryEF>();
+            builder.Services.AddScoped<IAnswerRepository, AnswerRepositoryEF>();
+            builder.Services.AddScoped<IUserRepository, UserRepositoryEF>();
+            //Specific Services
             builder.Services.AddScoped<IQuizService, QuizService>();
             builder.Services.AddScoped<IQuestionService, QuestionService>();
             builder.Services.AddScoped<IAnswerService, AnswerService>();
             builder.Services.AddScoped<IUserService, UserService>();
 
-            builder.Services.AddSingleton<UserSession>();
-            builder.Services.AddScoped<IUserSessionService, UserSessionService>();
-
-
-            builder.Services.AddScoped<IQuizRepository, QuizRepositoryEF>();
-            builder.Services.AddScoped<IQuestionRepository, QuestionRepositoryEF>();
-            builder.Services.AddScoped<IAnswerRepository, AnswerRepositoryEF>();
-            builder.Services.AddScoped<IUserRepository, UserRepositoryEF>();
 
             //Generics Repos
             builder.Services.AddScoped<IRepository<Quiz>, RepositoryEF<Quiz>>();
             builder.Services.AddScoped<IRepository<Question>, RepositoryEF<Question>>();
             builder.Services.AddScoped<IRepository<Answer>, RepositoryEF<Answer>>();
-            
-
             //Generics Services
             builder.Services.AddScoped<IRepositoryService<Quiz>, RepositoryService<Quiz>>();
             builder.Services.AddScoped<IRepositoryService<Question>, RepositoryService<Question>>();
             builder.Services.AddScoped<IRepositoryService<Answer>, RepositoryService<Answer>>();
 
-            //QuizBuilder Views & ViewModels
+
+            //Main page
+            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<MainPageViewModel>();
+
+            //QuizBuilder Pages (Views) & ViewModels
             builder.Services.AddTransient<QBSelectPage>();
             builder.Services.AddTransient<QBSelectPageViewModel>();
 
@@ -91,10 +92,9 @@ namespace DoYouKnowIt.Presentation
             builder.Services.AddTransient<PlayPlayQuizPageViewModel>();
 
             
-
             //API Ninjas 
-            builder.Services.AddTransient<ApiNinjasDataManager>();
-            builder.Services.AddTransient<ApiNinjasCountryService>();
+            builder.Services.AddScoped<ApiNinjasDataManager>();
+            builder.Services.AddScoped<ApiNinjasCountryService>();
             return builder.Build();
         }
     }

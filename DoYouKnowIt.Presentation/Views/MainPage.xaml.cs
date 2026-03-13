@@ -17,6 +17,7 @@ namespace DoYouKnowIt.Presentation
             BindingContext = vm;
         }
 
+        //Animation
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -27,6 +28,7 @@ namespace DoYouKnowIt.Presentation
             ImageLogo.Rotation = 0;
         }
 
+        //Login
         private async void OnClickedLogin(object sender, EventArgs e)
         {
             if(BindingContext is ViewModels.MainPageViewModel vm)
@@ -42,6 +44,7 @@ namespace DoYouKnowIt.Presentation
             }
         }
 
+        //Logout
         private async void OnClickedLogout(object sender, EventArgs e)
         {
             if (BindingContext is ViewModels.MainPageViewModel vm)
