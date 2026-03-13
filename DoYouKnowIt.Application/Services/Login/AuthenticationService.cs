@@ -14,15 +14,15 @@ namespace DoYouKnowIt.Application.Services.Login
     {
         //check login is valid
         IUserService _userService;
-        UserSession _userSession;
-        public AuthenticationService(IUserService userService, UserSession userSession)
+        IUserSessionService _userSessionService;
+        public AuthenticationService(IUserService userService, IUserSessionService userSessionService)
         {
             _userService = userService;
-            _userSession = userSession;
+            _userSessionService = userSessionService;
         }
         public async Task<bool> IsAuthenticatedAsync(string username, string password)
         {
-            if (_userSession.IsLoggedIn)
+            if (_userSessionService.GetSession().IsLoggedIn)
             {
                 return true;
             }
@@ -30,7 +30,7 @@ namespace DoYouKnowIt.Application.Services.Login
             var user = await _userService.GetByLoginAsync(username, password);
             if (user != null)
             {
-                _userSession.SetSessionActive(username, password);
+                _userSessionService.SetSessionActive(username, password);
                 return true;
             }
 

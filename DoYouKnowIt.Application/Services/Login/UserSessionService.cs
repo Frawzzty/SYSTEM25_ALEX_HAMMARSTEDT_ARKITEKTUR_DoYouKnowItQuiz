@@ -1,4 +1,5 @@
 ﻿using Domain.Entities.Models;
+using DoYouKnowIt.Application.Interfaces;
 using DoYouKnowIt.Application.Interfaces.NewFolder;
 using System;
 using System.Collections.Generic;
@@ -10,24 +11,33 @@ namespace DoYouKnowIt.Application.Services.Login
 {
     public class UserSessionService : IUserSessionService
     {
-        public UserSessionService()
+        private UserSession _thisSession;
+        //Singelton - The user only needs to login one time when using the application
+        public UserSessionService(UserSession thisSession)
         {
-            
+            _thisSession = thisSession;
         }
 
         public UserSession GetSession()
         {
-            throw new NotImplementedException();
+            return _thisSession;
         }
 
         public void SetSessionActive(string username, string password)
         {
-            throw new NotImplementedException();
+            _thisSession.Username = username;
+            _thisSession.Password = password;
+
+            _thisSession.IsLoggedIn = true;
         }
 
         public void SetSessionInactive()
         {
-            throw new NotImplementedException();
+            _thisSession.Username = "";
+            _thisSession.Password = "";
+
+            _thisSession.IsLoggedIn = false;
         }
+
     }
 }

@@ -51,7 +51,7 @@ namespace DoYouKnowIt.Presentation
             builder.Services.AddScoped<IUserService, UserService>();
 
             builder.Services.AddSingleton<UserSession>();
-            
+            builder.Services.AddScoped<IUserSessionService, UserSessionService>();
 
 
             builder.Services.AddScoped<IQuizRepository, QuizRepositoryEF>();

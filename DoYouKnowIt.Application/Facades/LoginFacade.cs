@@ -1,5 +1,6 @@
 ﻿using Domain.Entities.Models;
 using DoYouKnowIt.Application.Interfaces.NewFolder;
+using DoYouKnowIt.Application.Services.Login;
 
 namespace DoYouKnowIt.Application.Facades
 {
@@ -7,13 +8,13 @@ namespace DoYouKnowIt.Application.Facades
     {
         private readonly IAuthenticationService _autherizationService;
         private readonly IAuthorizationService _authenticationService;
-        private UserSession _userSession;
+        private IUserSessionService _userSessionService;
 
-        public LoginFacade(IAuthenticationService autherizationService, IAuthorizationService authenticationService, UserSession userSession)
+        public LoginFacade(IAuthenticationService autherizationService, IAuthorizationService authenticationService, IUserSessionService userSessionService)
         {
             _autherizationService = autherizationService;
             _authenticationService = authenticationService;
-            _userSession = userSession;
+            _userSessionService = userSessionService;
         }
 
         public async Task<bool> UserIsAdminAsync(string username, string password)
@@ -31,7 +32,7 @@ namespace DoYouKnowIt.Application.Facades
         {
             if (await _autherizationService.IsAuthenticatedAsync(username, password))
             {
-                _userSession.SetSessionActive(username, password);
+                _userSessionService.SetSessionActive(username, password);
                 return true;
             }
 
@@ -41,7 +42,7 @@ namespace DoYouKnowIt.Application.Facades
 
         public void UserLogout()
         {
-            _userSession.SetSessionInactive();
+            _userSessionService.SetSessionInactive();
         }
     }
 }
