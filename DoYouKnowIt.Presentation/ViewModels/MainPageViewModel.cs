@@ -25,7 +25,6 @@ namespace DoYouKnowIt.Presentation.ViewModels
             //GoProfilePageCommand = new Command(async () => { });
             GoQuizBuilderPageCommand = new Command(async () => { await Shell.Current.GoToAsync(nameof(Views.QB.QBSelectPage)); });
             GoCountryFlagLookupPageCommand = new Command(async () => { await GoApiPage(); });
-            LoginCommand = new Command(() => Login());
         }
 
         #region PropertyChanged
@@ -43,7 +42,6 @@ namespace DoYouKnowIt.Presentation.ViewModels
         //public ICommand GoProfilePageCommand { get; set; }
         public ICommand GoQuizBuilderPageCommand { get; set; }
         public ICommand GoCountryFlagLookupPageCommand { get; set; }
-        public ICommand LoginCommand { get; set; }
         #endregion
 
         private string _username;
