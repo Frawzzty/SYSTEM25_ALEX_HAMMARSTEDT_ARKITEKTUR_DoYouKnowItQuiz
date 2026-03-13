@@ -65,7 +65,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
             }
             else
             {
-                Shell.Current.DisplayAlert("Login status", "Login failed", "OK");
+                Shell.Current.DisplayAlert("Login status", "Login failed, check username and password is correct", "OK");
             }
 
             return false;
