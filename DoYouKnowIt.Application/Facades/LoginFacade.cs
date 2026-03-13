@@ -19,6 +19,7 @@ namespace DoYouKnowIt.Application.Facades
 
         public async Task<bool> UserIsAdminAsync(string username, string password)
         {
+
             if (await _autherizationService.IsAuthenticatedAsync(username, password) &&
                 await _authenticationService.IsAuthorizedAsync("Admin")) //Make enum? //Double db call
             {
