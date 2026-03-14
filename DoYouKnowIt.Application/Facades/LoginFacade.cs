@@ -17,10 +17,10 @@ namespace DoYouKnowIt.Application.Facades
             _userSessionService = userSessionService;
         }
 
-        public async Task<bool> UserIsAdminAsync(string username, string password)
+        public async Task<bool> UserIsAdminAsync()
         {
-
-            if (await _autherizationService.IsAuthenticatedAsync(username, password) &&
+            UserSession userSession = _userSessionService.GetSession();
+            if (await _autherizationService.IsAuthenticatedAsync(userSession.Username, userSession.Password) &&
                 await _authenticationService.IsAuthorizedAsync("Admin")) //Make enum? //Double db call
             {
                 return true;
@@ -39,6 +39,16 @@ namespace DoYouKnowIt.Application.Facades
 
             return false;
 
+        }
+
+        public async Task<bool> UserIsLoggedIn()
+        {
+            UserSession userSession = _userSessionService.GetSession();
+
+            if (!userSession.IsLoggedIn)
+                return true;
+            else 
+                return false;
         }
 
         public void UserLogout()

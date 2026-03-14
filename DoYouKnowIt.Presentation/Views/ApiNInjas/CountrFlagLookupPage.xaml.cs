@@ -7,6 +7,8 @@ namespace DoYouKnowIt.Presentation.Views.ApiNInjas;
 public partial class CountrFlagLookupPage : ContentPage, INotifyPropertyChanged
 {
     ApiNinjasCountryService _countryFlagService;
+
+    //No dedicated viewmodel for this page, only codebehind - Will remove after
     public CountrFlagLookupPage(ApiNinjasCountryService countryFlagService)
     {
         _countryFlagService = countryFlagService;

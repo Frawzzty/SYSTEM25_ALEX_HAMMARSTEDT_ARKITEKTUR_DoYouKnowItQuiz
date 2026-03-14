@@ -14,11 +14,9 @@ namespace DoYouKnowIt.Presentation.ViewModels
     public class MainPageViewModel : INotifyPropertyChanged
     {
         ILoginFacade _loginFacade;
-        UserSession _userSession;
-        public MainPageViewModel(ILoginFacade loginFacade, UserSession userSession)
+        public MainPageViewModel(ILoginFacade loginFacade)
         {
             _loginFacade = loginFacade;
-            _userSession = userSession;
 
             GoPlayPageCommand = new Command(async () => { await Shell.Current.GoToAsync(nameof(Views.Play.PlaySelectQuizPage)); });
             //GoLeaderboardPageCommand = new Command(async () => { });
@@ -80,7 +78,7 @@ namespace DoYouKnowIt.Presentation.ViewModels
         private async Task GoApiPage()
         {
 
-            if (await _loginFacade.UserIsAdminAsync(_userSession.Username, _userSession.Password))
+            if (await _loginFacade.UserIsAdminAsync())
             {
                 await Shell.Current.GoToAsync(nameof(Views.ApiNInjas.CountrFlagLookupPage));
             }

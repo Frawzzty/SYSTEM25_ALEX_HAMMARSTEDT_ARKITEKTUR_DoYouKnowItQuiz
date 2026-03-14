@@ -9,7 +9,7 @@
             Margin="25"
             Spacing="25">
 
-        <!--No dedicated viewmodel for this page, only codebehind-->
+        <!--No dedicated viewmodel for this page, only codebehind  - Will remove after -->
         <Label
            Text="&lt;Image> wont display .SVG images"
            />

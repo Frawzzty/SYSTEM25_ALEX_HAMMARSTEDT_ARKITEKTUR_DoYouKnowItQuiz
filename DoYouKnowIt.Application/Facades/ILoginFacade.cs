@@ -8,7 +8,7 @@ namespace DoYouKnowIt.Application.Facades
 {
     public interface ILoginFacade
     {
-        Task<bool> UserIsAdminAsync(string username, string password);
+        Task<bool> UserIsAdminAsync();
         public Task<bool> UserLogin(string username, string password);
         public void UserLogout();
     }
