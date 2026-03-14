@@ -62,7 +62,15 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
 
         public async Task LoadData()
         {
-            Quizzes = new ObservableCollection<Quiz>(await _quizService.GetAllQuizzesAsync());
+            try
+            {
+                Quizzes = new ObservableCollection<Quiz>(await _quizService.GetAllQuizzesAsync());
+            }
+            catch (Exception ex)
+            {
+                Shell.Current.DisplayAlert("Error", $"Problem loading Quizzes, try refresh the page\nError message: {ex.Message}", "OK");
+            }
+            
         }
     }
 }

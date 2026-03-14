@@ -34,7 +34,11 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
         public async Task LoadData()
         {
             //Get Question, if new create new Question() with correct QuizId
-            Question = await _questionService.GetQuestionAsync(QuestionId) ?? new() { QuizId = QuizId};
+            try 
+            { 
+                Question = await _questionService.GetQuestionAsync(QuestionId) ?? new() { QuizId = QuizId }; 
+            }
+            catch (Exception ex) { Shell.Current.DisplayAlert("Error", $"Problem loading data, refreshing the page might fix it\nError message: {ex.Message}", "OK"); }
 
             if (Question == null)
                 return;
@@ -109,12 +113,20 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             //Save new
             if (_question != null && _question.Id == 0)
             {
-                await _questionService.CreateQuestionAsync(_question);
+                try
+                {
+                    await _questionService.CreateQuestionAsync(_question);
+                }
+                catch (Exception ex)  { Shell.Current.DisplayAlert("Error", $"Could not create question. Error message: {ex.Message}", "OK"); }
             }
             //Update existing
             else
             {
-                await _questionService.UpdateQuestionAsync(_question);
+                try
+                {
+                    await _questionService.UpdateQuestionAsync(_question);
+                }
+                catch (Exception ex) { Shell.Current.DisplayAlert("Error", $"Could not update question. Error message: {ex.Message}", "OK"); }
             }
 
             await Shell.Current.Navigation.PopAsync();
@@ -125,7 +137,11 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             //Delete quiz
             if (_question != null && _question.Id > 0)
             {
-                await _questionService.DeleteQuestionAsync(_question.Id);
+                try
+                {
+                    await _questionService.DeleteQuestionAsync(_question.Id);
+                }
+                catch(Exception ex) { Shell.Current.DisplayAlert("Error", $"Something went wrong when deleteting question. Error message: {ex.Message}", "OK");}
             }
 
             await Shell.Current.Navigation.PopAsync();

@@ -79,7 +79,16 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
         //Refreshes on appearing
         public async Task LoadData()
         {
-            Quiz = await _quizService.GetQuizAsync(QuizId) ?? new();
+            try
+            {
+                Quiz = await _quizService.GetQuizAsync(QuizId) ?? new();
+            }
+
+            catch (Exception ex) 
+            {
+                Shell.Current.DisplayAlert("Error", $"Problem loading Quizzes, try refresh the page\nError message: {ex.Message}", "OK");
+            }
+           
 
             if (Quiz == null)
                 return;
@@ -129,8 +138,8 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             }
             catch (NullReferenceException)      { await Shell.Current.DisplayAlert("Error", "Quiz was null", "OK"); }
             catch (ArgumentOutOfRangeException) { await Shell.Current.DisplayAlert("Error", "Quiz Id was out of range ", "OK"); }
-            catch (ArgumentException)           { await Shell.Current.DisplayAlert("Error", "Quiz Id was invalid", "OK"); }
-            catch (Exception ex)                { await Shell.Current.DisplayAlert("Error", $"Somethinw went wrong when deleting Quiz: {ex.Message}", "OK"); }
+            catch (ArgumentException)           { await Shell.Current.DisplayAlert("Error", "Quiz Id was invalid", "OK"); } //Even possible?
+            catch (Exception ex)                { await Shell.Current.DisplayAlert("Error", $"Something went wrong when deleting Quiz: {ex.Message}", "OK"); }
         }
 
 

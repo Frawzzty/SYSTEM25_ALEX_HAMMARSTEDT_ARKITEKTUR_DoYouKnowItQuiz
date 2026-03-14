@@ -66,12 +66,20 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             //Save new
             if (Answer != null && Answer.Id == 0)
             {
-                await _answerService.CreateAnswernAsync(Answer);
+                try
+                {
+                    await _answerService.CreateAnswernAsync(Answer);
+                }
+                catch (Exception ex) { Shell.Current.DisplayAlert("Error", $"Could not create answer. Error message: {ex.Message}", "OK"); }
             }
             //Update existing
             else
             {
-                await _answerService.UpdateAnswerAsync(Answer);
+                try
+                {
+                    await _answerService.UpdateAnswerAsync(Answer);
+                }
+                catch (Exception ex) { Shell.Current.DisplayAlert("Error", $"Could not update answer. Error message: {ex.Message}", "OK"); }
             }
 
             await Shell.Current.Navigation.PopAsync();

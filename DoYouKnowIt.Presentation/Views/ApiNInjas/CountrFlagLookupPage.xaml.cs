@@ -75,12 +75,17 @@ public partial class CountrFlagLookupPage : ContentPage, INotifyPropertyChanged
         //Get country
         else
         {
-            Country = await _countryFlagService.GetCountryFlags(CountryIso2) ?? new Country();
-            if (Country == null)
-                return;
+            try
+            {
+                Country = await _countryFlagService.GetCountryFlags(CountryIso2) ?? new Country();
+                if (Country == null)
+                    return;
 
-            ImageSquareUrl = Country.SquareImageUrl;
-            ImageRectangleUrl = Country.RectangleimageUrl;
+                ImageSquareUrl = Country.SquareImageUrl;
+                ImageRectangleUrl = Country.RectangleimageUrl;
+            }
+            catch (Exception ex) { Shell.Current.DisplayAlert("Error", $"Something went wrong when fetching country flags. Error message: {ex.Message}", "OK"); }
+           
         }
 
        
