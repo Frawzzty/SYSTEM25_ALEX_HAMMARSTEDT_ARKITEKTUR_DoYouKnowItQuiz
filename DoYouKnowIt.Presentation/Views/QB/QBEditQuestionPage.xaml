@@ -38,7 +38,14 @@
             Text="Delete Question"
             Command="{Binding DeleteQuestionCommand}"
             Style="{StaticResource BtnRed}"
-            HorizontalOptions="Start"/>
+            HorizontalOptions="Start"
+            Margin="0,0,0, 20"/>
+
+        <Label
+            Text="Answers"
+            FontSize="25"
+            FontAttributes="Bold"
+            TextColor="White"/>
 
         
         <CollectionView

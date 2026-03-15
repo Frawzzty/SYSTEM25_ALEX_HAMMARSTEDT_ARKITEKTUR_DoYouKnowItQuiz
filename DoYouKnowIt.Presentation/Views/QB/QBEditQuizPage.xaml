@@ -40,7 +40,14 @@
             Text="Delete Quiz"
             Command="{Binding DeleteQuizCommand}"
             Style="{StaticResource BtnRed}"
-            HorizontalOptions="Start"/>
+            HorizontalOptions="Start"
+            Margin="0,0,0, 20"/>
+
+        <Label
+            Text="Questions"
+            FontSize="25"
+            FontAttributes="Bold"
+            TextColor="White"/>
 
         <CollectionView
             ItemsSource="{Binding Questions}"
