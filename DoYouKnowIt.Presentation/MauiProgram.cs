@@ -57,7 +57,7 @@ namespace DoYouKnowIt.Presentation
             builder.Services.AddScoped<IUserService, UserService>();
 
 
-            //Generics Repos
+            //Generics Repos //Works but does not .include and .theninclude
             builder.Services.AddScoped<IRepository<Quiz>, RepositoryEF<Quiz>>();
             builder.Services.AddScoped<IRepository<Question>, RepositoryEF<Question>>();
             builder.Services.AddScoped<IRepository<Answer>, RepositoryEF<Answer>>();
