@@ -45,6 +45,10 @@ namespace DoYouKnowIt.Presentation
             builder.Services.AddScoped<IUserSessionService, UserSessionService>();
 
 
+            //MongoDB
+            builder.Services.AddScoped<MongoDbConnection>();
+                
+
             //Specific repos
             builder.Services.AddScoped<IQuizRepository, QuizRepositoryEF>();
             builder.Services.AddScoped<IQuestionRepository, QuestionRepositoryEF>();
