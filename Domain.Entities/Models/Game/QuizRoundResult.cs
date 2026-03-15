@@ -22,7 +22,7 @@ namespace Domain.Entities.Models.Game
 
         //Display vars
         public bool IsCorrect { get; set; }
-        public int RoundScore { get; set; } = 0;
+        public int RoundScore { get; set; }
 
         public string QuestionText { get; set; }        = string.Empty;
         public string CorrectAnswersText { get; set; }  = string.Empty;
