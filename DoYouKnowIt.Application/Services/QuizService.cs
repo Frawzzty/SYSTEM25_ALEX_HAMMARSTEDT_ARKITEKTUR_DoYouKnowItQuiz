@@ -1,5 +1,6 @@
 ﻿using Domain.Entities.Interfaces;
 using Domain.Entities.Models.DbModels;
+using DoYouKnowIt.Application.Extensions;
 using DoYouKnowIt.Application.Interfaces;
 using DoYouKnowIt.Infrastructure.Data;
 using DoYouKnowIt.Infrastructure.Repositories;
@@ -29,11 +30,27 @@ namespace DoYouKnowIt.Application.Services
 
         public async Task CreateQuizAsync(Quiz quiz)
         {
+            if (quiz == null)
+                return;
+
+            if(quiz.Title != null)
+            {
+                quiz.Title = quiz.Title.WordsFirstUpper();
+            }
+
             await _quizRepo.AddAsync(quiz);
         }
 
         public async Task UpdateQuizAsync(Quiz quiz)
         {
+            if (quiz == null)
+                return;
+
+            if (quiz.Title != null)
+            {
+                quiz.Title = quiz.Title.WordsFirstUpper();
+            }
+
             await _quizRepo.UpdateAsync(quiz);
         }
 
