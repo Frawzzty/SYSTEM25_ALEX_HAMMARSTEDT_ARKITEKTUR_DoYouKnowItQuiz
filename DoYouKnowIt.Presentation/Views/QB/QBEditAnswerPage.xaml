@@ -15,6 +15,7 @@
 
         <!--Answer details-->
         <Entry
+            MaxLength="100"
             Text="{Binding Answer.AnswerText}"
             Placeholder="Answer Text..."
             Style="{StaticResource EntryDefault}"/>

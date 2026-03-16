@@ -15,11 +15,13 @@
 
         <!--Question details-->
         <Entry
+            MaxLength="100"
             Text="{Binding Question.QuestionText}"
             Placeholder="Question Text..."
             Style="{StaticResource EntryDefault}"/>
 
         <Entry
+            MaxLength="100"
             Text="{Binding Question.QuestionImageUrl}"
             Placeholder="Question ImageUrl..."
             Style="{StaticResource EntryDefault}"/>

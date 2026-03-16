@@ -12,12 +12,14 @@
         <Label
             Text="{Binding QuizId, StringFormat='QuizId: {0}'}"/>
         <Entry
+            MaxLength="90"
             Text="{Binding Quiz.Title}"
             Placeholder="Quiz Title..."
             Style="{StaticResource EntryDefault}"/>
 
         <Entry
             Text="{Binding Quiz.Description}"
+            MaxLength="120"
             Placeholder="Quiz Description..."
             Style="{StaticResource EntryDefault}"/>
 

@@ -23,12 +23,14 @@
                 HorizontalOptions="Center">
                 <Entry 
                     x:Name="entryUsername"
+                    MaxLength="50"
                     WidthRequest="150"
                     Text="{Binding Username}"
                     Placeholder="username..."
                     Style="{StaticResource EntryDefault}"/>
                 <Entry 
                     x:Name="entryPassword"
+                    MaxLength="50"
                     WidthRequest="150"
                     Text="{Binding Password}"
                     IsPassword="True"
