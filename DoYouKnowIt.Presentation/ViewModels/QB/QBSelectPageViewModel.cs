@@ -1,5 +1,6 @@
 ﻿using Domain.Entities.Interfaces;
 using Domain.Entities.Models.DbModels;
+using DoYouKnowIt.Application.Facades;
 using DoYouKnowIt.Application.Interfaces;
 using DoYouKnowIt.Application.Services;
 using DoYouKnowIt.Infrastructure.Repositories;
@@ -10,16 +11,23 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace DoYouKnowIt.Presentation.ViewModels.QB
 {
     public class QBSelectPageViewModel : INotifyPropertyChanged
     {
         IQuizService _quizService;
-        public QBSelectPageViewModel(IQuizService quizService)
+        ILoginFacade _loginFacade;
+        public QBSelectPageViewModel(IQuizService quizService, ILoginFacade loginFacade)
         {
             _quizService = quizService;
+            _loginFacade = loginFacade;
+            
+            AddNewQuizCommand = new Command(async () => AddNewQuiz()); //Send no Quiz ID parameter
         }
+
+        public ICommand AddNewQuizCommand { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChanged(string propertyName)
@@ -61,8 +69,25 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             SelectedQuiz = null;
         }
 
+        private async Task AddNewQuiz()
+        {
+            //Admin lock
+            if (await _loginFacade.UserIsAdminAsync() == false)
+            {
+                await Shell.Current.DisplayAlert("You are not an Admin", "Please login to a admin account to use the QuizBuilder", "OK");
+                return;
+            }
+                
+
+            await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditQuizPage)}");
+        }
+
         public async Task LoadData()
         {
+            //Admin lock
+            if (await _loginFacade.UserIsAdminAsync() == false)
+                return;
+
             try
             {
                 Quizzes = new ObservableCollection<Quiz>(await _quizService.GetAllQuizzesAsync());

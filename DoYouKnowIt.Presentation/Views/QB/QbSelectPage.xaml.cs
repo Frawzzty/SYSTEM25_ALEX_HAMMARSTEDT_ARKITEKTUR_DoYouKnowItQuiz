@@ -21,8 +21,4 @@ public partial class QBSelectPage : ContentPage
 		}
     }
 
-    private async void OnClickAddNewQuiz(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditQuizPage)}"); //Send no Quiz ID parameter
-    }
 }

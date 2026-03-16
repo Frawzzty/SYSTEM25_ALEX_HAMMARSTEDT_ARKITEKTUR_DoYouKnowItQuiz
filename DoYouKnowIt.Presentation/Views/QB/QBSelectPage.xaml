@@ -13,7 +13,7 @@
         <!--Add new Quiz-->
         <Button
             Text="Add new Quiz"
-            Clicked="OnClickAddNewQuiz"
+            Command="{Binding AddNewQuizCommand}"
             Style="{StaticResource BtnGreen}"
             HorizontalOptions="Start"/>
         

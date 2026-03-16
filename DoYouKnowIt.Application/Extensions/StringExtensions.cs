@@ -10,7 +10,7 @@ namespace DoYouKnowIt.Application.Extensions
     public static class StringExtensions
     {
         /// <summary>
-        /// Makes words first letter upper
+        /// Makes all words first letter uppercase
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
