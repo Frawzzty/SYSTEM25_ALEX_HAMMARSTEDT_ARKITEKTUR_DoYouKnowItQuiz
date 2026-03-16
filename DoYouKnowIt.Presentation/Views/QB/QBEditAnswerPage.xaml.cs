@@ -16,8 +16,10 @@ public partial class QBEditAnswerPage : ContentPage, IQueryAttributable
         //Get ID from GoToAsync Query Property
         if (BindingContext is ViewModels.QB.QBEditAnswerPageViewModel vm)
         {
+            //Get query properties
             if (query.TryGetValue("QuestionId", out var idQuestionString) && query.TryGetValue("AnswerId", out var idAnswerString))
             {
+                //Parse query properties
                 if (int.TryParse(idQuestionString.ToString(), out int questionId) && int.TryParse(idAnswerString.ToString(), out int answerId))
                 {
                     vm.QuestionId = questionId;
@@ -25,6 +27,7 @@ public partial class QBEditAnswerPage : ContentPage, IQueryAttributable
                 }
             }
 
+            //Load data
             await vm.LoadData();
             vm.IsInitialized = true;
         }
@@ -35,7 +38,8 @@ public partial class QBEditAnswerPage : ContentPage, IQueryAttributable
     {
         base.OnAppearing();
 
-        if(BindingContext is ViewModels.QB.QBEditAnswerPageViewModel vm)
+        //Only load on appearing if been loaded once. (If page ahead uses Navigation.pop())
+        if (BindingContext is ViewModels.QB.QBEditAnswerPageViewModel vm)
         {
             if (vm.IsInitialized)
                 await vm.LoadData();

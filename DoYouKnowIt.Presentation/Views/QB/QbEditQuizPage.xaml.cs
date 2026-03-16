@@ -23,6 +23,7 @@ public partial class QBEditQuizPage : ContentPage, IQueryAttributable
                 }
             }
 
+            //Load data
             await vm.LoadData();
             vm.IsInitialized = true;
         }
@@ -32,6 +33,7 @@ public partial class QBEditQuizPage : ContentPage, IQueryAttributable
     {
         base.OnAppearing();
         
+        //Only load on appearing if been loaded once. (If page ahead uses Navigation.pop())
         if(BindingContext is ViewModels.QB.QBEditQuizPageViewModel vm)
         {
             if (vm.IsInitialized)

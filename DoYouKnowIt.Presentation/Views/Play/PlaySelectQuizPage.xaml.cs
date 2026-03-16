@@ -18,11 +18,13 @@ public partial class PlaySelectQuizPage : ContentPage
     {
         base.OnAppearing();
 
+        //Load data
 		if(BindingContext is PlaySelectQuizPageViewModel vm)
 		{
 			await vm.LoadQuizzes();
 		}
 
+        //Start animations on appearing
         isRunningAnimations = true;
         RunAnimations();
     }
@@ -31,6 +33,7 @@ public partial class PlaySelectQuizPage : ContentPage
     {
         base.OnDisappearing();
 
+        //Will crash without this when navigation back to this page.
         isRunningAnimations = false;
         Microsoft.Maui.Controls.ViewExtensions.CancelAnimations(ImageTopQuizPlay);
     }

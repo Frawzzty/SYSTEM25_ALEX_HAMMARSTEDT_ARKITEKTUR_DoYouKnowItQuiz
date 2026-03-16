@@ -6,21 +6,19 @@ public partial class QBEditQuestionPage : ContentPage, IQueryAttributable
 {
 	public QBEditQuestionPage(ViewModels.QB.QBEditQuestionPageViewModel vm)
 	{
-        //old ctor params int quizId ,Question question
         InitializeComponent();
 		BindingContext = vm;
-
-
 	}
-
 
     public async void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         //Get ID from GoToAsync Query Property
         if (BindingContext is ViewModels.QB.QBEditQuestionPageViewModel vm)
         {
+            //Get query properties
             if (query.TryGetValue("QuizId", out var idQuizString) && query.TryGetValue("QuestionId", out var idQuestionString))
             {
+                //Parse query properties
                 if (int.TryParse(idQuizString.ToString(), out int quizId) && int.TryParse(idQuestionString.ToString(), out int questionId)) 
                 {
                     vm.QuizId = quizId;
@@ -28,6 +26,7 @@ public partial class QBEditQuestionPage : ContentPage, IQueryAttributable
                 }
             }
 
+            //Load data
             await vm.LoadData();
             vm.IsInitialized = true;
         }
@@ -37,7 +36,8 @@ public partial class QBEditQuestionPage : ContentPage, IQueryAttributable
     {
         base.OnAppearing();
 
-        if(BindingContext is ViewModels.QB.QBEditQuestionPageViewModel vm)
+        //Only load on appearing if been loaded once. (If page ahead uses Navigation.pop())
+        if (BindingContext is ViewModels.QB.QBEditQuestionPageViewModel vm)
         {
             if(vm.IsInitialized)
                 await vm.LoadData();
