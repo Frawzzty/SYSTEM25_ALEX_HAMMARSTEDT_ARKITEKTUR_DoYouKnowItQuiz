@@ -60,16 +60,14 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
         }
         #endregion
 
-        //Query Props====================
+        //Query Props
         private int _quizId;
-        public int QuizId { get { return _quizId; } set { _quizId = value; OnPropertyChanged(nameof(QuizId)); } }
-
         private int _questionId;
+        public int QuizId { get { return _quizId; } set { _quizId = value; OnPropertyChanged(nameof(QuizId)); } }
         public int QuestionId { get { return _questionId; } set { _questionId = value; OnPropertyChanged(nameof(QuestionId)); } }
-        //===============================
 
 
-        //Question Props
+        //Question
         private Question? _question;
         public Question? Question { get { return _question; } set { _question = value; OnPropertyChanged(nameof(Question)); } }
 
@@ -79,7 +77,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
         public ObservableCollection<Answer> Answers { get { return _answers; } set { _answers = value; OnPropertyChanged(nameof(Answers)); } }
 
 
-        //Collection view selection
+        //Bound to CollectionVeiw.SelectedItem
         private Answer _selectedAnswer;
         public Answer SelectedAnswer 
         { 

@@ -32,8 +32,9 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
         public ObservableCollection<Quiz> Quizzes { get { return _quizzes; } set { _quizzes = value; OnPropertyChanged(nameof(Quizzes)); } }
 
 
+        //Bound to CollectionVeiw.SelectedItem
         private Quiz _selectedQuiz;
-        public Quiz SelectedQuiz
+        public Quiz SelectedQuiz 
         {
             get { return _selectedQuiz; }
             set

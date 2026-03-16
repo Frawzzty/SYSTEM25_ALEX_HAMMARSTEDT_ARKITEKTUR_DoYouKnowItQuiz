@@ -19,10 +19,10 @@ namespace DoYouKnowIt.Presentation.ViewModels
             _loginFacade = loginFacade;
 
             GoPlayPageCommand = new Command(async () => { await Shell.Current.GoToAsync(nameof(Views.Play.PlaySelectQuizPage)); });
-            //GoLeaderboardPageCommand = new Command(async () => { });
-            //GoProfilePageCommand = new Command(async () => { });
             GoQuizBuilderPageCommand = new Command(async () => { await Shell.Current.GoToAsync(nameof(Views.QB.QBSelectPage)); });
             GoCountryFlagLookupPageCommand = new Command(async () => { await GoApiPage(); });
+            //GoLeaderboardPageCommand = new Command(async () => { });
+            //GoProfilePageCommand = new Command(async () => { });
         }
 
         #region PropertyChanged
@@ -36,10 +36,10 @@ namespace DoYouKnowIt.Presentation.ViewModels
 
         #region Commands
         public ICommand GoPlayPageCommand { get; set; }
-        //public ICommand GoLeaderboardPageCommand { get; set; }
-        //public ICommand GoProfilePageCommand { get; set; }
         public ICommand GoQuizBuilderPageCommand { get; set; }
         public ICommand GoCountryFlagLookupPageCommand { get; set; }
+        //public ICommand GoLeaderboardPageCommand { get; set; }
+        //public ICommand GoProfilePageCommand { get; set; }
         #endregion
 
         private string _username;
@@ -74,10 +74,10 @@ namespace DoYouKnowIt.Presentation.ViewModels
             _loginFacade.UserLogout();
         }
 
-        //Api page locked behind Admin permission
+        
         private async Task GoApiPage()
         {
-
+            //Api page locked, unless IsAdmin
             if (await _loginFacade.UserIsAdminAsync())
             {
                 await Shell.Current.GoToAsync(nameof(Views.ApiNInjas.CountrFlagLookupPage));
