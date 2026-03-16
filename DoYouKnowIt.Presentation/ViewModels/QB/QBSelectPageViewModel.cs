@@ -74,10 +74,9 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             //Admin lock
             if (await _loginFacade.UserIsAdminAsync() == false)
             {
-                await Shell.Current.DisplayAlert("You are not an Admin", "Please login to a admin account to use the QuizBuilder", "OK");
+                await Shell.Current.DisplayAlert("You are not an Admin", "Please login as admin to use the QuizBuilder", "OK");
                 return;
             }
-                
 
             await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditQuizPage)}");
         }

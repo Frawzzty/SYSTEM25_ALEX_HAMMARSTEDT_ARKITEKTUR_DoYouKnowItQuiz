@@ -10,13 +10,22 @@
         Margin="25"
         Spacing="10">
         
-        <!--Add new Quiz-->
-        <Button
+       
+        <HorizontalStackLayout Spacing="10">
+            <!--Button, Back-->
+            <controls:BackButton
+                HorizontalOptions="Start"/>
+            <!--Button, Add new Quiz-->
+            <Button
             Text="Add new Quiz"
             Command="{Binding AddNewQuizCommand}"
             Style="{StaticResource BtnGreen}"
             HorizontalOptions="Start"/>
+        </HorizontalStackLayout>
+
+
         
+
         <!--Select Quiz, go edit page-->
         <CollectionView
             ItemsSource="{Binding Quizzes}"

@@ -20,8 +20,8 @@
     <Color x:Key="ItemBorder">#305463</Color>
 
     <!--Items / GRADIENT-->
-    <Color x:Key="QCardDark">#568AA6</Color>
-    <Color x:Key="QCardLight">#5BA38E</Color>
+    <Color x:Key="QCardDark">#6FA2BF</Color>
+    <Color x:Key="QCardLight">#5DB39D</Color>
 
 
     <SolidColorBrush x:Key="MyBrush" Color="{StaticResource Primary}"/>

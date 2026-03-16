@@ -5,40 +5,47 @@
              x:Class="DoYouKnowIt.Presentation.Views.Play.PlaySelectQuizPage"
              Title="Play - Select Quiz"
              BackgroundColor="{StaticResource BgDefault}">
-    <VerticalStackLayout
-        Margin="25"
-        Spacing="10"
-        HorizontalOptions="Center">
+    <ScrollView>
+        <VerticalStackLayout
+            Margin="25"
+            Spacing="10"
+            HorizontalOptions="Center"
+            MinimumWidthRequest="900">
 
-        <Image
-            x:Name="ImageTopQuizPlay"
-            HeightRequest="200"
-            Source="image_playquiz1_transparent.png"/>
+            <Image
+                x:Name="ImageTopQuizPlay"
+                HeightRequest="200"
+                Source="image_playquiz1_transparent.png"/>
+            <controls:BackButton
+            HorizontalOptions="Start"/>
 
-        <SearchBar
-            Text="{Binding SearchbarText}"
-            Placeholder="search for quiz..."
-            BackgroundColor="White"/>
+            <SearchBar
+                Text="{Binding SearchbarText}"
+                Placeholder="search for quiz..."
+                BackgroundColor="White"/>
 
-        <CollectionView
-            ItemsSource="{Binding Quizzes}"
-            SelectedItem="{Binding SelectedQuiz}"
-            SelectionMode="Single"
-            >
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout
-                    Orientation="Vertical"
-                    ItemSpacing="5"/>
-            </CollectionView.ItemsLayout>
-            
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <controls:QuizCardControl
-                        QuizTitle="{Binding Title}"
-                        QuizDescription="{Binding Description}"
-                        QuizImageUrl="{Binding ImageUrl}"/>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+            <CollectionView
+                ItemsSource="{Binding Quizzes}"
+                SelectedItem="{Binding SelectedQuiz}"
+                SelectionMode="Single"
+                MaximumWidthRequest="900"
+                >
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                Orientation="Vertical"
+                ItemSpacing="3"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:QuizCardControl
+                            QuizTitle="{Binding Title}"
+                            QuizDescription="{Binding Description}"
+                            QuizImageUrl="{Binding ImageUrl}"/>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+    
 </ContentPage>
