@@ -16,27 +16,22 @@
                  Opacity="0.4"/>
             </Border.Shadow>
 
-            <Border.Background>
+            <Border.Background> <!--Gradient background-->
                 <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
                     <GradientStop Color="{StaticResource QCardDark}" Offset="0.3" />
                     <GradientStop Color="{StaticResource QCardLight}" Offset="1.0" />
                 </LinearGradientBrush>
             </Border.Background>
 
-
             <Button 
-             Padding="70"
-             Text="{Binding ButtonText,         Source={x:Reference Root}}"
-             Command="{Binding ButtonCommand,   Source={x:Reference Root}}"
-             TextColor="White"
-             FontSize="50"
-             BackgroundColor="Transparent"
-             
-             Pressed="OnButtonPressed"
-             Released="OnButtonReleased"
-             >
-
-
+                Padding="70"
+                BackgroundColor="Transparent"
+                Text="{Binding ButtonText,         Source={x:Reference Root}}"
+                TextColor="White"
+                FontSize="50"
+                Command="{Binding ButtonCommand,   Source={x:Reference Root}}"
+                Pressed="OnButtonPressed"
+                Released="OnButtonReleased">
             </Button>
 
         </Border>

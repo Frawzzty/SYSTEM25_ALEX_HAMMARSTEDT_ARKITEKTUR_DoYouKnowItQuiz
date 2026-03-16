@@ -4,32 +4,33 @@
              xmlns:controls="clr-namespace:DoYouKnowIt.Presentation.Controls"
              x:Class="DoYouKnowIt.Presentation.Views.QB.QBSelectPage"
              Title="Quiz Builder - Select"
-             BackgroundColor="{StaticResource BgDefault}"
-             >
+             BackgroundColor="{StaticResource BgDefault}">
     
     <VerticalStackLayout 
         Margin="25"
-        Spacing="10"
-        >
+        Spacing="10">
         
+        <!--Add new Quiz-->
         <Button
             Text="Add new Quiz"
             Clicked="OnClickAddNewQuiz"
             Style="{StaticResource BtnGreen}"
             HorizontalOptions="Start"/>
         
+        <!--Select Quiz, go edit page-->
         <CollectionView
             ItemsSource="{Binding Quizzes}"
             SelectedItem="{Binding SelectedQuiz}"
             SelectionMode="Single">
             <CollectionView.ItemTemplate>
-                <DataTemplate
-                    >
+                <DataTemplate>
+                    
                     <controls:QuizCardControl
                         Padding="5"
                         QuizTitle="{Binding Title}"
                         QuizDescription="{Binding Description}"
                         QuizImageUrl="{Binding ImageUrl}"/>
+                    
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

@@ -11,11 +11,13 @@
             Margin="25"
             Spacing="25">
 
+            <!--Logo Image-->
             <Image
                 x:Name="ImageLogo"
                 Source="logo_main_transparent.png"
                 HeightRequest="300"/>
 
+            <!--Login section-->
             <HorizontalStackLayout 
                 Spacing="10"
                 HorizontalOptions="Center">
@@ -44,9 +46,10 @@
                     Text="Logout"
                     Style="{StaticResource  BtnRed}"
                     Clicked="OnClickedLogout"
-                    IsVisible="False"/>
-
+                    IsVisible="False"/> <!--Visible after login-->
             </HorizontalStackLayout>
+            
+            <!--Nav blocks (buttons)-->
             <FlexLayout
                 Direction="Row"
                 Wrap="Wrap"
@@ -72,13 +75,8 @@
                 <controls:NavBlockButton
                     ButtonText="Country Flags"
                     ButtonCommand="{Binding GoCountryFlagLookupPageCommand}"/>
-
             </FlexLayout>
             
-            
-
-
-
         </VerticalStackLayout>
     </ScrollView>
 

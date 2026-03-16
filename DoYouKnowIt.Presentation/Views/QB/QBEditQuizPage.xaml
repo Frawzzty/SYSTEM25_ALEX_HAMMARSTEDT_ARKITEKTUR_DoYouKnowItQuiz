@@ -7,23 +7,26 @@
     <VerticalStackLayout 
         Margin="25"
         Spacing="10">
+        
+        <!--Quiz details-->
         <Label
             Text="{Binding QuizId, StringFormat='QuizId: {0}'}"/>
         <Entry
-            Placeholder="Quiz Title..."
             Text="{Binding Quiz.Title}"
+            Placeholder="Quiz Title..."
             Style="{StaticResource EntryDefault}"/>
 
         <Entry
-            Placeholder="Quiz Description..."
             Text="{Binding Quiz.Description}"
+            Placeholder="Quiz Description..."
             Style="{StaticResource EntryDefault}"/>
 
         <Entry
-            Placeholder="Quiz ImageUrl..."
             Text="{Binding Quiz.ImageUrl}"
+            Placeholder="Quiz ImageUrl..."
             Style="{StaticResource EntryDefault}"/>
 
+        <!--Buttons-->
         <Button
             Text="Save"
             Command="{Binding SaveQuizCommand}"
@@ -43,11 +46,12 @@
             HorizontalOptions="Start"
             Margin="0,0,0, 20"/>
 
+        <!--List of Questions, Select go edit page-->
         <Label
             Text="Questions"
+            TextColor="White"
             FontSize="25"
-            FontAttributes="Bold"
-            TextColor="White"/>
+            FontAttributes="Bold"/>
 
         <CollectionView
             ItemsSource="{Binding Questions}"

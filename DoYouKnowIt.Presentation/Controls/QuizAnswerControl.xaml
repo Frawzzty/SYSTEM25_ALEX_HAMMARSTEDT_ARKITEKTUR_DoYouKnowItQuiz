@@ -5,12 +5,12 @@
              x:Name="Root">
     <VerticalStackLayout>
         
-        <Border x:Name="MyBorder"
+        <Border 
+            x:Name="MyBorder"
             BackgroundColor="{StaticResource ItemBackground}"
             Stroke="{StaticResource ItemBorder}"
             StrokeShape="RoundRectangle 10"
-            Padding="10"
-            >
+            Padding="10">
 
             <!--For visual feedback-->
             <Border.GestureRecognizers>

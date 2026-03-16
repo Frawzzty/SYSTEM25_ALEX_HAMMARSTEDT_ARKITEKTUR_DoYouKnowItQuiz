@@ -12,23 +12,23 @@
             Text="{Binding QuestionId, StringFormat='QuestionId: {0}'}"/>
         <Label
             Text="{Binding AnswerId, StringFormat='AnswerId: {0}'}"/>
+
+        <!--Answer details-->
         <Entry
-            Placeholder="Answer Text..."
             Text="{Binding Answer.AnswerText}"
+            Placeholder="Answer Text..."
             Style="{StaticResource EntryDefault}"/>
         
         <HorizontalStackLayout>
             <CheckBox
                IsChecked="{Binding Answer.IsTrue}"
-               Color="#65D14B"
-            />
+               Color="#65D14B"/>
             <Label
-                VerticalOptions="Center"
                 Text="True"
-            />
-
+                VerticalOptions="Center"/>
         </HorizontalStackLayout>
         
+        <!--Buttons-->
         <Button
             Text="Save"
             Command="{Binding SaveAnswerCommand}"
@@ -40,7 +40,6 @@
             Command="{Binding DeleteAnswerCommand}"
             Style="{StaticResource BtnRed}"
             HorizontalOptions="Start"/>
-
 
     </VerticalStackLayout>
 </ContentPage>

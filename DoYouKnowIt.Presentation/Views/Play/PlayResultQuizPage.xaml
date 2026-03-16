@@ -10,21 +10,19 @@
         <VerticalStackLayout HorizontalOptions="Center"
             Margin="25"
             Spacing="10">
-            <Label 
+            <Label HorizontalOptions="Center"
                 Text="{Binding TotalScore, StringFormat='Total Score: {0} '}"
-                TextColor="White"
+                TextColor="{StaticResource Black}"
                 FontSize="25"
                 FontAttributes="Bold"/>
 
             <CollectionView HorizontalOptions="Center"
-                ItemsSource="{Binding RoundResults}"
-                >
+                ItemsSource="{Binding RoundResults}">
 
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout
-                         
-                Orientation="Vertical"
-                ItemSpacing="10"/>
+                        Orientation="Vertical"
+                        ItemSpacing="10"/>
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
@@ -42,8 +40,7 @@
             <Button
                 Text="Done"
                 Style="{StaticResource BtnGreen}"
-                Command="{Binding PopToRootCommand}"
-                />
+                Command="{Binding PopToRootCommand}"/>
 
         </VerticalStackLayout>
     </ScrollView>

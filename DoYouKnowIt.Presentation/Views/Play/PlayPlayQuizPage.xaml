@@ -16,14 +16,13 @@
             <Label
                 Text="{Binding TotalScore, StringFormat='Score {0}'}"/>
             <Border
-                StrokeShape="RoundRectangle 10"
                 BackgroundColor="White"
-                StrokeThickness="2"
-                Stroke="Black"
-                HorizontalOptions="Center"
                 MaximumWidthRequest="800"
                 HeightRequest="450"
-                >
+                HorizontalOptions="Center"
+                Stroke="Black"
+                StrokeShape="RoundRectangle 10"
+                StrokeThickness="2">
                 <Image
                     Source="{Binding CurrentQuestion.QuestionImageUrl}"
                     Aspect="AspectFill"
@@ -33,19 +32,19 @@
             <Border
                 StrokeShape="RoundRectangle 10">
                 <Label
+                    BackgroundColor="{StaticResource ItemBorder}"
                     Padding="10"
                     Text="{Binding CurrentQuestion.QuestionText}"
-                    FontSize="30"
                     TextColor="White"
-                    HorizontalTextAlignment="Center"
-                    BackgroundColor="{StaticResource ItemBorder}"/>
+                    FontSize="30"
+                    HorizontalTextAlignment="Center"/>
             </Border>
 
             <CollectionView
                 ItemsSource="{Binding CurrentAnswers}"
                 SelectedItem="{Binding SelectedAnswer}"
-                SelectionMode="Single"
-                >
+                SelectionMode="Single">
+                
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout
                         Orientation="Vertical"

@@ -22,8 +22,8 @@
 
         <CollectionView
             ItemsSource="{Binding Quizzes}"
-            SelectionMode="Single"
             SelectedItem="{Binding SelectedQuiz}"
+            SelectionMode="Single"
             >
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout

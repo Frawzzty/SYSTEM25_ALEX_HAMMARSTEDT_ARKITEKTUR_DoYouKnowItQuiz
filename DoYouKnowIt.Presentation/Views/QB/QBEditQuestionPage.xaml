@@ -12,16 +12,19 @@
             Text="{Binding QuizId, StringFormat='QuizId: {0}'}"/>
         <Label
             Text="{Binding QuestionId, StringFormat='QuestionId: {0}'}"/>
+
+        <!--Question details-->
         <Entry
-            Placeholder="Question Text..."
             Text="{Binding Question.QuestionText}"
+            Placeholder="Question Text..."
             Style="{StaticResource EntryDefault}"/>
 
         <Entry
-            Placeholder="Question ImageUrl..."
             Text="{Binding Question.QuestionImageUrl}"
+            Placeholder="Question ImageUrl..."
             Style="{StaticResource EntryDefault}"/>
 
+        <!--Buttons-->
         <Button
             Text="Save"
             Command="{Binding SaveQuestionCommand}"
@@ -41,12 +44,12 @@
             HorizontalOptions="Start"
             Margin="0,0,0, 20"/>
 
+        <!--List Answers, go edit page-->
         <Label
             Text="Answers"
+            TextColor="White"
             FontSize="25"
-            FontAttributes="Bold"
-            TextColor="White"/>
-
+            FontAttributes="Bold"/>
         
         <CollectionView
             ItemsSource="{Binding Answers}"
@@ -72,12 +75,12 @@
                             Spacing="10">
                             <Label
                                 Text="{Binding AnswerText}"
-                                FontSize="25"
-                                TextColor="White"/>
+                                TextColor="White"
+                                FontSize="25"/>
                             <Label
                                 Text="{Binding IsTrue}"
-                                FontSize="15"
-                                TextColor="White"/>
+                                TextColor="White"
+                                FontSize="15"/>
                         </HorizontalStackLayout>
                     </Border>
                     

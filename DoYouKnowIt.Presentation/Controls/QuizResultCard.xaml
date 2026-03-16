@@ -8,37 +8,40 @@
         <Grid>
             <Border 
                 x:Name="QuizResultCardBox"
-                HorizontalOptions="Center"
-                StrokeShape="RoundRectangle 10"
+                Padding="25"
                 BackgroundColor="{StaticResource ItemBackground}" 
+                HorizontalOptions="Center"
                 Stroke="Black"
-                StrokeThickness="1.5"
-                Padding="25">
-                <HorizontalStackLayout Spacing="50" HorizontalOptions="Center">
+                StrokeShape="RoundRectangle 10"
+                StrokeThickness="1.5">
+                
+                <HorizontalStackLayout 
+                    Spacing="50" 
+                    HorizontalOptions="Center">
                     <VerticalStackLayout 
                         WidthRequest="500"
                         Spacing="5">
-                        <!--<Label TextColor="White" FontSize="20" Text="{Binding IsCorrect, StringFormat='Was correct? {0}', Source={x:Reference Root}}"/>-->
-                        <Label TextColor="White" FontSize="20" Text="{Binding RoundScore, StringFormat='Points: {0}', Source={x:Reference Root}}"/>
-                        <Border Margin="0, 10"></Border>
-                        <Label TextColor="White" FontSize="20" Text="{Binding QuestionText, StringFormat='Q: {0}',Source={x:Reference Root}}"/>
-                        <Label TextColor="White" FontSize="20" Text="{Binding CorrectAnswersText, StringFormat='A: {0}', Source={x:Reference Root}}"/>
+                        <Label TextColor="White" FontSize="20" Text="{Binding RoundScore, StringFormat='Points: {0}',           Source={x:Reference Root}}"/>
+                        <Border Margin="0, 10"></Border> <!--As a line between-->
+                        <Label TextColor="White" FontSize="20" Text="{Binding QuestionText, StringFormat='Q: {0}',              Source={x:Reference Root}}"/>
+                        <Label TextColor="White" FontSize="20" Text="{Binding CorrectAnswersText, StringFormat='A: {0}',        Source={x:Reference Root}}"/>
                         <Border Margin="0, 10"></Border>
                         <Label TextColor="White" FontSize="20" Text="{Binding SelectedAnswerText, StringFormat='Selected: {0}', Source={x:Reference Root}}"/>
-                    </VerticalStackLayout>
+                </VerticalStackLayout>
 
                     <Border 
-                        HorizontalOptions="Center"
-                        StrokeShape="RoundRectangle 10"
                         BackgroundColor="White"
-                        StrokeThickness="2"
-                        Stroke="Black"
+                        HorizontalOptions="Center"
                         MaximumWidthRequest="400"
-                        HeightRequest="225">
+                        HeightRequest="225"
+                        Stroke="Black"
+                        StrokeShape="RoundRectangle 10"
+                        StrokeThickness="2"
+>
                         <Image
                             Source="{Binding QuestionImageUrl}"
-                            Aspect="AspectFill"
-                            BackgroundColor="White"/>
+                            BackgroundColor="White"
+                            Aspect="AspectFill"/>
                     </Border>
 
                 </HorizontalStackLayout>
