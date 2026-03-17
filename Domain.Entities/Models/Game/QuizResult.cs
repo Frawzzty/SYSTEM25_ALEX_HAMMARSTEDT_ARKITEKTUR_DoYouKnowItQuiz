@@ -9,7 +9,7 @@ namespace Domain.Entities.Models.Game
             Quiz = quiz;
         }
 
-        public Quiz Quiz { get; set; }
+        public Quiz Quiz { get;}
         public List<QuizRoundResult> RoundResult { get; set; } = new();
 
         public void AddRoundResult(QuizRoundResult roundResult)
