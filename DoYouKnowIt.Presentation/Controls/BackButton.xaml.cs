@@ -11,4 +11,14 @@ public partial class BackButton : ContentView
     {
 		await Shell.Current.GoToAsync("..");
     }
+
+    private void OnPointerEntered(object sender, PointerEventArgs e)
+    {
+        btnBack.Opacity = 0.8;
+    }
+
+    private void OnPointerExited(object sender, PointerEventArgs e)
+    {
+        btnBack.Opacity = 1;
+    }
 }

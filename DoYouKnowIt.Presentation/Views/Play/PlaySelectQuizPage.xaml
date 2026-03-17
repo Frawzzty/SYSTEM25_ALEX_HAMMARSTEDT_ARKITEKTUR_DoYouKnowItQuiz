@@ -6,34 +6,37 @@
              Title="Play - Select Quiz"
              BackgroundColor="{StaticResource BgDefault}">
     <ScrollView>
-        <VerticalStackLayout
-            Margin="25"
-            Spacing="10"
-            HorizontalOptions="Center"
-            MinimumWidthRequest="900">
 
-            <Image
+        <Grid
+            Padding="25" 
+            RowDefinitions="Auto,Auto,Auto,*"
+            RowSpacing="8">
+            
+            <Image Grid.Row="0"
                 x:Name="ImageTopQuizPlay"
-                HeightRequest="200"
+                MaximumHeightRequest="200"
                 Source="image_playquiz1_transparent.png"/>
-            <controls:BackButton
-            HorizontalOptions="Start"/>
 
-            <SearchBar
+            <controls:BackButton Grid.Row="1"
+                HorizontalOptions="Start"
+                Margin="0,0,0,10"/>
+
+            <SearchBar Grid.Row="2"
+                HorizontalOptions="Fill"
                 Text="{Binding SearchbarText}"
                 Placeholder="search for quiz..."
                 BackgroundColor="White"/>
 
-            <CollectionView
+            <CollectionView Grid.Row="3"
                 ItemsSource="{Binding Quizzes}"
                 SelectedItem="{Binding SelectedQuiz}"
                 SelectionMode="Single"
-                MaximumWidthRequest="900"
+                HorizontalOptions="Fill"
                 >
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout
-                Orientation="Vertical"
-                ItemSpacing="3"/>
+                        Orientation="Vertical"
+                        ItemSpacing="4"/>
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
@@ -45,7 +48,9 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </VerticalStackLayout>
+
+        </Grid>
+        
     </ScrollView>
     
 </ContentPage>

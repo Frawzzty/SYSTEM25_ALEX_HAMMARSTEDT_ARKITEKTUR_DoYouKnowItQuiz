@@ -3,9 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DoYouKnowIt.Presentation.Controls.BackButton">
     <VerticalStackLayout>
-        <Button
+
+
+        <Button x:Name="btnBack"
+
             Text="Back"
             Style="{StaticResource BtnNavigation}"
-            Clicked="OnClickedGoBack"/>
+            Clicked="OnClickedGoBack">
+
+            <Button.GestureRecognizers>
+                <PointerGestureRecognizer
+                    PointerEntered="OnPointerEntered"
+                    PointerExited="OnPointerExited"/>
+            </Button.GestureRecognizers>
+        </Button>
     </VerticalStackLayout>
 </ContentView>
