@@ -2,6 +2,7 @@
 
 namespace Domain.Entities.Models.Game
 {
+    //Used for displaying values in on the reuslt page after the quiz
     public class QuizRoundResult
     {
         public QuizRoundResult(Question question, Answer selectedAnswer)
