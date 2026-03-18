@@ -9,8 +9,8 @@
     <VerticalStackLayout 
         Margin="25"
         Spacing="10">
-        
-       
+
+
         <HorizontalStackLayout Spacing="10">
             <!--Button, Back-->
             <controls:BackButton
@@ -24,7 +24,13 @@
         </HorizontalStackLayout>
 
 
-        
+
+        <Label
+            Text="Select to edit"
+            TextColor="White"
+            FontSize="25"
+            FontAttributes="Bold"
+            Margin="0,20,0,0"/>        
 
         <!--Select Quiz, go edit page-->
         <CollectionView

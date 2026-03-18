@@ -6,7 +6,7 @@
              
     <VerticalStackLayout>
         <Border
-        BackgroundColor="{StaticResource ItemBackground}"
+        Background="{StaticResource QuizCardGradient}"
         Stroke="{StaticResource ItemBorder}"
         StrokeShape="RoundRectangle 5">
             <HorizontalStackLayout 
