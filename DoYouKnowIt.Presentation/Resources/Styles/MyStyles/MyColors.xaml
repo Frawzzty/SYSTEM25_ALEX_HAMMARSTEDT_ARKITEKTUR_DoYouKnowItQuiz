@@ -33,7 +33,7 @@
 
     <LinearGradientBrush x:Key="QuizCardGradient">
         <GradientStop Color="#416E85" Offset="0.0" />
-        <GradientStop Color="#4B7F99" Offset="1.0" />
+        <GradientStop Color="#56A892" Offset="1.0" />
     </LinearGradientBrush>
 
 </ResourceDictionary>
