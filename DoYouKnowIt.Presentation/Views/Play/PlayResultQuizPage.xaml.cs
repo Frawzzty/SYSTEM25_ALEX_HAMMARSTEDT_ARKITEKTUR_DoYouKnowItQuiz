@@ -1,4 +1,4 @@
-using Domain.Entities.Models.Game;
+using Domain.Entities.Models.GameModels;
 
 namespace DoYouKnowIt.Presentation.Views.Play;
 

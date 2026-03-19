@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Models.Login;
+﻿using Domain.Entities.Models.LoginModels;
 
 namespace DoYouKnowIt.Application.Interfaces.LoginInterfaces
 {

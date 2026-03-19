@@ -1,14 +1,14 @@
-﻿namespace Domain.Entities.Models.Login
+﻿namespace Domain.Entities.Models.LoginModels
 {
     public class UserSession
     {
         private static readonly UserSession _currentSession = new UserSession();
+        private UserSession() { }
 
         public string Username { get; private set; } = string.Empty;
         public string Password { get; private set; } = string.Empty;
         public bool IsLoggedIn { get; private set; } = false;
 
-        private UserSession() { }
 
         public static UserSession GetUserSession()
         {

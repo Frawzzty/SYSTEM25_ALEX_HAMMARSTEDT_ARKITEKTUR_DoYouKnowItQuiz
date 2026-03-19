@@ -1,6 +1,6 @@
 ﻿using Domain.Entities.Models.DbModels;
 
-namespace Domain.Entities.Models.Game
+namespace Domain.Entities.Models.GameModels
 {
     public class QuizResult
     {

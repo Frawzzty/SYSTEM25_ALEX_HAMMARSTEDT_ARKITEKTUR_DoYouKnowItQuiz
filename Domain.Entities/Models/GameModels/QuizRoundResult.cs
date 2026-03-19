@@ -1,6 +1,6 @@
 ﻿using Domain.Entities.Models.DbModels;
 
-namespace Domain.Entities.Models.Game
+namespace Domain.Entities.Models.GameModels
 {
     //Used for displaying values in on the reuslt page after the quiz
     public class QuizRoundResult

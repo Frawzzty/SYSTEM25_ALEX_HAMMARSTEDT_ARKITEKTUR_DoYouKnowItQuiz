@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Models.Game;
+﻿using Domain.Entities.Models.GameModels;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
