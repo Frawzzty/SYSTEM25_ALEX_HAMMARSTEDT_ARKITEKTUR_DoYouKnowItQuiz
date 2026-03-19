@@ -12,8 +12,8 @@ namespace DoYouKnowIt.Infrastructure.Repositories
 {
     public class RepositoryEF<T> : IRepository<T> where T : class
     {
-
-        //Does not include...
+        
+        //Does not include navigation props due to being generic...
         public async Task<T?> GetByIdAsync(int entityId)
         {
             using (var context = new MyDbContext()) 
@@ -21,8 +21,8 @@ namespace DoYouKnowIt.Infrastructure.Repositories
                 return await context.Set<T>().FindAsync(entityId);
             }
         }
-          
-        //Does not include...
+
+        //Does not include navigation props due to being generic...
         public async Task<List<T>> GetAllAsync()
         {
             using (var context = new MyDbContext())

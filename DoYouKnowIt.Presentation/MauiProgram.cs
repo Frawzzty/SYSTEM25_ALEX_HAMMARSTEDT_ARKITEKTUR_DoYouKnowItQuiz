@@ -34,20 +34,19 @@ namespace DoYouKnowIt.Presentation
 
             #if DEBUG
     		builder.Logging.AddDebug();
-#endif
+            #endif
+
             //Login facade components
             builder.Services.AddScoped<IAuthorizationService, AuthorizationService>();
             builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
             builder.Services.AddScoped<ILoginFacade, LoginFacade>();
 
             //UserSession Singelton. Gets the same session on each page
-            builder.Services.AddSingleton<UserSession>();
+            //builder.Services.AddSingleton<UserSession>();
             builder.Services.AddScoped<IUserSessionService, UserSessionService>();
-
 
             //MongoDB
             builder.Services.AddScoped<MongoDbConnection>();
-                
 
             //Specific repos
             builder.Services.AddScoped<IQuizRepository, QuizRepositoryEF>();
@@ -61,21 +60,23 @@ namespace DoYouKnowIt.Presentation
             builder.Services.AddScoped<IUserService, UserService>();
 
 
-            //Generics Repos //Works but does not .include and .theninclude
+            //Generics Repos //Works but does not .include and .theninclude navigation props
             builder.Services.AddScoped<IRepository<Quiz>, RepositoryEF<Quiz>>();
             builder.Services.AddScoped<IRepository<Question>, RepositoryEF<Question>>();
             builder.Services.AddScoped<IRepository<Answer>, RepositoryEF<Answer>>();
+            builder.Services.AddScoped<IRepository<User>, RepositoryEF<User>>();
             //Generics Services
             builder.Services.AddScoped<IRepositoryService<Quiz>, RepositoryService<Quiz>>();
             builder.Services.AddScoped<IRepositoryService<Question>, RepositoryService<Question>>();
             builder.Services.AddScoped<IRepositoryService<Answer>, RepositoryService<Answer>>();
+            builder.Services.AddScoped<IRepositoryService<User>, RepositoryService<User>>();
 
 
-            //Main page
+            //Main page (View & ViewModels)
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<MainPageViewModel>();
 
-            //QuizBuilder Pages (Views) & ViewModels
+            //Pages: QuizBuilder (Views & ViewModels)
             builder.Services.AddTransient<QBSelectPage>();
             builder.Services.AddTransient<QBSelectPageViewModel>();
 
@@ -88,14 +89,14 @@ namespace DoYouKnowIt.Presentation
             builder.Services.AddTransient<QBEditAnswerPage>();
             builder.Services.AddTransient<QBEditAnswerPageViewModel>();
 
-            //PlayQuiz pages
+            //Pages: PlayQuiz (Views & ViewModels)
             builder.Services.AddTransient<PlaySelectQuizPage>();
             builder.Services.AddTransient<PlaySelectQuizPageViewModel>();
 
             builder.Services.AddTransient<PlayPlayQuizPage>();
             builder.Services.AddTransient<PlayPlayQuizPageViewModel>();
 
-            
+
             //API Ninjas 
             builder.Services.AddScoped<ApiNinjasDataManager>();
             builder.Services.AddScoped<ApiNinjasCountryService>();

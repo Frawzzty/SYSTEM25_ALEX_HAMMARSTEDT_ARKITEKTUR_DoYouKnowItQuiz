@@ -50,19 +50,19 @@ namespace DoYouKnowIt.Presentation.ViewModels
         //Login
         public async Task<bool> Login()
         {
-            if (!IsValidLoginInputs())
+            if (await IsValidLoginInputs() == false)
                 return false;
 
             if (await _loginFacade.UserLogin(Username, Password))
             {
-                Shell.Current.DisplayAlert("Login status", "You are now logged in", "OK");
+                await Shell.Current.DisplayAlert("Login status", "You are now logged in", "OK");
                 Username = "";
                 Password = "";
                 return true;
             }
             else
             {
-                Shell.Current.DisplayAlert("Login status", "Login failed, check username and password is correct", "OK");
+                await Shell.Current.DisplayAlert("Login status", "Login failed, check username and password is correct", "OK");
             }
 
             return false;
@@ -84,18 +84,19 @@ namespace DoYouKnowIt.Presentation.ViewModels
             }
             else
             {
-                Shell.Current.DisplayAlert("Error", "Please login with an Admin account", "OK");
+                await Shell.Current.DisplayAlert("Error", "Please login with an Admin account", "OK");
             }
                 
         }
 
         //Input validation
-        private bool IsValidLoginInputs()
+        private async Task<bool> IsValidLoginInputs()
         {
             if (!string.IsNullOrEmpty(Username) || !string.IsNullOrEmpty(Password))
                 return true;
             
-            Shell.Current.DisplayAlert("Error", "Fill in Username and Password", "OK");
+            await Shell.Current.DisplayAlert("Error", "Fill in Username and Password", "OK");
+
             return false;
             
         }

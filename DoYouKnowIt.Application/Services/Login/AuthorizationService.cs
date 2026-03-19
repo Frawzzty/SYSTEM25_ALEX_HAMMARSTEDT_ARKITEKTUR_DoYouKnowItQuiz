@@ -14,10 +14,10 @@ namespace DoYouKnowIt.Application.Services.Login
         //Check user permission
         IUserService _userService;
         UserSession _userSession;
-        public AuthorizationService(IUserService userService, UserSession userSession)
+        public AuthorizationService(IUserService userService)
         {
             _userService = userService;
-            _userSession = userSession;
+            _userSession = UserSession.GetUserSession();
         }
         public async Task<bool> IsAuthorizedAsync(string role)
         {

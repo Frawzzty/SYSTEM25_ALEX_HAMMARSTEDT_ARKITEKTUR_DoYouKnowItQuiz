@@ -62,13 +62,13 @@
                     ButtonText="Play"
                     ButtonCommand="{Binding GoPlayPageCommand}"/>
 
-                <controls:NavBlockButton
+                <!--<controls:NavBlockButton
                     ButtonText="Leaderboard"
                     ButtonCommand="{Binding GoLeaderboardPageCommand}"/>
 
                 <controls:NavBlockButton
                     ButtonText="Profile"
-                    ButtonCommand="{Binding GoProfilePageCommand}"/>
+                    ButtonCommand="{Binding GoProfilePageCommand}"/>-->
 
                 <controls:NavBlockButton
                     ButtonText="Quiz builder"

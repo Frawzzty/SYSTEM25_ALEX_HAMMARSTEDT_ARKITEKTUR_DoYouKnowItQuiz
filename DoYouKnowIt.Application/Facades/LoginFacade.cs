@@ -43,9 +43,7 @@ namespace DoYouKnowIt.Application.Facades
 
         public async Task<bool> UserIsLoggedIn()
         {
-            UserSession userSession = _userSessionService.GetSession();
-
-            if (!userSession.IsLoggedIn)
+            if (!UserSession.GetUserSession().IsLoggedIn)
                 return true;
             else 
                 return false;

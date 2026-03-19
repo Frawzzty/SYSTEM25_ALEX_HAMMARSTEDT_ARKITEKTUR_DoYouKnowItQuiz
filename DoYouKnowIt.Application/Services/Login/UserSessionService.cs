@@ -12,10 +12,12 @@ namespace DoYouKnowIt.Application.Services.Login
     public class UserSessionService : IUserSessionService
     {
         private UserSession _thisSession;
+
         //Singelton - The user only needs to login one time when using the application
-        public UserSessionService(UserSession thisSession)
+
+        public UserSessionService()
         {
-            _thisSession = thisSession;
+            _thisSession = UserSession.GetUserSession();
         }
 
         public UserSession GetSession()
