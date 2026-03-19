@@ -25,7 +25,7 @@ namespace DoYouKnowIt.Infrastructure.Repositories.DbRepositories
 
         public async Task<List<Quiz>> GetAllAsync()
         {
-            return await GetMongoQuizCollection().Find(_ => true).ToListAsync();
+            return await GetMongoQuizCollection().Find(x => true).ToListAsync();
         }
 
         public Task<Quiz?> GetByIdAsync(int quizId)
