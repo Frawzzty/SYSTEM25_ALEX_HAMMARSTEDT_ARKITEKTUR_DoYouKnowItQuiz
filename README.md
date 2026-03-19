@@ -1,8 +1,24 @@
-![Home page](Screenshots/Home.Jpg)
-![Quiz Select page](SelectPage.jpg)
 
-![Quiz Play page](Screenshots/PlayPage.jpg)
-![Quiz Result](ResultPage.jpg)
+<p align="center">
+  <img src="Screenshots/Screenshots/Home.Jpg" width="600">
+</p>
 
-![Quiz Edit question page](QuizBuilderEditQuestionPage.jpg)
-![Quiz Edit page](QuizBuilderEditQuizPage.jpg)
+<p align="center">
+  <img src="Screenshots/Screenshots/SelectPage.jpg" width="600">
+</p>
+
+<p align="center">
+  <img src="Screenshots/Screenshots/PlayPage.jpg" width="600">
+</p>
+
+<p align="center">
+  <img src="Screenshots/Screenshots/ResultPage.jpg" width="600">
+</p>
+
+<p align="center">
+  <img src="Screenshots/Screenshots/QuizBuilderEditQuestionPage.jpg" width="600">
+</p>
+
+<p align="center">
+  <img src="Screenshots/Screenshots/QuizBuilderEditQuizPage.jpg" width="600">
+</p>
