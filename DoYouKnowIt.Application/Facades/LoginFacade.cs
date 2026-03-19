@@ -1,6 +1,8 @@
-﻿using Domain.Entities.Models;
+﻿using Domain.Entities.Enums;
+using Domain.Entities.Models;
 using DoYouKnowIt.Application.Interfaces.NewFolder;
 using DoYouKnowIt.Application.Services.Login;
+using System.Diagnostics;
 
 namespace DoYouKnowIt.Application.Facades
 {
@@ -21,7 +23,7 @@ namespace DoYouKnowIt.Application.Facades
         {
             UserSession userSession = _userSessionService.GetSession();
             if (await _autherizationService.IsAuthenticatedAsync(userSession.Username, userSession.Password) &&
-                await _authenticationService.IsAuthorizedAsync("Admin")) //Make enum? //Double db call
+                await _authenticationService.IsAuthorizedAsync(UserRole.Admin.ToString()))
             {
                 return true;
             }
