@@ -97,7 +97,13 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
             else
             {
                 CurrentQuestion = _randomizedQuestionList[_questionIndex];
-                CurrentAnswers = new ObservableCollection<Answer>(CurrentQuestion.Answers.OrderBy(_ => Random.Shared.Next()).ToList()); //Randomize answer list order
+                CurrentAnswers = new ObservableCollection<Answer>(CurrentQuestion.Answers.OrderBy(x => Random.Shared.Next()).ToList()); //Randomize answer list order
+
+                if (CurrentAnswers.Count == 0) //Fail check, If no answers exists for the Question
+                {
+                    await Shell.Current.DisplayAlert("Error", $"The question: '{CurrentQuestion.QuestionText}' does not have any answers, please notify an Admin. Sending you back to select page", "OK");
+                    await Shell.Current.GoToAsync("..");
+                }
             }
         }
 
