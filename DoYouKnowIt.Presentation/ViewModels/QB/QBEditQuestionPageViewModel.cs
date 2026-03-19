@@ -1,5 +1,5 @@
 ﻿using Domain.Entities.Models.DbModels;
-using DoYouKnowIt.Application.Interfaces;
+using DoYouKnowIt.Application.Interfaces.DbServiceInterfaces;
 using DoYouKnowIt.Application.Services;
 using System;
 using System.Collections.Generic;

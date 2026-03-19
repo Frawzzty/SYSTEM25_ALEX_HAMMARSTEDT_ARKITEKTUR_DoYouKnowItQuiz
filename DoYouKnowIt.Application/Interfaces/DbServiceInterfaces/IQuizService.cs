@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoYouKnowIt.Application.Interfaces
+namespace DoYouKnowIt.Application.Interfaces.DbServiceInterfaces
 {
     public interface IQuizService
     {

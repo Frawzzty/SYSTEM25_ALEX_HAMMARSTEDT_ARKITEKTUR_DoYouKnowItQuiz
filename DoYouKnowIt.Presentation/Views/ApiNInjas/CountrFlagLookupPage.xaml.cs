@@ -1,5 +1,5 @@
 using Domain.Entities.Models.ApiNinjasModels;
-using DoYouKnowIt.Application.Services.ApiNinjas;
+using DoYouKnowIt.Application.Services.ApiNinjasServices;
 using System.ComponentModel;
 
 namespace DoYouKnowIt.Presentation.Views.ApiNInjas;

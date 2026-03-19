@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace DoYouKnowIt.Application.Services.ApiNinjas
+namespace DoYouKnowIt.Application.Services.ApiNinjasServices
 {
     public class ApiNinjasCountryService
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoYouKnowIt.Application.Interfaces.NewFolder
+namespace DoYouKnowIt.Application.Interfaces.LoginInterfaces
 {
     public interface IUserSessionService
     {

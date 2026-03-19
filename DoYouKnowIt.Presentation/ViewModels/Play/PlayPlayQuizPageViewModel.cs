@@ -1,6 +1,6 @@
 ﻿using Domain.Entities.Models.DbModels;
 using Domain.Entities.Models.Game;
-using DoYouKnowIt.Application.Interfaces;
+using DoYouKnowIt.Application.Interfaces.DbServiceInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

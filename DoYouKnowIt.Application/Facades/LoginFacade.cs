@@ -1,7 +1,7 @@
 ﻿using Domain.Entities.Enums;
 using Domain.Entities.Models.Login;
-using DoYouKnowIt.Application.Interfaces.NewFolder;
-using DoYouKnowIt.Application.Services.Login;
+using DoYouKnowIt.Application.Interfaces.LoginInterfaces;
+using DoYouKnowIt.Application.Services.LoginServices;
 using System.Diagnostics;
 
 namespace DoYouKnowIt.Application.Facades

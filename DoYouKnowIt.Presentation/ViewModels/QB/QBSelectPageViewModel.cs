@@ -1,7 +1,7 @@
 ﻿using Domain.Entities.Interfaces;
 using Domain.Entities.Models.DbModels;
 using DoYouKnowIt.Application.Facades;
-using DoYouKnowIt.Application.Interfaces;
+using DoYouKnowIt.Application.Interfaces.DbServiceInterfaces;
 using DoYouKnowIt.Application.Services;
 using DoYouKnowIt.Infrastructure.Repositories;
 using System;

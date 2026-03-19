@@ -1,6 +1,6 @@
 ﻿using Domain.Entities.Interfaces;
 using Domain.Entities.Models.DbModels;
-using DoYouKnowIt.Application.Interfaces;
+using DoYouKnowIt.Application.Interfaces.DbServiceInterfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoYouKnowIt.Application.Services
+namespace DoYouKnowIt.Application.Services.DbServices
 {
     public class UserService : IUserService
     {
