@@ -6,7 +6,7 @@ namespace DoYouKnowIt.Infrastructure.Connections
     {
         public MongoClient GetClient()
         {
-            var connStr = "mongodb+srv://alexh_db_user:JHp0b6l1LcwnCQzF@cluster0.qwoupuh.mongodb.net/?appName=Cluster0"; // :D //Super secret
+            var connStr = "mongodb+srv://alexh_db_user:JHp0b6l1LcwnCQzF@cluster0.qwoupuh.mongodb.net/?appName=Cluster0"; //Super secret
             
             MongoClientSettings settings = MongoClientSettings.FromUrl(new MongoUrl(connStr));
             MongoClient client = new MongoClient(settings);
