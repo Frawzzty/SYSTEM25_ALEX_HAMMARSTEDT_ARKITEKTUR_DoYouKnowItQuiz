@@ -1,6 +1,6 @@
 ﻿using Domain.Entities.Interfaces;
 using Domain.Entities.Models.DbModels;
-using DoYouKnowIt.Infrastructure.Data;
+using DoYouKnowIt.Infrastructure.Connections;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DoYouKnowIt.Infrastructure.Repositories
+namespace DoYouKnowIt.Infrastructure.Repositories.DbRepositories
 {
 
 

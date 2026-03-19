@@ -1,17 +1,9 @@
 ﻿using Domain.Entities.Interfaces;
 using Domain.Entities.Models.DbModels;
-using DoYouKnowIt.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using MongoDB.Bson;
+using DoYouKnowIt.Infrastructure.Connections;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DoYouKnowIt.Infrastructure.Repositories
+namespace DoYouKnowIt.Infrastructure.Repositories.DbRepositories
 {
     public class QuizRepoMongoDb : IQuizRepository
     {

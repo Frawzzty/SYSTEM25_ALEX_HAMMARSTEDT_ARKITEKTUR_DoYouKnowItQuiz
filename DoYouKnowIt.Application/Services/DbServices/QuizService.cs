@@ -2,13 +2,6 @@
 using Domain.Entities.Models.DbModels;
 using DoYouKnowIt.Application.Extensions;
 using DoYouKnowIt.Application.Interfaces.DbServiceInterfaces;
-using DoYouKnowIt.Infrastructure.Data;
-using DoYouKnowIt.Infrastructure.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DoYouKnowIt.Application.Services.DbServices
 {

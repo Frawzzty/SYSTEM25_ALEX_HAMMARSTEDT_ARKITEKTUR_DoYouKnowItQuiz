@@ -1,10 +1,4 @@
-﻿
-using Domain.Entities.Models.DbModels;
-using DoYouKnowIt.Application.Interfaces;
-using DoYouKnowIt.Application.Services;
-using Microsoft.VisualBasic;
-using System.ComponentModel;
-using System.Windows.Input;
+﻿using System.ComponentModel;
 
 namespace DoYouKnowIt.Presentation
 {

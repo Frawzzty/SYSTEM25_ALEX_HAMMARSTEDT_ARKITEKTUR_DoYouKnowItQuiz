@@ -1,12 +1,5 @@
-﻿using Domain.Entities.Models;
-using DoYouKnowIt.Application.Facades;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections.Generic;
+﻿using DoYouKnowIt.Application.Facades;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace DoYouKnowIt.Presentation.ViewModels

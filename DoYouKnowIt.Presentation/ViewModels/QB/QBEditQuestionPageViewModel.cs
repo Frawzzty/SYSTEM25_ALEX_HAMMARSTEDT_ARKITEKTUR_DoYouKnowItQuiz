@@ -1,13 +1,7 @@
 ﻿using Domain.Entities.Models.DbModels;
 using DoYouKnowIt.Application.Interfaces.DbServiceInterfaces;
-using DoYouKnowIt.Application.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace DoYouKnowIt.Presentation.ViewModels.QB

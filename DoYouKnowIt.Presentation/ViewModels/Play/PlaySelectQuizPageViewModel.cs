@@ -1,14 +1,8 @@
 ﻿using Domain.Entities.Models.DbModels;
 using DoYouKnowIt.Application.Interfaces.DbServiceInterfaces;
 using DoYouKnowIt.Presentation.Views.Play;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DoYouKnowIt.Presentation.ViewModels.Play
 {

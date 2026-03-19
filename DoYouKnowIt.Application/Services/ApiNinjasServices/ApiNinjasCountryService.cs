@@ -1,13 +1,7 @@
 ﻿using Domain.Entities.Models.ApiNinjasModels;
-using DoYouKnowIt.Infrastructure.Data;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
+using DoYouKnowIt.Infrastructure.Connections;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace DoYouKnowIt.Application.Services.ApiNinjasServices
 {

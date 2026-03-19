@@ -1,11 +1,5 @@
 ﻿using Domain.Entities.Models.Login;
-using DoYouKnowIt.Application.Interfaces;
 using DoYouKnowIt.Application.Interfaces.LoginInterfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DoYouKnowIt.Application.Services.LoginServices
 {

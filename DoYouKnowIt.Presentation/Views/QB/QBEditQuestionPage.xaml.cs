@@ -1,5 +1,3 @@
-using Domain.Entities.Models.DbModels;
-
 namespace DoYouKnowIt.Presentation.Views.QB;
 
 public partial class QBEditQuestionPage : ContentPage, IQueryAttributable

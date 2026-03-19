@@ -1,5 +1,3 @@
-using Domain.Entities.Models.DbModels;
-using DoYouKnowIt.Application.Services;
 using DoYouKnowIt.Presentation.ViewModels.QB;
 
 namespace DoYouKnowIt.Presentation.Views.QB;

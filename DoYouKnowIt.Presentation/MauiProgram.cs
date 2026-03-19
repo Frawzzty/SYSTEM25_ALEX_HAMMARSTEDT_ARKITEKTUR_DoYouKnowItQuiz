@@ -1,21 +1,19 @@
 ﻿using Domain.Entities.Interfaces;
 using Domain.Entities.Models.DbModels;
-using Domain.Entities.Models.Game;
+using DoYouKnowIt.Application.Facades;
+using DoYouKnowIt.Application.Interfaces.DbServiceInterfaces;
 using DoYouKnowIt.Application.Interfaces.LoginInterfaces;
-using DoYouKnowIt.Application.Services.LoginServices;
 using DoYouKnowIt.Application.Services.ApiNinjasServices;
-using DoYouKnowIt.Infrastructure.Data;
-using DoYouKnowIt.Infrastructure.Repositories;
+using DoYouKnowIt.Application.Services.DbServices;
+using DoYouKnowIt.Application.Services.LoginServices;
+using DoYouKnowIt.Infrastructure.Connections;
+using DoYouKnowIt.Infrastructure.Repositories.DbRepositories;
+using DoYouKnowIt.Presentation.ViewModels;
 using DoYouKnowIt.Presentation.ViewModels.Play;
 using DoYouKnowIt.Presentation.ViewModels.QB;
 using DoYouKnowIt.Presentation.Views.Play;
 using DoYouKnowIt.Presentation.Views.QB;
 using Microsoft.Extensions.Logging;
-using DoYouKnowIt.Application.Facades;
-using DoYouKnowIt.Presentation.ViewModels;
-using Domain.Entities.Models;
-using DoYouKnowIt.Application.Services.DbServices;
-using DoYouKnowIt.Application.Interfaces.DbServiceInterfaces;
 
 namespace DoYouKnowIt.Presentation
 {

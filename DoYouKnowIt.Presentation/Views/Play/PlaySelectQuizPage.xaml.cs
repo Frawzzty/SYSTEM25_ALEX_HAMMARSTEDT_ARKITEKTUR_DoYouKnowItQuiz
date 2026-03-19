@@ -1,6 +1,4 @@
 using DoYouKnowIt.Presentation.ViewModels.Play;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Platform;
 
 namespace DoYouKnowIt.Presentation.Views.Play;
 

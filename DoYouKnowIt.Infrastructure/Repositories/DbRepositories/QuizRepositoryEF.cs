@@ -1,15 +1,9 @@
 ﻿using Domain.Entities.Interfaces;
 using Domain.Entities.Models.DbModels;
-using DoYouKnowIt.Infrastructure.Data;
+using DoYouKnowIt.Infrastructure.Connections;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DoYouKnowIt.Infrastructure.Repositories
+namespace DoYouKnowIt.Infrastructure.Repositories.DbRepositories
 {
     //Not optimal: Using "using" on each Db call to resolve issue with overlapping calls / same object beeing tracked twice.
     public class QuizRepositoryEF : IQuizRepository
