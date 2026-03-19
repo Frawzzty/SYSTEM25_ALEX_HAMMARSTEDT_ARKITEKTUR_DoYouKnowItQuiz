@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Models;
+﻿using Domain.Entities.Models.Login;
 using DoYouKnowIt.Application.Interfaces;
 using DoYouKnowIt.Application.Interfaces.NewFolder;
 using System;
@@ -13,15 +13,17 @@ namespace DoYouKnowIt.Application.Services.Login
     {
         //Check user permission
         IUserService _userService;
-        UserSession _userSession;
-        public AuthorizationService(IUserService userService)
+        IUserSessionService _userSessionService;
+        public AuthorizationService(IUserService userService, IUserSessionService userSessionService)
         {
             _userService = userService;
-            _userSession = UserSession.GetUserSession();
+            _userSessionService = userSessionService;
         }
         public async Task<bool> IsAuthorizedAsync(string role)
         {
-            var user = await _userService.GetByLoginAsync(_userSession.Username, _userSession.Password);
+            UserSession session = _userSessionService.GetSession();
+
+            var user = await _userService.GetByLoginAsync(session.Username, session.Password);
 
             if (user == null) 
                 return false;

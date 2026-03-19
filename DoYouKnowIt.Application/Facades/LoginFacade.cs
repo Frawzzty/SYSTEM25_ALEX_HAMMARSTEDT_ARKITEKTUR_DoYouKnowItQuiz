@@ -1,5 +1,5 @@
 ﻿using Domain.Entities.Enums;
-using Domain.Entities.Models;
+using Domain.Entities.Models.Login;
 using DoYouKnowIt.Application.Interfaces.NewFolder;
 using DoYouKnowIt.Application.Services.Login;
 using System.Diagnostics;
@@ -21,8 +21,9 @@ namespace DoYouKnowIt.Application.Facades
 
         public async Task<bool> UserIsAdminAsync()
         {
-            UserSession userSession = _userSessionService.GetSession();
-            if (await _autherizationService.IsAuthenticatedAsync(userSession.Username, userSession.Password) &&
+            UserSession session = _userSessionService.GetSession();
+
+            if (await _autherizationService.IsAuthenticatedAsync(session.Username, session.Password) &&
                 await _authenticationService.IsAuthorizedAsync(UserRole.Admin.ToString()))
             {
                 return true;
@@ -40,12 +41,11 @@ namespace DoYouKnowIt.Application.Facades
             }
 
             return false;
-
         }
 
         public async Task<bool> UserIsLoggedIn()
         {
-            if (!UserSession.GetUserSession().IsLoggedIn)
+            if (!_userSessionService.GetSession().IsLoggedIn)
                 return true;
             else 
                 return false;

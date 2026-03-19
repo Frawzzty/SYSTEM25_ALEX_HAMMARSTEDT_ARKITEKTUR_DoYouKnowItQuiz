@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Models;
+﻿using Domain.Entities.Models.Login;
 using DoYouKnowIt.Application.Interfaces;
 using DoYouKnowIt.Application.Interfaces.NewFolder;
 using System;
@@ -13,8 +13,6 @@ namespace DoYouKnowIt.Application.Services.Login
     {
         private UserSession _thisSession;
 
-        //Singelton - The user only needs to login one time when using the application
-
         public UserSessionService()
         {
             _thisSession = UserSession.GetUserSession();
@@ -27,19 +25,12 @@ namespace DoYouKnowIt.Application.Services.Login
 
         public void SetSessionActive(string username, string password)
         {
-            _thisSession.Username = username;
-            _thisSession.Password = password;
-
-            _thisSession.IsLoggedIn = true;
+            _thisSession.SetSessionActive(username, password);
         }
 
         public void SetSessionInactive()
         {
-            _thisSession.Username = "";
-            _thisSession.Password = "";
-
-            _thisSession.IsLoggedIn = false;
+            _thisSession.SetSessionInactive();
         }
-
     }
 }
