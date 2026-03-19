@@ -1,5 +1,4 @@
-Maui
-SQL SERVER
+.NET Maui, SQL SERVER
 
 Home
 <p align="center">
