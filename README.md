@@ -18,12 +18,12 @@ Result
   <img src="Screenshots/ResultPage.jpg" width="800">
 </p>
 
-Edit Quiz
+Edit Quiz...
 <p align="center">
   <img src="Screenshots/QuizBuilderEditQuizPage.jpg" width="800">
 </p>
 
-Edit Question
+Edit Question...
 <p align="center">
   <img src="Screenshots/QuizBuilderEditQuestionPage.jpg" width="800">
 </p>
