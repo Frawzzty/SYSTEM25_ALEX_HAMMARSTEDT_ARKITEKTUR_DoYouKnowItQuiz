@@ -5,49 +5,51 @@
              x:Class="DoYouKnowIt.Presentation.Views.QB.QBSelectPage"
              Title="Quiz Builder - Select"
              BackgroundColor="{StaticResource BgDefault}">
-    
-    <VerticalStackLayout 
-        Margin="25"
-        Spacing="10">
+    <ScrollView>
+        <VerticalStackLayout 
+            Margin="25"
+            Spacing="10">
 
 
-        <HorizontalStackLayout Spacing="10">
-            <!--Button, Back-->
-            <controls:BackButton
-                HorizontalOptions="Start"/>
-            <!--Button, Add new Quiz-->
-            <Button
-            Text="Add new Quiz"
-            Command="{Binding AddNewQuizCommand}"
-            Style="{StaticResource BtnGreen}"
+            <HorizontalStackLayout Spacing="10">
+                <!--Button, Back-->
+                <controls:BackButton
             HorizontalOptions="Start"/>
-        </HorizontalStackLayout>
+                <!--Button, Add new Quiz-->
+                <Button
+                    Text="Add new Quiz"
+                    Command="{Binding AddNewQuizCommand}"
+                    Style="{StaticResource BtnGreen}"
+                    HorizontalOptions="Start"/>
+            </HorizontalStackLayout>
 
 
 
-        <Label
-            Text="Select to edit"
-            TextColor="White"
-            FontSize="25"
-            FontAttributes="Bold"
-            Margin="0,20,0,0"/>        
+            <Label
+                Text="Select to edit"
+                TextColor="White"
+                FontSize="25"
+                FontAttributes="Bold"
+                Margin="0,20,0,0"/>
 
-        <!--Select Quiz, go edit page-->
-        <CollectionView
-            ItemsSource="{Binding Quizzes}"
-            SelectedItem="{Binding SelectedQuiz}"
-            SelectionMode="Single">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    
-                    <controls:QuizCardControl
-                        Padding="5"
-                        QuizTitle="{Binding Title}"
-                        QuizDescription="{Binding Description}"
-                        QuizImageUrl="{Binding ImageUrl}"/>
-                    
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+            <!--Select Quiz, go edit page-->
+            <CollectionView
+                ItemsSource="{Binding Quizzes}"
+                SelectedItem="{Binding SelectedQuiz}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <controls:QuizCardControl
+                            Padding="5"
+                            QuizTitle="{Binding Title}"
+                            QuizDescription="{Binding Description}"
+                            QuizImageUrl="{Binding ImageUrl}"/>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+    
 </ContentPage>
