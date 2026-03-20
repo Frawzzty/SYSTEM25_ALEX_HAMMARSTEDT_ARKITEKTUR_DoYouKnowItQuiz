@@ -42,7 +42,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
             get { return _selectedAnswer; } 
             set { _selectedAnswer = value; 
                 OnPropertyChanged(nameof(SelectedAnswer));
-                OnSelectedAnswer(); //Cannot await here
+                OnSelectedAnswer(); //Cannot await heregit 
             } 
         }
 
