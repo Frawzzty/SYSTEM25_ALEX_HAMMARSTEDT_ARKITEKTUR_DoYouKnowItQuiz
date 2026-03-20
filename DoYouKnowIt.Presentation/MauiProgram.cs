@@ -96,7 +96,7 @@ namespace DoYouKnowIt.Presentation
 
 
             //API Ninjas 
-            builder.Services.AddScoped<ApiNinjasDataManager>();
+            builder.Services.AddScoped<ApiNinjasConnection>();
             builder.Services.AddScoped<ApiNinjasCountryService>();
             return builder.Build();
         }

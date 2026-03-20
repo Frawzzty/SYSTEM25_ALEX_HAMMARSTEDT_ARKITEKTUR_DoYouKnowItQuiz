@@ -7,8 +7,8 @@ namespace DoYouKnowIt.Application.Services.ApiNinjasServices
 {
     public class ApiNinjasCountryService
     {
-        private ApiNinjasDataManager _apiNinjas;
-        public ApiNinjasCountryService(ApiNinjasDataManager apiNinjas) //Not interface
+        private ApiNinjasConnection _apiNinjas;
+        public ApiNinjasCountryService(ApiNinjasConnection apiNinjas) //Not interface
         {
             _apiNinjas = apiNinjas;
         }
