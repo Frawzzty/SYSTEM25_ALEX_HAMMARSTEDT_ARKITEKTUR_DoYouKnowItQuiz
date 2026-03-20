@@ -16,7 +16,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             _quizService = quizService;
             _loginFacade = loginFacade;
             
-            AddNewQuizCommand = new Command(async () => AddNewQuiz()); //Send no Quiz ID parameter
+            AddNewQuizCommand = new Command(async () => AddNewQuizAsync()); //Send no Quiz ID parameter
         }
 
         public ICommand AddNewQuizCommand { get; set; }
@@ -46,12 +46,12 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
                 _selectedQuiz = value;
                 OnPropertyChanged(nameof(SelectedQuiz));
 
-                OnQuizSelected(value);
+                OnQuizSelectedAsync(value);
             }
         }
 
 
-        private async Task OnQuizSelected(Quiz quiz)
+        private async Task OnQuizSelectedAsync(Quiz quiz)
         {
             if (quiz == null)
                 return;
@@ -61,7 +61,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             SelectedQuiz = null;
         }
 
-        private async Task AddNewQuiz()
+        private async Task AddNewQuizAsync()
         {
             //Admin lock
             if (await _loginFacade.UserIsAdminAsync() == false)
@@ -73,7 +73,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditQuizPage)}");
         }
 
-        public async Task LoadData()
+        public async Task LoadDataAsync()
         {
             //Admin lock
             if (await _loginFacade.UserIsAdminAsync() == false)

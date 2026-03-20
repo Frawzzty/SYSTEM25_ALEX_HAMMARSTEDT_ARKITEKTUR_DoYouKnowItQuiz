@@ -28,6 +28,6 @@ public partial class PlayPlayQuizPage : ContentPage, IQueryAttributable
         }
 
         //Load data
-        await vm.LoadData();
+        await vm.LoadDataAsync();
     }
 }

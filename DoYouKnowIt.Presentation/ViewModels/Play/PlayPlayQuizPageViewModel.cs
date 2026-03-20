@@ -47,7 +47,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
         }
 
         //Runs one time
-        public async Task LoadData()
+        public async Task LoadDataAsync()
         {
             //Check if QuizId is valid
             if(QuizId == 0)
@@ -58,11 +58,11 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
             }
 
             //Load Quiz
-            await LoadQuiz();
+            await LoadQuizAsync();
             if (Quiz.Questions != null)
             {
                 _randomizedQuestionList = Quiz.Questions.OrderBy(_ => Random.Shared.Next()).ToList(); //Shuffle question order
-                await LoadRound();
+                await LoadRoundAsync();
             }
             else
             {
@@ -71,7 +71,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
                 
         }
 
-        private async Task LoadQuiz()
+        private async Task LoadQuizAsync()
         {
             Quiz = await _quizService.GetQuizAsync(QuizId);
 
@@ -81,7 +81,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
            _quizResult = new QuizResult(Quiz);
         }
 
-        private async Task LoadRound()
+        private async Task LoadRoundAsync()
         {
             //If no questions left. Go to result page
             if(_questionIndex >= _randomizedQuestionList.Count)
@@ -121,7 +121,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
 
             //Load Next round
             _questionIndex++;
-            LoadRound();
+            LoadRoundAsync();
 
             //Deselect answer
             SelectedAnswer = null;

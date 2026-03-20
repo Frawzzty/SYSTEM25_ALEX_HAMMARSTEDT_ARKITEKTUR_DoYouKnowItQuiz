@@ -15,7 +15,7 @@ public partial class QBSelectPage : ContentPage
         base.OnAppearing();
 		if(BindingContext is ViewModels.QB.QBSelectPageViewModel vm)
 		{
-			await vm.LoadData();
+			await vm.LoadDataAsync();
 		}
     }
 

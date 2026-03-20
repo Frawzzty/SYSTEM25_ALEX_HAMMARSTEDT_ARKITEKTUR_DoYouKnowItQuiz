@@ -22,7 +22,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private async Task OnSelectionChanged()
+        private async Task OnSelectionChangedAsync()
         {
             if(SelectedQuiz == null)
                 return;
@@ -56,13 +56,13 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
             set { _selectedQuiz = value; 
                 OnPropertyChanged(nameof(SelectedQuiz));
 
-                OnSelectionChanged();
+                OnSelectionChangedAsync();
             } 
         }
 
 
         //Load on Appearing in page codebehind
-        public async Task LoadQuizzes()
+        public async Task LoadQuizzesAsync()
         {
             Quizzes = new ObservableCollection<Quiz>(await _quizService.GetAllQuizzesAsync());
             _originalQuizList = Quizzes.ToList();

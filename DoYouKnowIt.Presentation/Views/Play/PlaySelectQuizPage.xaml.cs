@@ -19,7 +19,7 @@ public partial class PlaySelectQuizPage : ContentPage
         //Load data
 		if(BindingContext is PlaySelectQuizPageViewModel vm)
 		{
-			await vm.LoadQuizzes();
+			await vm.LoadQuizzesAsync();
 		}
 
         //Start animations on appearing

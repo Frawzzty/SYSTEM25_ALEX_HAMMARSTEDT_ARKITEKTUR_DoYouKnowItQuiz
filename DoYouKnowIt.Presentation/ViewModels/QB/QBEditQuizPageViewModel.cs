@@ -19,8 +19,8 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
 
             //Commands
             AddNewQuestionCommand = new Command(async () => { await AddNewQuestionAsync(); });
-            SaveQuizCommand = new Command(async () => { await SaveQuiz(); });
-            DeleteQuizCommand = new Command(async () => { await DeleteQuiz(); });
+            SaveQuizCommand = new Command(async () => { await SaveQuizAsync(); });
+            DeleteQuizCommand = new Command(async () => { await DeleteQuizAsync(); });
         }
 
         private int _quizId;
@@ -53,7 +53,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
 
                 _selectedQuestion = value;
                 OnPropertyChanged(nameof(SelectedQuestion));
-                OnQuestionSelected(value); //When question is selected //ItemSelect is bound to this property
+                OnQuestionSelectedAsync(value); //When question is selected //ItemSelect is bound to this property
             }
         }
 
@@ -69,7 +69,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
 
 
         //Refreshes on appearing
-        public async Task LoadData()
+        public async Task LoadDataAsync()
         {
             try
             {
@@ -91,7 +91,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
 
         #region Methods
 
-        private async Task SaveQuiz()
+        private async Task SaveQuizAsync()
         {
             if (ValidateQuiz() == false)
                 return;
@@ -116,7 +116,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
 
         }
 
-        private async Task DeleteQuiz()
+        private async Task DeleteQuizAsync()
         {
             //Delete quiz
             try
@@ -145,7 +145,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
                 await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditQuestionPage)}?QuizId={QuizId}&QuestionId={0}");
             }
         }
-        private async Task OnQuestionSelected(Question question)
+        private async Task OnQuestionSelectedAsync(Question question)
         {
             if (question == null)
                 return;

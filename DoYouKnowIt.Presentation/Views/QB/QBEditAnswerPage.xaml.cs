@@ -26,7 +26,7 @@ public partial class QBEditAnswerPage : ContentPage, IQueryAttributable
             }
 
             //Load data
-            await vm.LoadData();
+            await vm.LoadDataAsync();
             vm.IsInitialized = true;
         }
     }
@@ -40,7 +40,7 @@ public partial class QBEditAnswerPage : ContentPage, IQueryAttributable
         if (BindingContext is ViewModels.QB.QBEditAnswerPageViewModel vm)
         {
             if (vm.IsInitialized)
-                await vm.LoadData();
+                await vm.LoadDataAsync();
         }
     }
 }

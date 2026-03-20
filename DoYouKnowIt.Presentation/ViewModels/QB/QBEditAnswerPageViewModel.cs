@@ -15,11 +15,11 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
         {
             _answerService = answerService;
 
-            SaveAnswerCommand = new Command(async () => await SaveAnswer());
-            DeleteAnswerCommand = new Command(async () => await DeleteAnswer());
+            SaveAnswerCommand = new Command(async () => await SaveAnswerAsync());
+            DeleteAnswerCommand = new Command(async () => await DeleteAnswerAsync());
         }
 
-        public async Task LoadData()
+        public async Task LoadDataAsync()
         {
             //Get Answer, if new create new Answer() with correct QuestionId
             Answer = await _answerService.GetAnswerAsync(AnswerId) ?? new() { QuestionId = QuestionId };
@@ -48,7 +48,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
         private Answer? _answer;
         public Answer? Answer { get { return _answer; } set { _answer = value; OnPropertyChanged(nameof(Answer)); } }
 
-        private async Task SaveAnswer()
+        private async Task SaveAnswerAsync()
         {
             //Check inputs are valid
             if (string.IsNullOrWhiteSpace(Answer.AnswerText))
@@ -79,7 +79,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             await Shell.Current.Navigation.PopAsync();
         }
 
-        private async Task DeleteAnswer()
+        private async Task DeleteAnswerAsync()
         {
             //Delete quiz
             if (Answer != null && Answer.Id > 0)

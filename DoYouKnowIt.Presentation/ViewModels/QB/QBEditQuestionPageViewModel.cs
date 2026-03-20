@@ -20,12 +20,12 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             _answerService = answerService;
 
             //Commands
-            SaveQuestionCommand = new Command(async () => await SaveQuestion());
-            DeleteQuestionCommand = new Command(async () => await DeleteQuestion());
+            SaveQuestionCommand = new Command(async () => await SaveQuestionAsync());
+            DeleteQuestionCommand = new Command(async () => await DeleteQuestionAsync());
             AddNewAnswerCommand = new Command(async () => { await AddNewQuestionAsync();});
         }
 
-        public async Task LoadData()
+        public async Task LoadDataAsync()
         {
             //Get Question, if new create new Question() with correct QuizId
             try 
@@ -81,11 +81,11 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
                 _selectedAnswer = value; 
                 OnPropertyChanged(nameof(SelectedAnswer));
 
-                OnQuestionSelected(SelectedAnswer);
+                OnQuestionSelectedAsync(SelectedAnswer);
             } 
         }
 
-        private async Task OnQuestionSelected(Answer question)
+        private async Task OnQuestionSelectedAsync(Answer question)
         {
             if (question == null)
                 return;
@@ -96,7 +96,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
         }
 
 
-        private async Task SaveQuestion()
+        private async Task SaveQuestionAsync()
         {
             //Check inputs are valid
             if (ValidateQuestion() == false)
@@ -124,7 +124,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             await Shell.Current.Navigation.PopAsync();
         }
 
-        private async Task DeleteQuestion()
+        private async Task DeleteQuestionAsync()
         {
             //Delete quiz
             if (_question != null && _question.Id > 0)
