@@ -1,6 +1,6 @@
 ﻿namespace DoYouKnowIt.Infrastructure.Connections
 {
-    public class ApiNinjasDataManager
+    public class ApiNinjasConnection
     {
         
         private readonly string baseUrl = "https://api.api-ninjas.com/";
@@ -8,7 +8,7 @@
         private readonly string myKey = "v7ZaTeWShVN2gMG80yebFQBBrcw3xoVe9jOodTkm"; //Super secret
 
         public HttpClient Client { get;}
-        public ApiNinjasDataManager()
+        public ApiNinjasConnection()
         {
             Client = SetClient();
         }
