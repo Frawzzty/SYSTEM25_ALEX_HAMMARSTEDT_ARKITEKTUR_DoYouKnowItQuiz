@@ -1,5 +1,6 @@
 ﻿using Domain.Entities.Models.DbModels;
 using DoYouKnowIt.Application.Interfaces.DbServiceInterfaces;
+using MongoDB.Bson.Serialization.Conventions;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
@@ -17,9 +18,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             _quizService = quizService;
 
             //Commands
-            AddNewQuestionCommand = new Command(async () => 
-            { await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditQuestionPage)}?QuizId={QuizId}&QuestionId={0}");});
-
+            AddNewQuestionCommand = new Command(async () => { await AddNewQuestionAsync(); });
             SaveQuizCommand = new Command(async () => { await SaveQuiz(); });
             DeleteQuizCommand = new Command(async () => { await DeleteQuiz(); });
         }
@@ -135,7 +134,17 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             catch (Exception ex)                { await Shell.Current.DisplayAlert("Error", $"Something went wrong when deleting Quiz: {ex.Message}", "OK"); }
         }
 
-
+        private async Task AddNewQuestionAsync()
+        {
+            if(Quiz == null || Quiz.Id == 0)
+            {
+                Shell.Current.DisplayAlert("Error", "Please make sure the Quiz is saved before you add Questions", "OK");
+            }
+            else
+            {
+                await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditQuestionPage)}?QuizId={QuizId}&QuestionId={0}");
+            }
+        }
         private async Task OnQuestionSelected(Question question)
         {
             if (question == null)
