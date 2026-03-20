@@ -22,7 +22,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             //Commands
             SaveQuestionCommand = new Command(async () => await SaveQuestion());
             DeleteQuestionCommand = new Command(async () => await DeleteQuestion());
-            AddNewAnswerCommand = new Command(async () => { await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditAnswerPage)}?QuestionId={Question.Id}&AnswerId={0}"); });
+            AddNewAnswerCommand = new Command(async () => { await AddNewQuestionAsync();});
         }
 
         public async Task LoadData()
@@ -137,6 +137,18 @@ namespace DoYouKnowIt.Presentation.ViewModels.QB
             }
 
             await Shell.Current.Navigation.PopAsync();
+        }
+
+        private async Task AddNewQuestionAsync()
+        {
+            if (Question == null || Question.Id == 0)
+            {
+                Shell.Current.DisplayAlert("Error", "Please make sure the Question is saved before you add Answers", "OK");
+            }
+            else
+            {
+                await Shell.Current.GoToAsync($"{nameof(Views.QB.QBEditAnswerPage)}?QuestionId={Question.Id}&AnswerId={0}");
+            }
         }
 
         private bool ValidateQuestion()
