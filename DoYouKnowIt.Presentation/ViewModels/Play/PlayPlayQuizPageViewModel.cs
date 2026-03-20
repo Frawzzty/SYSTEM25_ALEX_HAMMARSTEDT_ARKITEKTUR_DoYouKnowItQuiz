@@ -42,7 +42,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
             get { return _selectedAnswer; } 
             set { _selectedAnswer = value; 
                 OnPropertyChanged(nameof(SelectedAnswer));
-                OnSelectedAnswer();
+                OnSelectedAnswer(); //Cannot await here
             } 
         }
 
@@ -111,7 +111,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
             PropertyChanged?.Invoke( this, new PropertyChangedEventArgs(propertyName));  
         }
 
-        private void OnSelectedAnswer()
+        private async Task OnSelectedAnswer()
         {
             if (SelectedAnswer == null)
                 return;
@@ -121,7 +121,7 @@ namespace DoYouKnowIt.Presentation.ViewModels.Play
 
             //Load Next round
             _questionIndex++;
-            LoadRoundAsync();
+            await LoadRoundAsync();
 
             //Deselect answer
             SelectedAnswer = null;
