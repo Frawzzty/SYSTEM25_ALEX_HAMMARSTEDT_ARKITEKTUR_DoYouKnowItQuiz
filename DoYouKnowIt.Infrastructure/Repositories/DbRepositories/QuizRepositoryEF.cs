@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DoYouKnowIt.Infrastructure.Repositories.DbRepositories
 {
-    //Not optimal: Using "using" on each Db call to resolve issue with overlapping calls / same object beeing tracked twice.
+    //Not optimal: Using "using" on each Db call. For resolving issue with overlapping calls when using the same context for multiple db calls / same object beeing tracked twice.
     public class QuizRepositoryEF : IQuizRepository
     {
         public async Task<Quiz?> GetByIdAsync(int quizId)

@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DoYouKnowIt.Infrastructure.Repositories.DbRepositories
 {
+    //Not optimal: Using "using" on each Db call. For resolving issue with overlapping calls when using the same context for multiple db calls / same object beeing tracked twice.
+
+    //Works, but cannot not include Navigation properties.
     public class RepositoryEF<T> : IRepository<T> where T : class
     {
-        
         //Does not include navigation props due to being generic...
         public async Task<T?> GetByIdAsync(int entityId)
         {
@@ -24,7 +26,6 @@ namespace DoYouKnowIt.Infrastructure.Repositories.DbRepositories
                 return await context.Set<T>().ToListAsync();
             }
         }
-         
 
 
         public async Task AddAsync(T entity)
@@ -38,7 +39,6 @@ namespace DoYouKnowIt.Infrastructure.Repositories.DbRepositories
                 }
             }
         }
-
         public async Task UpdateAsync(T entity)
         {
             if (entity != null)
@@ -50,7 +50,6 @@ namespace DoYouKnowIt.Infrastructure.Repositories.DbRepositories
                 }
             }
         }
-
         public async Task DeleteAsync(int entityId)
         {
             using (var context = new MyDbContext())
