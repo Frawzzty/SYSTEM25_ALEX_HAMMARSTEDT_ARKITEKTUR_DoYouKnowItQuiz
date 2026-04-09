@@ -1,4 +1,10 @@
-.NET Maui, SQL SERVER
+<ul>
+  <li>.NET Maui</li>
+  <li>C#, Xaml</li>
+  <li>Onion structure</li>
+  <li>DB: SQL SERVER</li>
+</ul>
+
 
 Home
 <p align="center">
